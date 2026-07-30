@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelo de Lançamento — Estrutura de Tráfego</title>
+<style>
+  :root{
+    --bg:#0a0710;--surface:#161022;--surface2:#1e0a2e;--border:#2a2038;
+    --purple:#8b3dab;--purple-light:#c07be0;--text:#f3eefa;--muted:#9a8bb0;
+    --green:#4ade80;--amber:#fbbf24;--red:#f87171;--blue:#60a5fa;--pink:#f472b6;--cyan:#5ecbe0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:radial-gradient(900px 500px at 12% -5%,rgba(139,61,171,.18),transparent 60%),
+    radial-gradient(800px 480px at 100% 0%,rgba(192,123,224,.10),transparent 55%),var(--bg);
+    color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.55;min-height:100vh;padding:30px 16px 70px;}
+  .wrap{max-width:1040px;margin:0 auto;}
+  .eyebrow{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--purple-light);font-weight:700;margin-bottom:8px;}
+  h1{font-size:2rem;font-weight:800;letter-spacing:-.02em;line-height:1.1;}
+  h1 span{color:var(--purple-light);}
+  .sub{color:var(--muted);font-size:.94rem;margin-top:10px;max-width:720px;}
+  h2{font-size:1.35rem;font-weight:800;margin:40px 0 6px;display:flex;align-items:center;gap:10px;}
+  .h2sub{color:var(--muted);font-size:.88rem;margin-bottom:16px;}
+
+  /* Fluxo de fases */
+  .flow{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px;}
+  .chip{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:7px;}
+  .chip .num{background:var(--purple);color:#fff;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:16px;}
+  .fase{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--fc,var(--purple));border-radius:12px;padding:16px 18px;}
+  .fase h3{font-size:1.02rem;font-weight:800;display:flex;align-items:center;gap:8px;color:var(--fc,var(--purple-light));}
+  .fase h3 .n{background:var(--fc,var(--purple));color:#fff;width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:.74rem;}
+  .fase .goal{font-size:.82rem;color:var(--muted);font-style:italic;margin:6px 0 10px;}
+  .fase .blk{margin-bottom:9px;}
+  .fase .blk .bt{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--purple-light);font-weight:700;margin-bottom:3px;}
+  .fase ul{list-style:none;display:flex;flex-direction:column;gap:3px;}
+  .fase li{position:relative;padding-left:15px;font-size:.85rem;color:#e6dcf0;}
+  .fase li::before{content:'·';position:absolute;left:4px;color:var(--fc,var(--purple-light));font-weight:900;}
+  .fase li b{color:#fff;}
+
+  .f1{--fc:#60a5fa;} .f2{--fc:#c07be0;} .f3{--fc:#f472b6;} .f4{--fc:#f87171;}
+  .f5{--fc:#fbbf24;} .f6{--fc:#4ade80;} .f7{--fc:#5ecbe0;} .f8{--fc:#a3e635;}
+
+  .focus{background:linear-gradient(150deg,var(--surface2),var(--surface));border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-top:16px;}
+  .focus.amber{border-left:4px solid var(--amber);}
+  .focus.purple{border-left:4px solid var(--purple-light);}
+  .focus h3{font-size:1.1rem;font-weight:800;margin-bottom:10px;}
+  .focus .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media(max-width:680px){.focus .cols{grid-template-columns:1fr;}}
+  ul.clean{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  ul.clean li{position:relative;padding-left:20px;font-size:.9rem;}
+  ul.clean li::before{content:'▸';position:absolute;left:2px;color:var(--purple-light);}
+  ul.clean li b{color:#fff;}
+  .rule{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);border-radius:8px;padding:9px 13px;font-size:.88rem;font-weight:700;color:var(--amber);margin-top:10px;}
+
+  .twrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px 14px 12px;margin-top:8px;}
+  table{width:100%;border-collapse:collapse;font-size:.86rem;}
+  th,td{padding:9px 8px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;}
+  th:first-child,td:first-child{text-align:left;}
+  thead th{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);}
+  tbody tr:hover{background:rgba(139,61,171,.06);}
+  .win{color:var(--green);font-weight:800;} .bad{color:var(--red);font-weight:800;} .neu{color:var(--muted);}
+  .tag{font-size:.64rem;font-weight:800;padding:2px 7px;border-radius:5px;}
+  .t-bad{background:rgba(248,113,113,.16);color:var(--red);} .t-win{background:rgba(74,222,128,.16);color:var(--green);}
+
+  .note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--purple-light);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:.9rem;}
+  .note.bad{border-left-color:var(--red);} .note.win{border-left-color:var(--green);}
+  .note b{color:#fff;}
+  ol.plan{list-style:none;counter-reset:p;display:flex;flex-direction:column;gap:11px;margin-top:8px;}
+  ol.plan li{counter-increment:p;position:relative;padding:13px 16px 13px 52px;background:var(--surface);border:1px solid var(--border);border-radius:11px;font-size:.92rem;}
+  ol.plan li::before{content:counter(p);position:absolute;left:14px;top:12px;width:26px;height:26px;background:var(--purple);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;}
+  ol.plan li b{color:#fff;}
+  footer{margin-top:44px;text-align:center;color:var(--muted);font-size:.76rem;}
+  footer b{color:var(--purple-light);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Cardô Marketing · Playbook</div>
+  <h1>Modelo de <span>Lançamento</span> — Estrutura de Tráfego</h1>
+  <p class="sub">A nossa estrutura de campanhas para o próximo lançamento — 8 frentes que trabalham juntas, com foco reforçado em <b style="color:var(--amber)">escassez</b> e <b style="color:var(--purple-light)">escala</b>. Fecha com um diagnóstico de gargalos comparando um lançamento de referência (1.698 vendas) com o nosso WICI3.</p>
+
+  <!-- ESTRUTURA -->
+  <h2>🗺️ A Estrutura — 8 frentes</h2>
+  <div class="h2sub">Cada frente tem um objetivo, público, tipo de criativo e rotina próprios. Rodam em paralelo durante o lançamento.</div>
+  <div class="flow">
+    <span class="chip"><span class="num">1</span> Vendas</span>
+    <span class="chip"><span class="num">2</span> Remarketing</span>
+    <span class="chip"><span class="num">3</span> Atração</span>
+    <span class="chip"><span class="num">4</span> Teste</span>
+    <span class="chip"><span class="num">5</span> Escassez</span>
+    <span class="chip"><span class="num">6</span> Qualificação</span>
+    <span class="chip"><span class="num">7</span> Rmkt ingressos</span>
+    <span class="chip"><span class="num">8</span> Carrinho</span>
+  </div>
+
+  <div class="grid">
+    <!-- 1 Vendas -->
+    <div class="fase f1">
+      <h3><span class="n">1</span> Vendas</h3>
+      <div class="goal">Vender ingressos com o menor CAC possível</div>
+      <div class="blk"><div class="bt">Públicos</div><ul>
+        <li><b>Quente:</b> e4, e2/e3, envolvimento 30d, alunos, enviou direct</li>
+        <li><b>Frio</b> (aberto)</li>
+        <li><b>Advantage+</b> com ref. de lookalike (alunos/ingressos/leads)</li></ul></div>
+      <div class="blk"><div class="bt">Canais</div><ul><li>Meta · Google</li></ul></div>
+      <div class="blk"><div class="bt">Criativos</div><ul><li>Estáticos, carrosséis, Reels/shorts, Wide YouTube, Pesquisa YT + Google</li></ul></div>
+      <div class="blk"><div class="bt">Rotina</div><ul><li><b>2x/dia</b> (manhã e tarde): ajustar orçamento, promover e pausar</li></ul></div>
+      <div class="rule" style="background:rgba(96,165,250,.12);border-color:rgba(96,165,250,.3);color:var(--blue)">⚠ Campanha <b>contínua</b> · SEM info sensível (preço, lote, data)</div>
+    </div>
+
+    <!-- 2 Remarketing -->
+    <div class="fase f2">
+      <h3><span class="n">2</span> Remarketing</h3>
+      <div class="goal">Converter quem pisou na página e não comprou</div>
+      <div class="blk"><div class="bt">Público</div><ul>
+        <li>Pisou na página/checkout mas não comprou</li>
+        <li>Participou de outra edição do workshop</li>
+        <li>Alunos e ex-alunos</li></ul></div>
+      <div class="blk"><div class="bt">Criativos (ângulos)</div><ul>
+        <li>Quebra de objeção · Como vai funcionar</li>
+        <li>Garantia (até 2 dias após o evento)</li>
+        <li>Comentários/depoimentos · edições passadas</li>
+        <li>Single shot · somente gravações</li></ul></div>
+      <div class="blk"><div class="bt">Formato & Rotina</div><ul>
+        <li>Campanha com <b>vários ads</b> (Meta entrega o que converte)</li>
+        <li>"Corredor polonês" de visualização</li>
+        <li>Diário ou 3x/semana · subir ads novos</li></ul></div>
+    </div>
+
+    <!-- 3 Atração -->
+    <div class="fase f3">
+      <h3><span class="n">3</span> Atração</h3>
+      <div class="goal">Topo de funil — atrair público frio novo com conteúdo</div>
+      <div class="blk"><div class="bt">Objetivo</div><ul>
+        <li>Encher o topo com gente nova (frio) que depois alimenta remarketing e escassez</li>
+        <li>Criativo de valor/conteúdo, sem venda direta</li></ul></div>
+      <div class="blk"><div class="bt">A detalhar com o time</div><ul><li>Ângulos de conteúdo · formatos de atração</li></ul></div>
+    </div>
+
+    <!-- 4 Teste -->
+    <div class="fase f4">
+      <h3><span class="n">4</span> Teste</h3>
+      <div class="goal">Laboratório de criativos — achar os vencedores</div>
+      <div class="blk"><div class="bt">Para quê</div><ul>
+        <li>Descobrir rápido o ad de maior potencial <b>isolado</b></li>
+        <li>Ver se performa melhor em <b>frio ou quente</b> (testa o mesmo criativo em quente/frio/pisou/adv+)</li>
+        <li>Promover o vencedor pra escala <b>sem depender da boa vontade do Meta</b></li></ul></div>
+      <div class="blk"><div class="bt">Orçamento</div><ul><li>Até <b>3x o CAC ideal</b> até tirar uma conclusão</li></ul></div>
+      <div class="rule">🔒 Regra de ouro: <b>NUNCA pausar uma campanha boa.</b> Pode escalar dentro da própria de teste.</div>
+    </div>
+
+    <!-- 5 Escassez -->
+    <div class="fase f5">
+      <h3><span class="n">5</span> Escassez</h3>
+      <div class="goal">Converter usando escassez de lote (a virada do lançamento)</div>
+      <div class="blk"><div class="bt">Público</div><ul><li>Mesmo do remarketing (já engajado)</li></ul></div>
+      <div class="blk"><div class="bt">Criativos</div><ul>
+        <li>Escassez · preço · contagem regressiva/lembrete</li>
+        <li>"Virou o lote" · checklist</li></ul></div>
+      <div class="blk"><div class="bt">Formato & Rotina</div><ul>
+        <li>Campanha de <b>vendas</b> + campanha de <b>impressão</b></li>
+        <li><b>Liga</b> quando a escassez começa, <b>desliga</b> quando acaba</li>
+        <li>Roda <b>separada</b> da campanha de vendas (não interfere na performance)</li></ul></div>
+    </div>
+
+    <!-- 6 Qualificação -->
+    <div class="fase f6">
+      <h3><span class="n">6</span> Qualificação</h3>
+      <div class="goal">Captar e qualificar leads pro lançamento</div>
+      <div class="blk"><div class="bt">Objetivo</div><ul>
+        <li>Trazer leads qualificados (inscritos/grupo) que viram compradores</li>
+        <li>Alimenta as bases de público quente das outras frentes</li></ul></div>
+      <div class="blk"><div class="bt">A detalhar com o time</div><ul><li>Isca · formulário/grupo · critério de qualificação</li></ul></div>
+    </div>
+
+    <!-- 7 Rmkt ingressos -->
+    <div class="fase f7">
+      <h3><span class="n">7</span> Rmkt ingressos</h3>
+      <div class="goal">Remarketing específico de quem chegou nos ingressos</div>
+      <div class="blk"><div class="bt">Público</div><ul>
+        <li>Quem viu a página de ingressos / iniciou checkout</li>
+        <li>Ângulo mais "bottom" — fechar a venda</li></ul></div>
+    </div>
+
+    <!-- 8 Carrinho -->
+    <div class="fase f8">
+      <h3><span class="n">8</span> Carrinho</h3>
+      <div class="goal">Recuperar checkout abandonado</div>
+      <div class="blk"><div class="bt">Público</div><ul>
+        <li>Iniciou o checkout mas não finalizou</li>
+        <li>Criativo de urgência + quebra de última objeção</li></ul></div>
+    </div>
+  </div>
+
+  <!-- FOCO ESCASSEZ -->
+  <h2>🔥 Foco: Escassez</h2>
+  <div class="h2sub">Onde o lançamento vira a chave. Pro próximo, vamos estruturar isso muito melhor.</div>
+  <div class="focus amber">
+    <div class="cols">
+      <div>
+        <h3 style="color:var(--amber)">Como montar</h3>
+        <ul class="clean">
+          <li><b>Campanha separada</b> da de vendas — nunca misturar (a escassez suja o aprendizado da contínua).</li>
+          <li>Duas pontas: uma de <b>vendas</b> (converter) e uma de <b>impressão</b> (lembrar todo mundo que vai fechar).</li>
+          <li>Público = <b>base quente/engajada</b> (mesmo do rmkt) — quem já sabe do produto.</li>
+          <li>Liga no <b>início do gatilho</b> (virada de lote/preço/prazo) e desliga assim que acaba.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color:var(--amber)">Arsenal de criativos</h3>
+        <ul class="clean">
+          <li><b>Contagem regressiva</b> (X vagas / Y horas) — o mais forte.</li>
+          <li><b>Virou o lote</b> / "último lote com esse preço".</li>
+          <li><b>Preço</b> (o que muda quando o lote vira).</li>
+          <li><b>Checklist</b> / "você vai perder isso".</li>
+          <li>Lembrete diário nos últimos dias.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rule">💡 Aprendizado pro próximo: preparar o <b>arsenal de escassez com antecedência</b> (criativos prontos antes de virar o lote) e ter <b>gatilhos claros de lote/prazo</b> — foi a frente que a gente subaproveitou.</div>
+  </div>
+
+  <!-- FOCO ESCALA -->
+  <h2>🚀 Foco: Escala</h2>
+  <div class="h2sub">Como crescer o investimento sem quebrar o CAC.</div>
+  <div class="focus purple">
+    <ul class="clean">
+      <li><b>Nunca pausar uma campanha boa.</b> Escala dentro dela; se pausar, perde o aprendizado do algoritmo.</li>
+      <li><b>Promover vencedores do Teste</b> pras campanhas de escala — não depender de o Meta "escolher" sozinho.</li>
+      <li><b>Advantage+ é o motor da escala.</b> No lançamento de referência ele fez <b>1.016 de 1.698 vendas (60%)</b> — subir com ref. de lookalike de alunos/ingressos/leads.</li>
+      <li>Subir orçamento em <b>degraus</b> (ex.: +20% a cada 2 dias) e observar o CAC — não dobrar de uma vez.</li>
+      <li>Manter <b>pipeline de criativos novos</b> sempre (o que escala fadiga; precisa do próximo vencedor pronto).</li>
+    </ul>
+    <div class="rule" style="background:rgba(192,123,224,.12);border-color:rgba(192,123,224,.3);color:var(--purple-light)">📌 No WICI3 sobrou verba porque faltou <b>criativo vencedor + estrutura pra escalar</b>. Pro próximo: teste rodando o lançamento inteiro alimentando a escala.</div>
+  </div>
+
+  <!-- DIAGNÓSTICO -->
+  <h2>📊 Diagnóstico — nosso funil vs a referência</h2>
+  <div class="h2sub">Lançamento de referência (Kimura · "The Tracker": 1.698 vendas / R$163k) vs WICI3 (228 vendas ads / R$27k). Escala diferente — o que importa são as <b>taxas</b>.</div>
+  <div class="twrap">
+    <table>
+      <thead><tr><th>Métrica do funil</th><th>Referência</th><th>WICI3</th><th>Leitura</th></tr></thead>
+      <tbody>
+        <tr><td>CTR (clique)</td><td>0,91%</td><td class="win">1,28%</td><td><span class="tag t-win">✓ melhor</span></td></tr>
+        <tr><td>CPM (custo/mil impr.)</td><td>R$ 26,18</td><td class="bad">R$ 40,61</td><td><span class="tag t-bad">gargalo</span> 55% + caro</td></tr>
+        <tr><td>Tx Carregamento (clique→PV)</td><td>75,2%</td><td class="bad">63,0%*</td><td><span class="tag t-bad">gargalo</span> vaza clique</td></tr>
+        <tr><td>Tx Checkout (PV→checkout)</td><td>12,6%</td><td class="bad">6,8%</td><td><span class="tag t-bad">MAIOR gargalo</span></td></tr>
+        <tr><td>Tx Conv. Checkout (chk→venda)</td><td>31,4%</td><td class="win">71,0%*</td><td><span class="tag t-win">✓ oferta converte</span></td></tr>
+        <tr><td>Tx Conversão LP (PV→venda)</td><td>3,97%</td><td class="win">4,82%</td><td><span class="tag t-win">✓ melhor</span></td></tr>
+        <tr><td><b>CPA</b></td><td><b>R$ 96,03</b></td><td class="bad"><b>R$ 117,73</b></td><td><span class="tag t-bad">pior</span> reflexo dos gargalos</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.76rem;color:var(--muted);margin-top:8px">* Números do WICI3 afetados pelo <b>pixel furado em 25–26/07</b> (PageView e Checkout subcontados) — a taxa de carregamento real é maior e o "71%" de checkout→venda está um pouco inflado.</p>
+
+  <div class="note win"><b>✅ O que está forte:</b> o <b>criativo hooka</b> (CTR acima da referência) e a <b>oferta converte</b> (conversão final da LP melhor). O topo e o fundo do funil estão ok.</div>
+  <div class="note bad"><b>🚨 O gargalo real está no MEIO:</b> (1) <b>CPM caro</b> — impressão 55% mais cara (conta nova/Dubai, fadiga, público). (2) <b>PageView→Checkout na metade</b> da referência — a LP/checkout perde gente. Se dobrar essa taxa pro nível de referência, as vendas quase <b>dobram com o mesmo tráfego</b>.</div>
+  <div class="note"><b>📉 Tracking:</b> arrumar o <b>PageView do pixel</b> é pré-requisito — sem medir certo, não dá pra otimizar o meio do funil (metade dos números acima estão distorcidos por isso).</div>
+
+  <!-- PLANO -->
+  <h2>🎯 Plano pro próximo lançamento</h2>
+  <ol class="plan">
+    <li><b>Baratear a impressão (CPM).</b> Mais criativos de topo, testar públicos, aquecer a conta antes. CPM de R$40 → R$26 é ~35% mais alcance com a mesma verba.</li>
+    <li><b>Consertar o meio do funil (PV→Checkout).</b> Auditar LP: velocidade, promessa, botão, checkout. É onde perdemos metade — o maior lucro escondido.</li>
+    <li><b>Estruturar a Escassez de verdade.</b> Arsenal de criativos pronto antes, gatilhos de lote claros, campanha separada ligada só no gatilho.</li>
+    <li><b>Escala com Advantage+ + Teste alimentando.</b> Adv+ foi 60% das vendas na referência; ter criativo vencedor sempre pronto pra promover.</li>
+    <li><b>Arrumar o pixel/tracking no dia 1.</b> Sem medir certo, a gente otimiza no escuro.</li>
+    <li><b>Escalar a verba cedo.</b> No WICI3 sobrou dinheiro — com o funil ajustado, deployar a verba vira venda de verdade.</li>
+  </ol>
+
+  <footer>Playbook interno · <b>Cardô Marketing</b> · estrutura baseada em modelo de mercado, reorganizada e validada com os dados do WICI3</footer>
+
+</div>
+</body>
+</html>
