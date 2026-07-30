@@ -3,276 +3,413 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modelo de Lançamento — Estrutura de Tráfego</title>
+<title>Modelo de Lançamento · Cardô</title>
 <style>
   :root{
-    --bg:#0a0710;--surface:#161022;--surface2:#1e0a2e;--border:#2a2038;
-    --purple:#8b3dab;--purple-light:#c07be0;--text:#f3eefa;--muted:#9a8bb0;
+    --bg:#08060e;--surface:#150f22;--surface2:#1c1030;--card:#191227;--border:#2a2038;
+    --purple:#8b3dab;--purple-light:#c07be0;--purple-glow:rgba(192,123,224,.35);
+    --text:#f4eefb;--muted:#9788ad;--dim:#6b5d80;
     --green:#4ade80;--amber:#fbbf24;--red:#f87171;--blue:#60a5fa;--pink:#f472b6;--cyan:#5ecbe0;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:radial-gradient(900px 500px at 12% -5%,rgba(139,61,171,.18),transparent 60%),
-    radial-gradient(800px 480px at 100% 0%,rgba(192,123,224,.10),transparent 55%),var(--bg);
-    color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.55;min-height:100vh;padding:30px 16px 70px;}
-  .wrap{max-width:1040px;margin:0 auto;}
-  .eyebrow{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--purple-light);font-weight:700;margin-bottom:8px;}
-  h1{font-size:2rem;font-weight:800;letter-spacing:-.02em;line-height:1.1;}
-  h1 span{color:var(--purple-light);}
-  .sub{color:var(--muted);font-size:.94rem;margin-top:10px;max-width:720px;}
-  h2{font-size:1.35rem;font-weight:800;margin:40px 0 6px;display:flex;align-items:center;gap:10px;}
-  .h2sub{color:var(--muted);font-size:.88rem;margin-bottom:16px;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.55;min-height:100vh;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px;}
 
-  /* Fluxo de fases */
-  .flow{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px;}
-  .chip{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:7px 14px;font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:7px;}
-  .chip .num{background:var(--purple);color:#fff;width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;}
+  /* HERO */
+  .hero{position:relative;padding:56px 18px 40px;overflow:hidden;border-bottom:1px solid var(--border);
+    background:radial-gradient(1000px 480px at 20% -20%,rgba(139,61,171,.35),transparent 60%),
+      radial-gradient(700px 420px at 95% -10%,rgba(94,203,224,.12),transparent 55%);}
+  .hero-in{max-width:1080px;margin:0 auto;}
+  .eyebrow{display:inline-block;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--purple-light);font-weight:800;
+    background:rgba(192,123,224,.1);border:1px solid rgba(192,123,224,.25);padding:5px 12px;border-radius:20px;margin-bottom:16px;}
+  h1{font-size:2.6rem;font-weight:900;letter-spacing:-.03em;line-height:1.05;}
+  h1 span{background:linear-gradient(100deg,var(--purple-light),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .hero p{color:var(--muted);font-size:1rem;margin-top:14px;max-width:640px;}
+  .hero-nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;}
+  .hero-nav a{font-size:.82rem;font-weight:700;color:var(--text);text-decoration:none;background:var(--surface);border:1px solid var(--border);
+    padding:8px 15px;border-radius:20px;transition:.15s;}
+  .hero-nav a:hover{border-color:var(--purple-light);color:var(--purple-light);}
 
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-top:16px;}
-  .fase{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--fc,var(--purple));border-radius:12px;padding:16px 18px;}
-  .fase h3{font-size:1.02rem;font-weight:800;display:flex;align-items:center;gap:8px;color:var(--fc,var(--purple-light));}
-  .fase h3 .n{background:var(--fc,var(--purple));color:#fff;width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:.74rem;}
-  .fase .goal{font-size:.82rem;color:var(--muted);font-style:italic;margin:6px 0 10px;}
-  .fase .blk{margin-bottom:9px;}
-  .fase .blk .bt{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--purple-light);font-weight:700;margin-bottom:3px;}
-  .fase ul{list-style:none;display:flex;flex-direction:column;gap:3px;}
-  .fase li{position:relative;padding-left:15px;font-size:.85rem;color:#e6dcf0;}
-  .fase li::before{content:'·';position:absolute;left:4px;color:var(--fc,var(--purple-light));font-weight:900;}
-  .fase li b{color:#fff;}
+  section{padding:44px 0 4px;}
+  .sec-head{margin-bottom:8px;}
+  .sec-kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--purple-light);font-weight:800;}
+  h2{font-size:1.7rem;font-weight:900;letter-spacing:-.02em;margin-top:4px;}
+  .sec-sub{color:var(--muted);font-size:.92rem;margin-top:8px;max-width:720px;}
 
-  .f1{--fc:#60a5fa;} .f2{--fc:#c07be0;} .f3{--fc:#f472b6;} .f4{--fc:#f87171;}
-  .f5{--fc:#fbbf24;} .f6{--fc:#4ade80;} .f7{--fc:#5ecbe0;} .f8{--fc:#a3e635;}
+  /* SIMULADOR */
+  .sim{background:linear-gradient(160deg,var(--surface2),var(--surface));border:1px solid var(--border);border-radius:20px;padding:24px;margin-top:20px;
+    box-shadow:0 20px 60px -30px var(--purple-glow);}
+  .presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
+  .presets .lbl{font-size:.8rem;color:var(--muted);font-weight:700;}
+  .pbtn{padding:8px 15px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text);font-weight:700;font-size:.82rem;cursor:pointer;transition:.15s;}
+  .pbtn:hover{border-color:var(--purple-light);}
+  .pbtn.wici{border-color:rgba(192,123,224,.4);} .pbtn.ref{border-color:rgba(94,203,224,.4);}
+  .sim-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:26px;}
+  @media(max-width:820px){.sim-grid{grid-template-columns:1fr;}}
+  .ctrl{margin-bottom:16px;}
+  .ctrl-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
+  .ctrl-top .k{font-size:.82rem;font-weight:700;}
+  .ctrl-top .k small{color:var(--dim);font-weight:600;}
+  .ctrl-top .v{font-size:.95rem;font-weight:800;color:var(--purple-light);}
+  input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;background:#2c2140;outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--purple-light);cursor:pointer;border:2px solid #140b22;box-shadow:0 0 0 3px rgba(192,123,224,.15);}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--purple-light);cursor:pointer;border:2px solid #140b22;}
 
-  .focus{background:linear-gradient(150deg,var(--surface2),var(--surface));border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-top:16px;}
-  .focus.amber{border-left:4px solid var(--amber);}
-  .focus.purple{border-left:4px solid var(--purple-light);}
-  .focus h3{font-size:1.1rem;font-weight:800;margin-bottom:10px;}
-  .focus .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-  @media(max-width:680px){.focus .cols{grid-template-columns:1fr;}}
-  ul.clean{list-style:none;display:flex;flex-direction:column;gap:7px;}
-  ul.clean li{position:relative;padding-left:20px;font-size:.9rem;}
-  ul.clean li::before{content:'▸';position:absolute;left:2px;color:var(--purple-light);}
+  /* funil visual */
+  .funnel{display:flex;flex-direction:column;gap:7px;}
+  .fstep{position:relative;}
+  .fstep .lab{display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:4px;}
+  .fstep .lab .nm{color:var(--muted);font-weight:600;} .fstep .lab .nm b{color:var(--text);}
+  .fstep .lab .rt{font-size:.72rem;color:var(--dim);}
+  .fbar-track{height:30px;background:#1b1330;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+  .fbar{height:100%;display:flex;align-items:center;padding-left:11px;font-weight:800;font-size:.85rem;color:#0a0710;
+    border-radius:7px;min-width:38px;transition:width .3s cubic-bezier(.4,0,.2,1);white-space:nowrap;}
+  .c-imp{background:linear-gradient(90deg,#5a3d8f,#8b3dab);color:#fff;}
+  .c-clk{background:linear-gradient(90deg,#7b2d8b,#c07be0);color:#fff;}
+  .c-pv{background:linear-gradient(90deg,#3a6ea5,#60a5fa);}
+  .c-chk{background:linear-gradient(90deg,#b78a1e,#fbbf24);}
+  .c-vd{background:linear-gradient(90deg,#2f8f5f,#4ade80);}
+
+  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px;}
+  .kpi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px 14px;}
+  .kpi .l{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;}
+  .kpi .n{font-size:1.5rem;font-weight:900;margin-top:2px;}
+  .kpi.big .n{font-size:1.85rem;color:var(--green);}
+  .kpi .d{font-size:.72rem;color:var(--dim);margin-top:1px;}
+  .simnote{font-size:.78rem;color:var(--muted);margin-top:14px;border-top:1px solid var(--border);padding-top:12px;}
+  .simnote b{color:var(--amber);}
+
+  /* estrutura */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px;margin-top:20px;}
+  .fase{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:0;overflow:hidden;transition:.15s;}
+  .fase:hover{border-color:var(--fc,var(--purple));transform:translateY(-2px);}
+  .fase-hd{padding:15px 18px;background:linear-gradient(90deg,var(--fcbg,rgba(139,61,171,.14)),transparent);border-bottom:1px solid var(--border);}
+  .fase-hd h3{font-size:1.05rem;font-weight:800;display:flex;align-items:center;gap:9px;}
+  .fase-hd .n{background:var(--fc,var(--purple));color:#fff;width:24px;height:24px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:900;}
+  .fase-hd .goal{font-size:.8rem;color:var(--muted);margin-top:5px;}
+  .fase-bd{padding:14px 18px;}
+  .blk{margin-bottom:10px;}
+  .blk:last-child{margin-bottom:0;}
+  .blk .bt{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--fc,var(--purple-light));font-weight:800;margin-bottom:4px;}
+  .blk ul{list-style:none;display:flex;flex-direction:column;gap:3px;}
+  .blk li{position:relative;padding-left:15px;font-size:.85rem;color:#e4d9f2;}
+  .blk li::before{content:'';position:absolute;left:3px;top:.55em;width:5px;height:5px;border-radius:50%;background:var(--fc,var(--purple-light));}
+  .blk li b{color:#fff;}
+  .code{font-family:'Consolas','Courier New',monospace;font-size:.76rem;background:#0e0a18;border:1px solid var(--border);border-radius:6px;padding:5px 8px;color:var(--cyan);display:block;margin-top:5px;overflow-x:auto;white-space:nowrap;}
+  .flag{margin:12px 18px 16px;background:var(--fcbg,rgba(139,61,171,.1));border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.8rem;font-weight:700;color:var(--fc);}
+  .f1{--fc:#60a5fa;--fcbg:rgba(96,165,250,.12);} .f2{--fc:#c07be0;--fcbg:rgba(192,123,224,.12);}
+  .f3{--fc:#f472b6;--fcbg:rgba(244,114,182,.12);} .f4{--fc:#f87171;--fcbg:rgba(248,113,113,.12);}
+  .f5{--fc:#fbbf24;--fcbg:rgba(251,191,36,.12);} .f6{--fc:#4ade80;--fcbg:rgba(74,222,128,.12);}
+  .f7{--fc:#5ecbe0;--fcbg:rgba(94,203,224,.12);} .f8{--fc:#a3e635;--fcbg:rgba(163,230,53,.12);}
+
+  /* nomenclatura */
+  .nomen{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;margin-top:18px;}
+  .nomen h4{font-size:.95rem;font-weight:800;margin-bottom:6px;color:var(--purple-light);}
+  .nomen .pat{font-family:'Consolas',monospace;font-size:.82rem;background:#0e0a18;border:1px solid var(--border);border-radius:8px;padding:11px 13px;color:var(--cyan);overflow-x:auto;white-space:nowrap;}
+  .legend{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-top:12px;}
+  .legend div{font-size:.8rem;color:var(--muted);}
+  .legend b{color:var(--text);}
+
+  /* focus */
+  .focus{background:linear-gradient(160deg,var(--surface2),var(--surface));border:1px solid var(--border);border-radius:16px;padding:22px;margin-top:16px;}
+  .focus.amber{border-top:3px solid var(--amber);} .focus.purple{border-top:3px solid var(--purple-light);}
+  .focus h3{font-size:1.15rem;font-weight:800;margin-bottom:12px;}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:20px;} @media(max-width:680px){.cols2{grid-template-columns:1fr;}}
+  ul.clean{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  ul.clean li{position:relative;padding-left:20px;font-size:.9rem;} ul.clean li::before{content:'▸';position:absolute;left:2px;color:var(--purple-light);}
   ul.clean li b{color:#fff;}
-  .rule{background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);border-radius:8px;padding:9px 13px;font-size:.88rem;font-weight:700;color:var(--amber);margin-top:10px;}
+  .rule{border-radius:10px;padding:11px 14px;font-size:.87rem;font-weight:600;margin-top:14px;}
+  .rule.a{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.28);color:#f5d689;}
+  .rule.p{background:rgba(192,123,224,.1);border:1px solid rgba(192,123,224,.28);color:#dcc0ef;}
+  .rule b{color:#fff;}
 
-  .twrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px 14px 12px;margin-top:8px;}
-  table{width:100%;border-collapse:collapse;font-size:.86rem;}
-  th,td{padding:9px 8px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;}
-  th:first-child,td:first-child{text-align:left;}
-  thead th{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);}
-  tbody tr:hover{background:rgba(139,61,171,.06);}
-  .win{color:var(--green);font-weight:800;} .bad{color:var(--red);font-weight:800;} .neu{color:var(--muted);}
-  .tag{font-size:.64rem;font-weight:800;padding:2px 7px;border-radius:5px;}
-  .t-bad{background:rgba(248,113,113,.16);color:var(--red);} .t-win{background:rgba(74,222,128,.16);color:var(--green);}
-
-  .note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--purple-light);border-radius:10px;padding:14px 16px;margin-top:12px;font-size:.9rem;}
-  .note.bad{border-left-color:var(--red);} .note.win{border-left-color:var(--green);}
-  .note b{color:#fff;}
-  ol.plan{list-style:none;counter-reset:p;display:flex;flex-direction:column;gap:11px;margin-top:8px;}
-  ol.plan li{counter-increment:p;position:relative;padding:13px 16px 13px 52px;background:var(--surface);border:1px solid var(--border);border-radius:11px;font-size:.92rem;}
-  ol.plan li::before{content:counter(p);position:absolute;left:14px;top:12px;width:26px;height:26px;background:var(--purple);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;}
+  /* plano */
+  ol.plan{list-style:none;counter-reset:p;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+  @media(max-width:680px){ol.plan{grid-template-columns:1fr;}}
+  ol.plan li{counter-increment:p;position:relative;padding:15px 16px 15px 56px;background:var(--card);border:1px solid var(--border);border-radius:12px;font-size:.9rem;transition:.15s;}
+  ol.plan li:hover{border-color:var(--purple-light);}
+  ol.plan li::before{content:counter(p);position:absolute;left:14px;top:14px;width:30px;height:30px;
+    background:linear-gradient(135deg,var(--purple),var(--purple-light));color:#fff;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;}
   ol.plan li b{color:#fff;}
-  footer{margin-top:44px;text-align:center;color:var(--muted);font-size:.76rem;}
+  footer{margin:48px 0 60px;text-align:center;color:var(--dim);font-size:.78rem;}
   footer b{color:var(--purple-light);}
 </style>
 </head>
 <body>
+
+<div class="hero">
+  <div class="hero-in">
+    <span class="eyebrow">Cardô Marketing · Playbook de Tráfego</span>
+    <h1>Modelo de <span>Lançamento</span></h1>
+    <p>A nossa estrutura de campanhas para o próximo lançamento — 8 frentes, simulador de funil interativo pra achar gargalos, e o padrão de nomenclatura que a gente usa. Foco em <b style="color:var(--amber)">escassez</b> e <b style="color:var(--purple-light)">escala</b>.</p>
+    <div class="hero-nav">
+      <a href="#sim">🎛 Simulador de funil</a>
+      <a href="#estrutura">🗺 As 8 frentes</a>
+      <a href="#nomen">🏷 Nomenclatura</a>
+      <a href="#escassez">🔥 Escassez</a>
+      <a href="#plano">🎯 Plano</a>
+    </div>
+  </div>
+</div>
+
 <div class="wrap">
 
-  <div class="eyebrow">Cardô Marketing · Playbook</div>
-  <h1>Modelo de <span>Lançamento</span> — Estrutura de Tráfego</h1>
-  <p class="sub">A nossa estrutura de campanhas para o próximo lançamento — 8 frentes que trabalham juntas, com foco reforçado em <b style="color:var(--amber)">escassez</b> e <b style="color:var(--purple-light)">escala</b>. Fecha com um diagnóstico de gargalos comparando um lançamento de referência (1.698 vendas) com o nosso WICI3.</p>
+  <!-- SIMULADOR -->
+  <section id="sim">
+    <div class="sec-head">
+      <div class="sec-kicker">Diagnóstico interativo</div>
+      <h2>🎛 Simulador de Funil</h2>
+      <p class="sec-sub">Arraste as taxas e veja quantas vendas saem. Compare <b style="color:var(--purple-light)">nosso funil (WICI3)</b> com a <b style="color:var(--cyan)">referência</b> — e descubra qual gargalo, se corrigido, mais aumenta as vendas.</p>
+    </div>
+
+    <div class="sim">
+      <div class="presets">
+        <span class="lbl">Carregar:</span>
+        <button class="pbtn wici" onclick="preset('wici')">🟣 WICI3 (atual)</button>
+        <button class="pbtn ref" onclick="preset('ref')">🔵 Referência (Kimura)</button>
+      </div>
+      <div class="sim-grid">
+        <!-- controles -->
+        <div>
+          <div class="ctrl">
+            <div class="ctrl-top"><span class="k">Verba total <small>no lançamento</small></span><span class="v" id="v-vb">R$ 60.000</span></div>
+            <input type="range" id="vb" min="10000" max="160000" step="1000" value="60000" oninput="calc()">
+          </div>
+          <div class="ctrl">
+            <div class="ctrl-top"><span class="k">CPM <small>custo/mil impressões</small></span><span class="v" id="v-cpm">R$ 40,61</span></div>
+            <input type="range" id="cpm" min="15" max="60" step="0.5" value="40.61" oninput="calc()">
+          </div>
+          <div class="ctrl">
+            <div class="ctrl-top"><span class="k">CTR <small>clique</small></span><span class="v" id="v-ctr">1,28%</span></div>
+            <input type="range" id="ctr" min="0.4" max="2.5" step="0.01" value="1.28" oninput="calc()">
+          </div>
+          <div class="ctrl">
+            <div class="ctrl-top"><span class="k">Tx Carregamento <small>clique→page view</small></span><span class="v" id="v-carr">63%</span></div>
+            <input type="range" id="carr" min="40" max="90" step="1" value="63" oninput="calc()">
+          </div>
+          <div class="ctrl">
+            <div class="ctrl-top"><span class="k">Tx Checkout <small>page view→checkout</small></span><span class="v" id="v-chk">6,8%</span></div>
+            <input type="range" id="chk" min="3" max="20" step="0.1" value="6.8" oninput="calc()">
+          </div>
+          <div class="ctrl">
+            <div class="ctrl-top"><span class="k">Tx Conv. Checkout <small>checkout→venda</small></span><span class="v" id="v-cv">71%</span></div>
+            <input type="range" id="cv" min="15" max="80" step="1" value="71" oninput="calc()">
+          </div>
+        </div>
+        <!-- funil + kpis -->
+        <div>
+          <div class="funnel">
+            <div class="fstep"><div class="lab"><span class="nm">Impressões <b id="o-imp">—</b></span></div><div class="fbar-track"><div class="fbar c-imp" id="b-imp" style="width:100%">100%</div></div></div>
+            <div class="fstep"><div class="lab"><span class="nm">Cliques <b id="o-clk">—</b></span><span class="rt" id="r-ctr"></span></div><div class="fbar-track"><div class="fbar c-clk" id="b-clk"></div></div></div>
+            <div class="fstep"><div class="lab"><span class="nm">Page Views <b id="o-pv">—</b></span><span class="rt" id="r-carr"></span></div><div class="fbar-track"><div class="fbar c-pv" id="b-pv"></div></div></div>
+            <div class="fstep"><div class="lab"><span class="nm">Checkouts <b id="o-ck">—</b></span><span class="rt" id="r-chk"></span></div><div class="fbar-track"><div class="fbar c-chk" id="b-ck"></div></div></div>
+            <div class="fstep"><div class="lab"><span class="nm">Vendas <b id="o-vd">—</b></span><span class="rt" id="r-cv"></span></div><div class="fbar-track"><div class="fbar c-vd" id="b-vd"></div></div></div>
+          </div>
+          <div class="kpis">
+            <div class="kpi big"><div class="l">🎟 Vendas</div><div class="n" id="k-vd">—</div><div class="d">com essa verba e funil</div></div>
+            <div class="kpi"><div class="l">💰 CPA</div><div class="n" id="k-cpa">—</div><div class="d" id="k-cpa-d">custo por venda</div></div>
+          </div>
+          <div class="simnote">💡 <b>Teste rápido:</b> carregue "WICI3", depois arraste só a <b>Tx Checkout</b> de 6,8% pra 12,6% (nível da referência) e veja as vendas saltarem — é o nosso maior gargalo. O <b>CPM alto</b> (R$40 vs R$26) é o segundo.</div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:.76rem;color:var(--dim);margin-top:10px">⚠ Números do WICI3 afetados pelo pixel furado em 25–26/07 (PageView/Checkout subcontados) → a Tx Carregamento real é maior e a Conv. Checkout de 71% está um pouco inflada.</p>
+  </section>
 
   <!-- ESTRUTURA -->
-  <h2>🗺️ A Estrutura — 8 frentes</h2>
-  <div class="h2sub">Cada frente tem um objetivo, público, tipo de criativo e rotina próprios. Rodam em paralelo durante o lançamento.</div>
-  <div class="flow">
-    <span class="chip"><span class="num">1</span> Vendas</span>
-    <span class="chip"><span class="num">2</span> Remarketing</span>
-    <span class="chip"><span class="num">3</span> Atração</span>
-    <span class="chip"><span class="num">4</span> Teste</span>
-    <span class="chip"><span class="num">5</span> Escassez</span>
-    <span class="chip"><span class="num">6</span> Qualificação</span>
-    <span class="chip"><span class="num">7</span> Rmkt ingressos</span>
-    <span class="chip"><span class="num">8</span> Carrinho</span>
-  </div>
-
-  <div class="grid">
-    <!-- 1 Vendas -->
-    <div class="fase f1">
-      <h3><span class="n">1</span> Vendas</h3>
-      <div class="goal">Vender ingressos com o menor CAC possível</div>
-      <div class="blk"><div class="bt">Públicos</div><ul>
-        <li><b>Quente:</b> e4, e2/e3, envolvimento 30d, alunos, enviou direct</li>
-        <li><b>Frio</b> (aberto)</li>
-        <li><b>Advantage+</b> com ref. de lookalike (alunos/ingressos/leads)</li></ul></div>
-      <div class="blk"><div class="bt">Canais</div><ul><li>Meta · Google</li></ul></div>
-      <div class="blk"><div class="bt">Criativos</div><ul><li>Estáticos, carrosséis, Reels/shorts, Wide YouTube, Pesquisa YT + Google</li></ul></div>
-      <div class="blk"><div class="bt">Rotina</div><ul><li><b>2x/dia</b> (manhã e tarde): ajustar orçamento, promover e pausar</li></ul></div>
-      <div class="rule" style="background:rgba(96,165,250,.12);border-color:rgba(96,165,250,.3);color:var(--blue)">⚠ Campanha <b>contínua</b> · SEM info sensível (preço, lote, data)</div>
+  <section id="estrutura">
+    <div class="sec-head">
+      <div class="sec-kicker">O motor</div>
+      <h2>🗺 As 8 Frentes</h2>
+      <p class="sec-sub">Cada frente tem objetivo, público, criativo e rotina próprios — rodam em paralelo o lançamento inteiro. Exemplos com a nossa nomenclatura real.</p>
     </div>
+    <div class="grid">
 
-    <!-- 2 Remarketing -->
-    <div class="fase f2">
-      <h3><span class="n">2</span> Remarketing</h3>
-      <div class="goal">Converter quem pisou na página e não comprou</div>
-      <div class="blk"><div class="bt">Público</div><ul>
-        <li>Pisou na página/checkout mas não comprou</li>
-        <li>Participou de outra edição do workshop</li>
-        <li>Alunos e ex-alunos</li></ul></div>
-      <div class="blk"><div class="bt">Criativos (ângulos)</div><ul>
-        <li>Quebra de objeção · Como vai funcionar</li>
-        <li>Garantia (até 2 dias após o evento)</li>
-        <li>Comentários/depoimentos · edições passadas</li>
-        <li>Single shot · somente gravações</li></ul></div>
-      <div class="blk"><div class="bt">Formato & Rotina</div><ul>
-        <li>Campanha com <b>vários ads</b> (Meta entrega o que converte)</li>
-        <li>"Corredor polonês" de visualização</li>
-        <li>Diário ou 3x/semana · subir ads novos</li></ul></div>
-    </div>
-
-    <!-- 3 Atração -->
-    <div class="fase f3">
-      <h3><span class="n">3</span> Atração</h3>
-      <div class="goal">Topo de funil — atrair público frio novo com conteúdo</div>
-      <div class="blk"><div class="bt">Objetivo</div><ul>
-        <li>Encher o topo com gente nova (frio) que depois alimenta remarketing e escassez</li>
-        <li>Criativo de valor/conteúdo, sem venda direta</li></ul></div>
-      <div class="blk"><div class="bt">A detalhar com o time</div><ul><li>Ângulos de conteúdo · formatos de atração</li></ul></div>
-    </div>
-
-    <!-- 4 Teste -->
-    <div class="fase f4">
-      <h3><span class="n">4</span> Teste</h3>
-      <div class="goal">Laboratório de criativos — achar os vencedores</div>
-      <div class="blk"><div class="bt">Para quê</div><ul>
-        <li>Descobrir rápido o ad de maior potencial <b>isolado</b></li>
-        <li>Ver se performa melhor em <b>frio ou quente</b> (testa o mesmo criativo em quente/frio/pisou/adv+)</li>
-        <li>Promover o vencedor pra escala <b>sem depender da boa vontade do Meta</b></li></ul></div>
-      <div class="blk"><div class="bt">Orçamento</div><ul><li>Até <b>3x o CAC ideal</b> até tirar uma conclusão</li></ul></div>
-      <div class="rule">🔒 Regra de ouro: <b>NUNCA pausar uma campanha boa.</b> Pode escalar dentro da própria de teste.</div>
-    </div>
-
-    <!-- 5 Escassez -->
-    <div class="fase f5">
-      <h3><span class="n">5</span> Escassez</h3>
-      <div class="goal">Converter usando escassez de lote (a virada do lançamento)</div>
-      <div class="blk"><div class="bt">Público</div><ul><li>Mesmo do remarketing (já engajado)</li></ul></div>
-      <div class="blk"><div class="bt">Criativos</div><ul>
-        <li>Escassez · preço · contagem regressiva/lembrete</li>
-        <li>"Virou o lote" · checklist</li></ul></div>
-      <div class="blk"><div class="bt">Formato & Rotina</div><ul>
-        <li>Campanha de <b>vendas</b> + campanha de <b>impressão</b></li>
-        <li><b>Liga</b> quando a escassez começa, <b>desliga</b> quando acaba</li>
-        <li>Roda <b>separada</b> da campanha de vendas (não interfere na performance)</li></ul></div>
-    </div>
-
-    <!-- 6 Qualificação -->
-    <div class="fase f6">
-      <h3><span class="n">6</span> Qualificação</h3>
-      <div class="goal">Captar e qualificar leads pro lançamento</div>
-      <div class="blk"><div class="bt">Objetivo</div><ul>
-        <li>Trazer leads qualificados (inscritos/grupo) que viram compradores</li>
-        <li>Alimenta as bases de público quente das outras frentes</li></ul></div>
-      <div class="blk"><div class="bt">A detalhar com o time</div><ul><li>Isca · formulário/grupo · critério de qualificação</li></ul></div>
-    </div>
-
-    <!-- 7 Rmkt ingressos -->
-    <div class="fase f7">
-      <h3><span class="n">7</span> Rmkt ingressos</h3>
-      <div class="goal">Remarketing específico de quem chegou nos ingressos</div>
-      <div class="blk"><div class="bt">Público</div><ul>
-        <li>Quem viu a página de ingressos / iniciou checkout</li>
-        <li>Ângulo mais "bottom" — fechar a venda</li></ul></div>
-    </div>
-
-    <!-- 8 Carrinho -->
-    <div class="fase f8">
-      <h3><span class="n">8</span> Carrinho</h3>
-      <div class="goal">Recuperar checkout abandonado</div>
-      <div class="blk"><div class="bt">Público</div><ul>
-        <li>Iniciou o checkout mas não finalizou</li>
-        <li>Criativo de urgência + quebra de última objeção</li></ul></div>
-    </div>
-  </div>
-
-  <!-- FOCO ESCASSEZ -->
-  <h2>🔥 Foco: Escassez</h2>
-  <div class="h2sub">Onde o lançamento vira a chave. Pro próximo, vamos estruturar isso muito melhor.</div>
-  <div class="focus amber">
-    <div class="cols">
-      <div>
-        <h3 style="color:var(--amber)">Como montar</h3>
-        <ul class="clean">
-          <li><b>Campanha separada</b> da de vendas — nunca misturar (a escassez suja o aprendizado da contínua).</li>
-          <li>Duas pontas: uma de <b>vendas</b> (converter) e uma de <b>impressão</b> (lembrar todo mundo que vai fechar).</li>
-          <li>Público = <b>base quente/engajada</b> (mesmo do rmkt) — quem já sabe do produto.</li>
-          <li>Liga no <b>início do gatilho</b> (virada de lote/preço/prazo) e desliga assim que acaba.</li>
-        </ul>
+      <div class="fase f1"><div class="fase-hd"><h3><span class="n">1</span> Vendas</h3><div class="goal">Vender ingressos com o menor CAC possível</div></div>
+        <div class="fase-bd">
+          <div class="blk"><div class="bt">Públicos</div><ul><li><b>Quente:</b> e4, e2/e3, envolv. 30d, alunos, direct</li><li><b>Frio</b> · <b>Advantage+</b> (lookalike de alunos/ingressos/leads)</li></ul></div>
+          <div class="blk"><div class="bt">Criativos</div><ul><li>Estático, carrossel, Reels, Wide YouTube, Pesquisa</li></ul></div>
+          <div class="blk"><div class="bt">Rotina</div><ul><li><b>2x/dia</b> — ajustar orçamento, promover, pausar</li></ul></div>
+          <div class="blk"><div class="bt">Padrão de nome</div><span class="code">MALU_MMF_FB06_Vendas_F_B</span></div>
+        </div>
+        <div class="flag">⚠ Campanha contínua · SEM preço/lote/data</div>
       </div>
-      <div>
-        <h3 style="color:var(--amber)">Arsenal de criativos</h3>
-        <ul class="clean">
-          <li><b>Contagem regressiva</b> (X vagas / Y horas) — o mais forte.</li>
-          <li><b>Virou o lote</b> / "último lote com esse preço".</li>
-          <li><b>Preço</b> (o que muda quando o lote vira).</li>
-          <li><b>Checklist</b> / "você vai perder isso".</li>
-          <li>Lembrete diário nos últimos dias.</li>
-        </ul>
+
+      <div class="fase f2"><div class="fase-hd"><h3><span class="n">2</span> Remarketing</h3><div class="goal">Converter quem pisou e não comprou</div></div>
+        <div class="fase-bd">
+          <div class="blk"><div class="bt">Público</div><ul><li>Pisou na página/checkout · outra edição · alunos</li></ul></div>
+          <div class="blk"><div class="bt">Ângulos</div><ul><li>Quebra de objeção · garantia · depoimentos</li><li>Como funciona · edições passadas · gravações</li></ul></div>
+          <div class="blk"><div class="bt">Formato</div><ul><li>Vários ads (Meta entrega o que converte)</li></ul></div>
+          <div class="blk"><div class="bt">Padrão de nome</div><span class="code">[MALU]-[RMKT]-[CBO]-[PISOU]-[V]-[objeção]</span></div>
+        </div>
       </div>
+
+      <div class="fase f3"><div class="fase-hd"><h3><span class="n">3</span> Atração</h3><div class="goal">Topo — atrair frio novo com conteúdo</div></div>
+        <div class="fase-bd">
+          <div class="blk"><div class="bt">Objetivo</div><ul><li>Encher o topo com público novo que alimenta rmkt/escassez</li><li>Criativo de valor, sem venda direta</li></ul></div>
+          <div class="blk"><div class="bt">Padrão de nome</div><span class="code">[MALU]-[ATRACAO]-[CBO]-[FRIO]-[V]-[conteúdo]</span></div>
+        </div>
+      </div>
+
+      <div class="fase f4"><div class="fase-hd"><h3><span class="n">4</span> Teste</h3><div class="goal">Laboratório — achar os criativos vencedores</div></div>
+        <div class="fase-bd">
+          <div class="blk"><div class="bt">Para quê</div><ul><li>Achar o ad de maior potencial <b>isolado</b></li><li>Ver se vai melhor em <b>frio ou quente</b> (mesmo criativo em quente/frio/pisou/adv+)</li><li>Promover o vencedor pra escala</li></ul></div>
+          <div class="blk"><div class="bt">Orçamento</div><ul><li>Até <b>3x o CAC ideal</b> até concluir</li></ul></div>
+        </div>
+        <div class="flag">🔒 NUNCA pausar uma campanha boa</div>
+      </div>
+
+      <div class="fase f5"><div class="fase-hd"><h3><span class="n">5</span> Escassez</h3><div class="goal">A virada — converter com escassez de lote</div></div>
+        <div class="fase-bd">
+          <div class="blk"><div class="bt">Público</div><ul><li>Mesmo do remarketing (já engajado)</li></ul></div>
+          <div class="blk"><div class="bt">Criativos</div><ul><li>Escassez · preço · contagem regressiva</li><li>"Virou o lote" · checklist</li></ul></div>
+          <div class="blk"><div class="bt">Rotina</div><ul><li><b>Liga</b> no gatilho, <b>desliga</b> quando acaba · campanha <b>separada</b></li></ul></div>
+          <div class="blk"><div class="bt">Padrão de nome</div><span class="code">[MALU]-[ESCASSEZ]-[CBO]-[QUENTE]-[V]-[lote]</span></div>
+        </div>
+      </div>
+
+      <div class="fase f6"><div class="fase-hd"><h3><span class="n">6</span> Qualificação</h3><div class="goal">Captar e qualificar leads</div></div>
+        <div class="fase-bd">
+          <div class="blk"><div class="bt">Objetivo</div><ul><li>Trazer leads (inscritos/grupo) que viram comprador</li><li>Alimenta as bases quentes das outras frentes</li></ul></div>
+          <div class="blk"><div class="bt">Padrão de nome</div><span class="code">[MALU]-[QUALIF]-[CBO]-[FRIO]-[I]-[isca]</span></div>
+        </div>
+      </div>
+
+      <div class="fase f7"><div class="fase-hd"><h3><span class="n">7</span> Rmkt Ingressos</h3><div class="goal">Remarketing de quem chegou nos ingressos</div></div>
+        <div class="fase-bd">
+          <div class="blk"><div class="bt">Público</div><ul><li>Viu página de ingressos / iniciou checkout</li><li>Ângulo bottom — fechar a venda</li></ul></div>
+          <div class="blk"><div class="bt">Padrão de nome</div><span class="code">[MALU]-[RMKT-ING]-[CBO]-[CHECKOUT]-[V]</span></div>
+        </div>
+      </div>
+
+      <div class="fase f8"><div class="fase-hd"><h3><span class="n">8</span> Carrinho</h3><div class="goal">Recuperar checkout abandonado</div></div>
+        <div class="fase-bd">
+          <div class="blk"><div class="bt">Público</div><ul><li>Iniciou checkout e não finalizou</li><li>Urgência + quebra da última objeção</li></ul></div>
+          <div class="blk"><div class="bt">Padrão de nome</div><span class="code">[MALU]-[CARRINHO]-[CBO]-[ABANDONO]-[V]</span></div>
+        </div>
+      </div>
+
     </div>
-    <div class="rule">💡 Aprendizado pro próximo: preparar o <b>arsenal de escassez com antecedência</b> (criativos prontos antes de virar o lote) e ter <b>gatilhos claros de lote/prazo</b> — foi a frente que a gente subaproveitou.</div>
-  </div>
+  </section>
 
-  <!-- FOCO ESCALA -->
-  <h2>🚀 Foco: Escala</h2>
-  <div class="h2sub">Como crescer o investimento sem quebrar o CAC.</div>
-  <div class="focus purple">
-    <ul class="clean">
-      <li><b>Nunca pausar uma campanha boa.</b> Escala dentro dela; se pausar, perde o aprendizado do algoritmo.</li>
-      <li><b>Promover vencedores do Teste</b> pras campanhas de escala — não depender de o Meta "escolher" sozinho.</li>
-      <li><b>Advantage+ é o motor da escala.</b> No lançamento de referência ele fez <b>1.016 de 1.698 vendas (60%)</b> — subir com ref. de lookalike de alunos/ingressos/leads.</li>
-      <li>Subir orçamento em <b>degraus</b> (ex.: +20% a cada 2 dias) e observar o CAC — não dobrar de uma vez.</li>
-      <li>Manter <b>pipeline de criativos novos</b> sempre (o que escala fadiga; precisa do próximo vencedor pronto).</li>
-    </ul>
-    <div class="rule" style="background:rgba(192,123,224,.12);border-color:rgba(192,123,224,.3);color:var(--purple-light)">📌 No WICI3 sobrou verba porque faltou <b>criativo vencedor + estrutura pra escalar</b>. Pro próximo: teste rodando o lançamento inteiro alimentando a escala.</div>
-  </div>
+  <!-- NOMENCLATURA -->
+  <section id="nomen">
+    <div class="sec-head">
+      <div class="sec-kicker">Nosso padrão</div>
+      <h2>🏷 Nomenclatura de Campanha</h2>
+      <p class="sec-sub">Todo mundo nomeia igual — assim a dash lê certo (temperatura, página, formato) e o relatório sai automático.</p>
+    </div>
+    <div class="nomen">
+      <h4>Padrão estruturado (campanhas de vendas)</h4>
+      <div class="pat">PERFIL_MMF_FB{nº}_Objetivo_Temperatura_Página</div>
+      <div class="legend">
+        <div><b>PERFIL</b> · MALU / HIRE</div>
+        <div><b>FB{nº}</b> · nº do criativo</div>
+        <div><b>Objetivo</b> · Vendas / Ingressos / Single</div>
+        <div><b>Temperatura</b> · F (frio) · Q (quente)</div>
+        <div><b>Página</b> · B / C / D (LP)</div>
+      </div>
+      <div class="pat" style="margin-top:12px;color:var(--green)">Ex.: MALU_MMF_FB17_Vendas_Q_B</div>
 
-  <!-- DIAGNÓSTICO -->
-  <h2>📊 Diagnóstico — nosso funil vs a referência</h2>
-  <div class="h2sub">Lançamento de referência (Kimura · "The Tracker": 1.698 vendas / R$163k) vs WICI3 (228 vendas ads / R$27k). Escala diferente — o que importa são as <b>taxas</b>.</div>
-  <div class="twrap">
-    <table>
-      <thead><tr><th>Métrica do funil</th><th>Referência</th><th>WICI3</th><th>Leitura</th></tr></thead>
-      <tbody>
-        <tr><td>CTR (clique)</td><td>0,91%</td><td class="win">1,28%</td><td><span class="tag t-win">✓ melhor</span></td></tr>
-        <tr><td>CPM (custo/mil impr.)</td><td>R$ 26,18</td><td class="bad">R$ 40,61</td><td><span class="tag t-bad">gargalo</span> 55% + caro</td></tr>
-        <tr><td>Tx Carregamento (clique→PV)</td><td>75,2%</td><td class="bad">63,0%*</td><td><span class="tag t-bad">gargalo</span> vaza clique</td></tr>
-        <tr><td>Tx Checkout (PV→checkout)</td><td>12,6%</td><td class="bad">6,8%</td><td><span class="tag t-bad">MAIOR gargalo</span></td></tr>
-        <tr><td>Tx Conv. Checkout (chk→venda)</td><td>31,4%</td><td class="win">71,0%*</td><td><span class="tag t-win">✓ oferta converte</span></td></tr>
-        <tr><td>Tx Conversão LP (PV→venda)</td><td>3,97%</td><td class="win">4,82%</td><td><span class="tag t-win">✓ melhor</span></td></tr>
-        <tr><td><b>CPA</b></td><td><b>R$ 96,03</b></td><td class="bad"><b>R$ 117,73</b></td><td><span class="tag t-bad">pior</span> reflexo dos gargalos</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:.76rem;color:var(--muted);margin-top:8px">* Números do WICI3 afetados pelo <b>pixel furado em 25–26/07</b> (PageView e Checkout subcontados) — a taxa de carregamento real é maior e o "71%" de checkout→venda está um pouco inflado.</p>
+      <h4 style="margin-top:22px">Padrão CBO/estrutura (por frente)</h4>
+      <div class="pat">[PERFIL]-[PREÇO]-[CBO/ABO]-[PÚBLICO]-[FORMATO]-[CRIATIVO]-[DATA]</div>
+      <div class="legend">
+        <div><b>PREÇO</b> · SEM-PREÇO / R$29,70 / MISTO</div>
+        <div><b>CBO/ABO</b> · orçamento na campanha ou no conjunto</div>
+        <div><b>PÚBLICO</b> · ADV+ / QUENTE / FRIO / PISOU</div>
+        <div><b>FORMATO</b> · V (vídeo) · I (imagem)</div>
+        <div><b>CRIATIVO</b> · id do criativo</div>
+        <div><b>DATA</b> · dd/mm de subida</div>
+      </div>
+      <div class="pat" style="margin-top:12px;color:var(--green)">Ex.: [MALU]-[SEM-PREÇO]-[ABO]-[ADV+]-[V]-[VID_C-I-2]-13/07</div>
+    </div>
+  </section>
 
-  <div class="note win"><b>✅ O que está forte:</b> o <b>criativo hooka</b> (CTR acima da referência) e a <b>oferta converte</b> (conversão final da LP melhor). O topo e o fundo do funil estão ok.</div>
-  <div class="note bad"><b>🚨 O gargalo real está no MEIO:</b> (1) <b>CPM caro</b> — impressão 55% mais cara (conta nova/Dubai, fadiga, público). (2) <b>PageView→Checkout na metade</b> da referência — a LP/checkout perde gente. Se dobrar essa taxa pro nível de referência, as vendas quase <b>dobram com o mesmo tráfego</b>.</div>
-  <div class="note"><b>📉 Tracking:</b> arrumar o <b>PageView do pixel</b> é pré-requisito — sem medir certo, não dá pra otimizar o meio do funil (metade dos números acima estão distorcidos por isso).</div>
+  <!-- ESCASSEZ -->
+  <section id="escassez">
+    <div class="sec-head"><div class="sec-kicker">Foco pro próximo</div><h2>🔥 Escassez</h2>
+      <p class="sec-sub">A frente que a gente subaproveitou. É onde o lançamento vira a chave.</p></div>
+    <div class="focus amber">
+      <div class="cols2">
+        <div><h3 style="color:var(--amber)">Como montar</h3><ul class="clean">
+          <li><b>Campanha separada</b> da de vendas (não suja o aprendizado da contínua).</li>
+          <li>Duas pontas: <b>vendas</b> (converter) + <b>impressão</b> (lembrar todo mundo).</li>
+          <li>Público = base <b>quente/engajada</b> (mesma do rmkt).</li>
+          <li><b>Liga</b> no gatilho de lote, <b>desliga</b> quando acaba.</li></ul></div>
+        <div><h3 style="color:var(--amber)">Arsenal de criativos</h3><ul class="clean">
+          <li><b>Contagem regressiva</b> (vagas/horas) — o mais forte.</li>
+          <li><b>Virou o lote</b> · último preço.</li>
+          <li>Criativo de <b>preço</b> · checklist · lembrete diário.</li></ul></div>
+      </div>
+      <div class="rule a">💡 Pro próximo: <b>arsenal pronto ANTES</b> de virar o lote e <b>gatilhos de lote/prazo claros</b>.</div>
+    </div>
+  </section>
+
+  <!-- ESCALA -->
+  <section id="escala">
+    <div class="sec-head"><div class="sec-kicker">Foco pro próximo</div><h2>🚀 Escala</h2>
+      <p class="sec-sub">Crescer o investimento sem quebrar o CAC.</p></div>
+    <div class="focus purple">
+      <ul class="clean">
+        <li><b>Nunca pausar campanha boa</b> — escala dentro dela; pausar zera o aprendizado.</li>
+        <li><b>Promover vencedores do Teste</b> pra escala — não depender de o Meta escolher.</li>
+        <li><b>Advantage+ é o motor</b> — na referência fez <b>1.016 de 1.698 vendas (60%)</b>.</li>
+        <li>Subir orçamento em <b>degraus</b> (+20% a cada 2 dias) observando o CAC.</li>
+        <li>Manter <b>pipeline de criativos novos</b> — o que escala fadiga.</li>
+      </ul>
+      <div class="rule p">📌 No WICI3 sobrou verba por falta de <b>criativo vencedor + estrutura de escala</b>. Pro próximo: teste alimentando a escala o lançamento inteiro.</div>
+    </div>
+  </section>
 
   <!-- PLANO -->
-  <h2>🎯 Plano pro próximo lançamento</h2>
-  <ol class="plan">
-    <li><b>Baratear a impressão (CPM).</b> Mais criativos de topo, testar públicos, aquecer a conta antes. CPM de R$40 → R$26 é ~35% mais alcance com a mesma verba.</li>
-    <li><b>Consertar o meio do funil (PV→Checkout).</b> Auditar LP: velocidade, promessa, botão, checkout. É onde perdemos metade — o maior lucro escondido.</li>
-    <li><b>Estruturar a Escassez de verdade.</b> Arsenal de criativos pronto antes, gatilhos de lote claros, campanha separada ligada só no gatilho.</li>
-    <li><b>Escala com Advantage+ + Teste alimentando.</b> Adv+ foi 60% das vendas na referência; ter criativo vencedor sempre pronto pra promover.</li>
-    <li><b>Arrumar o pixel/tracking no dia 1.</b> Sem medir certo, a gente otimiza no escuro.</li>
-    <li><b>Escalar a verba cedo.</b> No WICI3 sobrou dinheiro — com o funil ajustado, deployar a verba vira venda de verdade.</li>
-  </ol>
+  <section id="plano">
+    <div class="sec-head"><div class="sec-kicker">O que muda</div><h2>🎯 Plano pro Próximo Lançamento</h2>
+      <p class="sec-sub">Os 6 movimentos que tiram a gente do "piloto automático".</p></div>
+    <ol class="plan">
+      <li><b>Baratear o CPM.</b> Mais criativos de topo, aquecer a conta antes. R$40→R$26 = ~35% mais alcance pela mesma verba.</li>
+      <li><b>Consertar PV→Checkout.</b> Auditar a LP (velocidade, promessa, botão, checkout). É onde perdemos metade — o maior lucro escondido.</li>
+      <li><b>Estruturar a Escassez.</b> Arsenal pronto antes, gatilhos de lote, campanha separada.</li>
+      <li><b>Escala com Advantage+ + Teste.</b> Adv+ foi 60% na referência; criativo vencedor sempre pronto.</li>
+      <li><b>Arrumar o pixel no dia 1.</b> Sem medir certo, otimiza no escuro.</li>
+      <li><b>Escalar a verba cedo.</b> Com o funil ajustado, o dinheiro parado vira venda.</li>
+    </ol>
+  </section>
 
-  <footer>Playbook interno · <b>Cardô Marketing</b> · estrutura baseada em modelo de mercado, reorganizada e validada com os dados do WICI3</footer>
-
+  <footer>Playbook interno · <b>Cardô Marketing</b> · estrutura de mercado reorganizada + validada com os dados do WICI3</footer>
 </div>
+
+<script>
+  const $=id=>document.getElementById(id);
+  const N=n=>Math.round(n).toLocaleString('pt-BR');
+  const R=n=>'R$ '+n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const R0=n=>'R$ '+Math.round(n).toLocaleString('pt-BR');
+  const PRE={
+    wici:{cpm:40.61,ctr:1.28,carr:63,chk:6.8,cv:71},
+    ref: {cpm:26.18,ctr:0.91,carr:75,chk:12.63,cv:31},
+  };
+  function preset(k){const p=PRE[k];$('cpm').value=p.cpm;$('ctr').value=p.ctr;$('carr').value=p.carr;$('chk').value=p.chk;$('cv').value=p.cv;calc();}
+  function calc(){
+    const vb=+$('vb').value, cpm=+$('cpm').value, ctr=+$('ctr').value, carr=+$('carr').value, chk=+$('chk').value, cv=+$('cv').value;
+    $('v-vb').textContent=R0(vb); $('v-cpm').textContent=R(cpm); $('v-ctr').textContent=ctr.toFixed(2).replace('.',',')+'%';
+    $('v-carr').textContent=carr+'%'; $('v-chk').textContent=chk.toFixed(1).replace('.',',')+'%'; $('v-cv').textContent=cv+'%';
+    const imp=vb/cpm*1000, clk=imp*ctr/100, pv=clk*carr/100, ck=pv*chk/100, vd=ck*cv/100;
+    const cpa=vd>0?vb/vd:0;
+    $('o-imp').textContent=N(imp); $('o-clk').textContent=N(clk); $('o-pv').textContent=N(pv); $('o-ck').textContent=N(ck); $('o-vd').textContent=N(vd);
+    $('r-ctr').textContent=ctr.toFixed(2).replace('.',',')+'% dos impr.'; $('r-carr').textContent=carr+'% dos cliques';
+    $('r-chk').textContent=chk.toFixed(1).replace('.',',')+'% dos PV'; $('r-cv').textContent=cv+'% dos checkouts';
+    // barras proporcionais aos cliques (impr é ordens de magnitude maior; usa clk como 100% visual)
+    const base=clk||1;
+    $('b-clk').style.width='100%'; $('b-clk').textContent=N(clk);
+    $('b-pv').style.width=Math.max(4,pv/base*100)+'%'; $('b-pv').textContent=N(pv);
+    $('b-ck').style.width=Math.max(4,ck/base*100)+'%'; $('b-ck').textContent=N(ck);
+    $('b-vd').style.width=Math.max(4,vd/base*100)+'%'; $('b-vd').textContent=N(vd);
+    $('b-imp').textContent=N(imp);
+    $('k-vd').textContent=N(vd); $('k-cpa').textContent=R0(cpa);
+    $('k-cpa-d').textContent = cpa<=96?'✓ melhor que a referência (R$96)':'meta de referência: R$96';
+    $('k-cpa').style.color = cpa<=96?'var(--green)':(cpa<=130?'var(--amber)':'var(--red)');
+  }
+  preset('wici');
+</script>
 </body>
 </html>
