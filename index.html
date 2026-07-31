@@ -137,19 +137,23 @@
   @media(prefers-reduced-motion:reduce){.persona,.road-fill{transition:none;}.persona .av{animation:none;}.persona .bubble{animation:none;}}
 
   /* ── PASSO A PASSO (STEPPER) ── */
-  .steps{position:relative;margin-top:4px;}
-  .steps::before{content:"";position:absolute;left:29px;top:20px;bottom:24px;width:2px;background:linear-gradient(180deg,var(--line-2),var(--line-2) 88%,transparent);}
-  .step{position:relative;padding-left:84px;padding-bottom:18px;}
+  .steps{position:relative;margin-top:8px;}
+  .steps::before{content:"";position:absolute;left:31px;top:26px;bottom:36px;width:3px;border-radius:3px;
+    background:linear-gradient(180deg,#3b82f6 0%,#6366f1 20%,#8b5cf6 38%,#a855d6 54%,#f97316 74%,#dc2626 100%);}
+  .step{position:relative;padding-left:94px;padding-bottom:22px;}
   .step:last-child{padding-bottom:0;}
-  .snum{position:absolute;left:0;top:0;width:60px;height:60px;border-radius:18px;background:var(--c,var(--plum));color:#fff;
-    font-family:var(--disp);font-weight:800;font-size:1.55rem;display:flex;align-items:center;justify-content:center;
-    box-shadow:0 10px 24px -10px var(--c,var(--plum));z-index:2;font-variant-numeric:tabular-nums;}
-  .scard{background:var(--paper-2);border:1px solid var(--line-2);border-left:4px solid var(--c,var(--plum));border-radius:16px;padding:20px 24px;transition:transform .15s,box-shadow .15s;}
-  .scard:hover{box-shadow:0 18px 44px -24px var(--c,var(--plum));transform:translateX(4px);}
-  .stitle{display:flex;align-items:center;gap:11px;flex-wrap:wrap;}
-  .stitle h3{font-family:var(--disp);font-weight:800;font-size:1.3rem;}
-  .stitle .tagc{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--c,var(--plum));padding:4px 10px;border-radius:20px;}
-  .what{font-size:.96rem;color:var(--ink-2);margin-top:10px;line-height:1.5;} .what b{color:var(--ink);font-weight:600;}
+  .snum{position:absolute;left:0;top:0;width:64px;height:64px;border-radius:20px;background:var(--c,var(--plum));color:#fff;
+    font-family:var(--disp);font-weight:800;font-size:1.65rem;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 14px 28px -8px var(--c,var(--plum)),0 0 0 6px color-mix(in srgb,var(--c,var(--plum)) 12%,transparent);z-index:2;font-variant-numeric:tabular-nums;}
+  .scard{position:relative;background:var(--paper-2);border:1px solid var(--line-2);border-left:5px solid var(--c,var(--plum));border-radius:18px;padding:22px 26px;overflow:hidden;transition:transform .18s,box-shadow .18s;}
+  .scard:hover{box-shadow:0 26px 56px -28px var(--c,var(--plum));transform:translateX(5px);}
+  .scard .ghost{position:absolute;top:-20px;right:8px;font-family:var(--disp);font-weight:800;font-size:7rem;line-height:1;color:var(--c,var(--plum));opacity:.07;pointer-events:none;font-variant-numeric:tabular-nums;user-select:none;}
+  .stitle{display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:relative;}
+  .stitle h3{font-family:var(--disp);font-weight:800;font-size:1.42rem;}
+  .stitle .tagc{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--c,var(--plum));padding:5px 11px;border-radius:20px;}
+  .stitle .tchip{margin-left:auto;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:5px 12px;border-radius:20px;}
+  .tchip.frio{background:#EAF3FF;color:#1D4ED8;} .tchip.morno{background:#F4EAFB;color:#7A1FA2;} .tchip.quente{background:#FFEDE4;color:#DC2626;}
+  .what{font-size:.98rem;color:var(--ink-2);margin-top:12px;line-height:1.55;position:relative;} .what b{color:var(--ink);font-weight:600;}
   .det{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:11px 22px;margin-top:16px;}
   .dr .dl{font-family:var(--mono);font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:2px;}
   .dr .dv{font-size:.85rem;color:var(--ink-2);} .dr .dv b{color:var(--ink);font-weight:600;}
@@ -265,8 +269,8 @@
 
   <!-- PASSO A PASSO -->
   <section id="passos">
-    <div class="shead reveal"><div class="rn">III · O passo a passo</div><h2 class="disp">As campanhas que não podem faltar</h2>
-      <p>A sequência que a gente monta no próximo lançamento — do <b>aquecimento do pixel</b> até a <b>escassez</b>. Cada passo com a função, o público e o nome-padrão.</p></div>
+    <div class="shead reveal"><div class="rn">III · A nossa estrutura</div><h2 class="disp">É assim que a gente monta o próximo</h2>
+      <p>Sete campanhas na ordem exata que <b>levam o lead do frio até a compra</b> — cada uma pega ele num momento, com o público, o criativo e o nome-padrão já definidos. Do <b>aquecimento do pixel</b> à <b>escassez</b>.</p></div>
 
     <div class="journey reveal">
       <div class="jtemp">
@@ -293,10 +297,11 @@
 
     <div class="steps reveal">
 
-      <div class="step" style="--c:var(--c-atr)">
+      <div class="step" style="--c:#3b82f6">
         <div class="snum">01</div>
         <div class="scard">
-          <div class="stitle"><h3>VideoView</h3><span class="tagc">aquece o pixel</span></div>
+          <span class="ghost">01</span>
+          <div class="stitle"><h3>VideoView</h3><span class="tagc">aquece o pixel</span><span class="tchip frio">❄ Frio</span></div>
           <p class="what">Roda vídeo pra público <b>frio</b>, otimizando por visualização. Barata, <b>movimenta o pixel</b> e leva gente pro site — a fundação de tudo.</p>
           <div class="det">
             <div class="dr"><span class="dl">público</span><span class="dv">Frio (aberto)</span></div>
@@ -308,10 +313,11 @@
         </div>
       </div>
 
-      <div class="step" style="--c:var(--c-rmkt)">
+      <div class="step" style="--c:#6366f1">
         <div class="snum">02</div>
         <div class="scard">
-          <div class="stitle"><h3>Remarketing agressivo</h3><span class="tagc">o "fudido"</span></div>
+          <span class="ghost">02</span>
+          <div class="stitle"><h3>Remarketing agressivo</h3><span class="tagc">o "fudido"</span><span class="tchip frio">❄ Frio</span></div>
           <p class="what">Retargeting <b>pesado</b> em quem viu o vídeo do passo 1 e em quem pisou no site. Alta frequência, vários ângulos — não deixa esfriar.</p>
           <div class="det">
             <div class="dr"><span class="dl">público</span><span class="dv">Viu 25%+ do vídeo · pisou no site</span></div>
@@ -322,10 +328,11 @@
         </div>
       </div>
 
-      <div class="step" style="--c:var(--c-qual)">
+      <div class="step" style="--c:#8b5cf6">
         <div class="snum">03</div>
         <div class="scard">
-          <div class="stitle"><h3>Single Shot · R$ 9,90</h3><span class="tagc">LP alternativa</span></div>
+          <span class="ghost">03</span>
+          <div class="stitle"><h3>Single Shot · R$ 9,90</h3><span class="tagc">LP alternativa</span><span class="tchip morno">🌡 Aquecendo</span></div>
           <p class="what">Oferta de entrada de <b>R$ 9,90</b> num single shot, numa <b>LP diferente da original</b>. Ticket baixo = CPA baixíssimo.</p>
           <div class="det">
             <div class="dr"><span class="dl">público</span><span class="dv">Frio + quente</span></div>
@@ -337,10 +344,11 @@
         </div>
       </div>
 
-      <div class="step" style="--c:var(--c-ing)">
+      <div class="step" style="--c:#a855d6">
         <div class="snum">04</div>
         <div class="scard">
-          <div class="stitle"><h3>Recuperação · metade do preço</h3><span class="tagc">salva o checkout</span></div>
+          <span class="ghost">04</span>
+          <div class="stitle"><h3>Recuperação · metade do preço</h3><span class="tagc">salva o checkout</span><span class="tchip morno">🌡 Aquecendo</span></div>
           <p class="what">LP com oferta pela <b>metade do preço</b>, só pra quem <b>chegou no checkout e não comprou</b>. Última cartada pra fechar.</p>
           <div class="det">
             <div class="dr"><span class="dl">público</span><span class="dv">Iniciou checkout · não comprou</span></div>
@@ -351,10 +359,11 @@
         </div>
       </div>
 
-      <div class="step" style="--c:var(--c-vendas)">
+      <div class="step" style="--c:#f97316">
         <div class="snum">05</div>
         <div class="scard">
-          <div class="stitle"><h3>Adv+ e Quente</h3><span class="tagc">campanhas SEPARADAS</span></div>
+          <span class="ghost">05</span>
+          <div class="stitle"><h3>Adv+ e Quente</h3><span class="tagc">campanhas SEPARADAS</span><span class="tchip quente">🔥 Quente</span></div>
           <p class="what">Duas campanhas <b>separadas</b>: uma de <b>Advantage+</b> e outra de <b>público quente</b>. Nunca no mesmo lugar — não competem entre si nem sujam o aprendizado.</p>
           <div class="det">
             <div class="dr"><span class="dl">adv+</span><span class="dv">Lookalike de alunos/ingressos/leads</span></div>
@@ -365,10 +374,11 @@
         </div>
       </div>
 
-      <div class="step" style="--c:var(--c-esc)">
+      <div class="step" style="--c:#ea580c">
         <div class="snum">06</div>
         <div class="scard">
-          <div class="stitle"><h3>Escassez</h3><span class="tagc">a virada do lote</span></div>
+          <span class="ghost">06</span>
+          <div class="stitle"><h3>Escassez</h3><span class="tagc">a virada do lote</span><span class="tchip quente">🔥 Quente</span></div>
           <p class="what">Liga no <b>gatilho de virada de lote</b>. Criativos de <b>preço</b> e de <b>lote</b> — contagem regressiva, "virou o lote", último preço. Campanha separada, liga/desliga no gatilho.</p>
           <div class="det">
             <div class="dr"><span class="dl">público</span><span class="dv">Quente / engajado</span></div>
@@ -379,10 +389,11 @@
         </div>
       </div>
 
-      <div class="step" style="--c:var(--c-teste)">
+      <div class="step" style="--c:#dc2626">
         <div class="snum">07</div>
         <div class="scard">
-          <div class="stitle"><h3>Quebra de objeção</h3><span class="tagc">derruba o "mas..."</span></div>
+          <span class="ghost">07</span>
+          <div class="stitle"><h3>Quebra de objeção</h3><span class="tagc">derruba o "mas..."</span><span class="tchip quente">🔥 Quente</span></div>
           <p class="what">Campanha dedicada a <b>derrubar as objeções</b> — preço, tempo, "será que funciona pra mim". Garantia, depoimento, prova, "como funciona".</p>
           <div class="det">
             <div class="dr"><span class="dl">público</span><span class="dv">Pisou/engajou · não comprou</span></div>
