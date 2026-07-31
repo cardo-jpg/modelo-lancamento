@@ -190,6 +190,16 @@
   .skpi .b .n{font-family:var(--disp);font-weight:800;font-size:1.9rem;margin-top:3px;font-variant-numeric:tabular-nums;} .skpi .b.big .n{color:var(--good);font-size:2.2rem;}
   .skpi .b .d{font-size:.72rem;color:var(--ink-soft);}
   .simnote{grid-column:1/-1;font-size:.84rem;color:var(--ink-2);margin-top:6px;padding-top:14px;border-top:1px solid var(--line);} .simnote b{color:var(--plum);}
+  .simttl{font-family:var(--disp);font-weight:800;font-size:1.3rem;margin:0 0 14px;display:flex;align-items:center;gap:10px;}
+  .simttl.second{margin-top:34px;}
+  .cpabtns{display:flex;gap:8px;}
+  .cpab{flex:1;padding:11px;border-radius:12px;border:1px solid var(--line-2);background:var(--paper);color:var(--ink-2);font-family:var(--sans);font-weight:700;font-size:.88rem;cursor:pointer;transition:.15s;}
+  .cpab:hover{border-color:var(--plum);} .cpab.on{background:var(--plum-wash);border-color:var(--plum);color:var(--plum);}
+  .mout{display:flex;flex-direction:column;gap:16px;}
+  .mrow .t{display:flex;justify-content:space-between;align-items:baseline;font-size:.9rem;margin-bottom:6px;} .mrow .t b{font-family:var(--disp);font-weight:800;font-variant-numeric:tabular-nums;}
+  .mrow .track{height:15px;background:var(--paper-3);border-radius:8px;overflow:hidden;} .mrow .fill{height:100%;border-radius:8px;transition:width .35s cubic-bezier(.2,.6,.2,1);}
+  .mverdict{text-align:center;padding:14px;border-radius:14px;font-family:var(--disp);font-weight:800;font-size:1.15rem;margin-top:2px;}
+  .mmoney{display:flex;justify-content:space-between;font-size:.86rem;color:var(--ink-2);border-top:1px solid var(--line);padding-top:14px;} .mmoney b{color:var(--ink);font-family:var(--mono);}
 
   .foot{padding:56px 0 40px;border-bottom:none;}
   .foot-links{display:flex;gap:12px;flex-wrap:wrap;}
@@ -408,8 +418,37 @@
 
   <!-- SIMULADOR -->
   <section id="simulador">
-    <div class="shead reveal"><div class="rn">IV · A oportunidade</div><h2 class="disp">Simulador de funil</h2>
-      <p>Arraste as taxas e veja as vendas. Compare <b style="color:var(--plum)">nosso funil</b> com a <b style="color:var(--c-ing)">referência</b> — e descubra qual gargalo, corrigido, mais aumenta a venda.</p></div>
+    <div class="shead reveal"><div class="rn">IV · Simuladores</div><h2 class="disp">Duas perguntas que decidem o jogo</h2>
+      <p><b>Vamos bater a meta?</b> e <b>onde vaza o funil?</b> — arraste os controles e veja na hora.</p></div>
+
+    <h3 class="simttl reveal">🎯 Vamos bater a meta?</h3>
+    <div class="sim reveal">
+      <div class="sim-hd"><span class="l">Cenário</span>
+        <button class="chip" onclick="mpreset('A')">A · Piloto</button>
+        <button class="chip" onclick="mpreset('B')">B · Base</button>
+        <button class="chip" onclick="mpreset('C')">C · Agressivo</button>
+        <button class="chip w" onclick="mpreset('META')">🎯 Bater a meta</button></div>
+      <div class="sim-body">
+        <div>
+          <div class="ctrl"><div class="top"><span class="k">CPA do tráfego</span><span class="v" id="mv-cpa">R$ 90</span></div>
+            <div class="cpabtns"><button class="cpab" id="mcpa90" onclick="mSetCpa(90)">R$ 90</button><button class="cpab" id="mcpa110" onclick="mSetCpa(110)">R$ 110</button></div>
+            <input type="range" id="mcpa" min="40" max="150" step="5" value="90" oninput="mcalc()" style="margin-top:10px"></div>
+          <div class="ctrl"><div class="top"><span class="k">Verba por dia</span><span class="v" id="mv-vd">R$ 3.200</span></div><input type="range" id="mvd" min="1000" max="6000" step="100" value="3200" oninput="mcalc()"></div>
+          <div class="ctrl"><div class="top"><span class="k">Orgânico por dia</span><span class="v" id="mv-od">14</span></div><input type="range" id="mod" min="5" max="40" step="1" value="14" oninput="mcalc()"></div>
+          <div class="ctrl"><div class="top"><span class="k">Dias de campanha</span><span class="v" id="mv-dias">30</span></div><input type="range" id="mdias" min="10" max="45" step="1" value="30" oninput="mcalc()"></div>
+          <div class="ctrl"><div class="top"><span class="k">Surto do evento <small>(extra)</small></span><span class="v" id="mv-surto">100</span></div><input type="range" id="msurto" min="0" max="500" step="10" value="100" oninput="mcalc()"><div style="font-size:.74rem;color:var(--ink-soft);margin-top:6px">vendas concentradas no fim · 55% tráfego · 45% org</div></div>
+        </div>
+        <div class="mout">
+          <div class="mrow"><div class="t"><span>🟣 Tráfego</span><span><b id="mo-ads">—</b> <span style="color:var(--ink-soft)">/ 1.170 · <span id="mo-ads-p">—</span></span></span></div><div class="track"><div class="fill" id="mb-ads" style="background:var(--plum)"></div></div></div>
+          <div class="mrow"><div class="t"><span>🟢 Orgânico</span><span><b id="mo-org">—</b> <span style="color:var(--ink-soft)">/ 630 · <span id="mo-org-p">—</span></span></span></div><div class="track"><div class="fill" id="mb-org" style="background:var(--good)"></div></div></div>
+          <div class="mrow"><div class="t"><span>🎯 Total</span><span><b id="mo-tot" style="font-size:1.15rem">—</b> <span style="color:var(--ink-soft)">/ 1.800 · <span id="mo-tot-p">—</span></span></span></div><div class="track" style="height:20px"><div class="fill" id="mb-tot" style="background:linear-gradient(90deg,var(--plum),var(--gold))"></div></div></div>
+          <div class="mverdict" id="mverdict">—</div>
+          <div class="mmoney"><span>Investido: <b id="mo-inv">—</b></span><span>CPA efetivo: <b id="mo-cpa">—</b></span></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="simttl second reveal">🔻 Onde vaza o funil?</h3>
     <div class="sim reveal">
       <div class="sim-hd"><span class="l">Carregar cenário</span>
         <button class="chip w" onclick="preset('wici')">Nosso (WICI3)</button>
@@ -519,6 +558,30 @@
     $('k-cpa').style.color=cpa<=96?'var(--good)':(cpa<=130?'var(--gold)':'var(--bad)');
   }
   preset('wici');
+
+  // ── Simulador de meta (CPA) ──
+  const MG={ads:1170,org:630,total:1800};
+  const MPRE={A:{cpa:110,vd:1450,od:11,dias:30,surto:0},B:{cpa:110,vd:3200,od:14,dias:30,surto:100},C:{cpa:90,vd:3900,od:20,dias:30,surto:250},META:{cpa:90,vd:3900,od:25,dias:30,surto:300}};
+  window.mpreset=function(k){const p=MPRE[k];$('mcpa').value=p.cpa;$('mvd').value=p.vd;$('mod').value=p.od;$('mdias').value=p.dias;$('msurto').value=p.surto;mcalc();};
+  window.mSetCpa=function(v){$('mcpa').value=v;mcalc();};
+  window.mcalc=function(){
+    const cpa=+$('mcpa').value,vd=+$('mvd').value,od=+$('mod').value,dias=+$('mdias').value,surto=+$('msurto').value;
+    $('mv-cpa').textContent='R$ '+cpa; $('mv-vd').textContent=R0(vd); $('mv-od').textContent=od; $('mv-dias').textContent=dias; $('mv-surto').textContent=surto;
+    $('mcpa90').classList.toggle('on',cpa===90); $('mcpa110').classList.toggle('on',cpa===110);
+    const sAds=Math.round(surto*.55), sOrg=surto-sAds;
+    const ads=Math.round(vd*dias/cpa)+sAds, org=Math.round(od*dias)+sOrg, tot=ads+org, inv=vd*dias, cpaEf=ads?inv/ads:0;
+    const pa=ads/MG.ads*100, po=org/MG.org*100, pt=tot/MG.total*100;
+    $('mo-ads').textContent=N(ads);$('mo-ads-p').textContent=Math.round(pa)+'%';$('mb-ads').style.width=Math.min(100,pa)+'%';
+    $('mo-org').textContent=N(org);$('mo-org-p').textContent=Math.round(po)+'%';$('mb-org').style.width=Math.min(100,po)+'%';
+    $('mo-tot').textContent=N(tot);$('mo-tot-p').textContent=Math.round(pt)+'%';$('mb-tot').style.width=Math.min(100,pt)+'%';
+    $('mo-inv').textContent=R0(inv);$('mo-cpa').textContent=R0(cpaEf);
+    const v=$('mverdict');
+    if(pt>=100){v.textContent='🎉 Bate a meta! ('+Math.round(pt)+'%)';v.style.background='#EAF6EE';v.style.color='var(--good)';}
+    else if(pt>=80){v.textContent='🔥 Quase lá — '+Math.round(pt)+'%';v.style.background='#FDF3E0';v.style.color='var(--gold)';}
+    else if(pt>=55){v.textContent='📈 No caminho — '+Math.round(pt)+'%';v.style.background='var(--plum-wash)';v.style.color='var(--plum)';}
+    else{v.textContent='⚠️ Longe da meta — '+Math.round(pt)+'%';v.style.background='#FCEAE7';v.style.color='var(--bad)';}
+  };
+  mpreset('B');
 </script>
 </body>
 </html>
