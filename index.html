@@ -118,8 +118,10 @@
   .road-fill{height:100%;width:3%;background:linear-gradient(90deg,#3b82f6,var(--jc));border-radius:9px;transition:width 1.1s cubic-bezier(.5,0,.3,1),background .8s;}
   .stop{position:absolute;top:190px;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:var(--paper-2);border:3px solid var(--line-2);z-index:2;transition:.35s;}
   .stop.done{border-color:var(--jc);background:var(--jc);box-shadow:0 0 0 6px color-mix(in srgb,var(--jc) 18%,transparent);}
-  .stop .slab{position:absolute;top:21px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.7rem;letter-spacing:.02em;color:var(--ink-soft);white-space:nowrap;}
-  .stop.done .slab{color:var(--ink-2);font-weight:500;}
+  .stop .n{position:absolute;top:19px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.76rem;font-weight:700;color:var(--ink-soft);}
+  .stop.done .n{color:var(--jc);}
+  .jcap{text-align:center;margin-top:28px;font-family:var(--mono);font-size:.92rem;color:var(--ink-2);min-height:1.5em;}
+  .jcap b{color:var(--ink);font-weight:700;}
   .persona{position:absolute;top:112px;left:4%;transform:translateX(-50%);transition:left 1.1s cubic-bezier(.5,0,.3,1);z-index:5;}
   .persona .av{width:70px;height:70px;border-radius:50%;background:var(--jc);display:flex;align-items:center;justify-content:center;font-size:2.4rem;box-shadow:0 16px 32px -8px var(--jc);transition:background .8s;animation:bob .7s ease-in-out infinite;}
   @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
@@ -133,7 +135,7 @@
   .jbtn:hover{border-color:var(--plum);color:var(--plum);}
   .jbtn.pri{background:var(--ink);color:var(--paper);border-color:var(--ink);} .jbtn.pri:hover{background:var(--plum);border-color:var(--plum);color:#fff;}
   .jhint{font-size:.84rem;color:var(--ink-soft);font-style:italic;}
-  @media(max-width:640px){.stop .slab{display:none;} .persona .av{width:60px;height:60px;font-size:2rem;} .persona .bubble{font-size:.9rem;}}
+  @media(max-width:640px){.jtrack{height:200px;} .road{top:146px;} .stop{top:150px;} .persona{top:88px;} .persona .av{width:54px;height:54px;font-size:1.8rem;} .persona .bubble{font-size:.84rem;white-space:normal;max-width:210px;text-align:center;line-height:1.35;} .stop .n{font-size:.66rem;top:16px;} .jcap{font-size:.82rem;margin-top:20px;} .jend{flex:1 1 100%;} .jend.hot{text-align:left;}}
   @media(prefers-reduced-motion:reduce){.persona,.road-fill{transition:none;}.persona .av{animation:none;}.persona .bubble{animation:none;}}
 
   /* ── PASSO A PASSO (STEPPER) ── */
@@ -289,15 +291,16 @@
       </div>
       <div class="jtrack" id="jtrack">
         <div class="road"><div class="road-fill" id="jfill"></div></div>
-        <span class="stop" data-p="14" style="left:14%"><span class="slab">01 · VideoView</span></span>
-        <span class="stop" data-p="28" style="left:28%"><span class="slab">02 · Remarketing</span></span>
-        <span class="stop" data-p="42" style="left:42%"><span class="slab">03 · Single 9,90</span></span>
-        <span class="stop" data-p="55" style="left:55%"><span class="slab">04 · Recuperação</span></span>
-        <span class="stop" data-p="68" style="left:68%"><span class="slab">05 · Adv+ / Quente</span></span>
-        <span class="stop" data-p="81" style="left:81%"><span class="slab">06 · Escassez</span></span>
-        <span class="stop" data-p="90" style="left:90%"><span class="slab">07 · Objeção</span></span>
+        <span class="stop" data-p="14" style="left:14%"><span class="n">1</span></span>
+        <span class="stop" data-p="28" style="left:28%"><span class="n">2</span></span>
+        <span class="stop" data-p="42" style="left:42%"><span class="n">3</span></span>
+        <span class="stop" data-p="55" style="left:55%"><span class="n">4</span></span>
+        <span class="stop" data-p="68" style="left:68%"><span class="n">5</span></span>
+        <span class="stop" data-p="81" style="left:81%"><span class="n">6</span></span>
+        <span class="stop" data-p="90" style="left:90%"><span class="n">7</span></span>
         <div class="persona" id="jpersona"><div class="bubble" id="jbubble">nunca ouvi falar disso...</div><div class="av" id="jav">😴</div></div>
       </div>
+      <div class="jcap" id="jcap"><b>❄ Lead frio</b> · ainda não conhece</div>
       <div class="jctl">
         <button class="jbtn pri" id="jtoggle" onclick="jtoggle()">⏸ Pausar</button>
         <button class="jbtn" onclick="jreplay()">↻ Recomeçar</button>
@@ -499,25 +502,26 @@
   // ── Jornada animada do lead ──
   (function(){
     const jr=[
-      {p:4, f:'😴', c:'#3b82f6', s:'nunca ouvi falar disso...'},
-      {p:14,f:'👀', c:'#3b82f6', s:'opa, que vídeo é esse?'},
-      {p:28,f:'🤨', c:'#6366f1', s:'de novo... esse assunto me pegou'},
-      {p:42,f:'😯', c:'#8b5cf6', s:'só R$ 9,90? deixa eu ver'},
-      {p:55,f:'🤔', c:'#a855d6', s:'quase comprei... metade do preço?!'},
-      {p:68,f:'😃', c:'#f97316', s:'acho que é pra mim'},
-      {p:81,f:'😰', c:'#ea580c', s:'vai virar o lote! tenho que decidir'},
-      {p:90,f:'🤩', c:'#f59e0b', s:'ok, me convenceram'},
-      {p:96,f:'🎉', c:'#1C8A54', s:'COMPREI! 🎫'},
+      {p:4, f:'😴', c:'#3b82f6', s:'nunca ouvi falar disso...',            l:'<b>❄ Lead frio</b> · ainda não conhece'},
+      {p:14,f:'👀', c:'#3b82f6', s:'opa, que vídeo é esse?',               l:'<b>1 · VideoView</b> — aquece o pixel'},
+      {p:28,f:'🤨', c:'#6366f1', s:'de novo... esse assunto me pegou',     l:'<b>2 · Remarketing</b> — não deixa esfriar'},
+      {p:42,f:'😯', c:'#8b5cf6', s:'só R$ 9,90? deixa eu ver',             l:'<b>3 · Single Shot R$ 9,90</b>'},
+      {p:55,f:'🤔', c:'#a855d6', s:'quase comprei... metade do preço?!',   l:'<b>4 · Recuperação</b> — metade do preço'},
+      {p:68,f:'😃', c:'#f97316', s:'acho que é pra mim',                   l:'<b>5 · Adv+ e Quente</b>'},
+      {p:81,f:'😰', c:'#ea580c', s:'vai virar o lote! tenho que decidir',  l:'<b>6 · Escassez</b> — virou o lote'},
+      {p:90,f:'🤩', c:'#f59e0b', s:'ok, me convenceram',                   l:'<b>7 · Quebra de objeção</b>'},
+      {p:96,f:'🎉', c:'#1C8A54', s:'COMPREI! 🎫',                          l:'<b>🎉 Virou comprador!</b>'},
     ];
     const tr=document.getElementById('jtrack'); if(!tr) return;
     const pe=document.getElementById('jpersona'), av=document.getElementById('jav'),
       bu=document.getElementById('jbubble'), fi=document.getElementById('jfill'),
-      btn=document.getElementById('jtoggle'), stops=tr.querySelectorAll('.stop');
+      cap=document.getElementById('jcap'), btn=document.getElementById('jtoggle'), stops=tr.querySelectorAll('.stop');
     const reduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
     let ti=null, idx=0, playing=false;
     function set(i){
       const s=jr[i]; idx=i;
       pe.style.left=s.p+'%'; av.textContent=s.f; bu.textContent=s.s;
+      if(cap) cap.innerHTML=s.l;
       tr.style.setProperty('--jc',s.c); fi.style.width=s.p+'%';
       bu.classList.remove('bl','br'); if(s.p>=64) bu.classList.add('br'); else if(s.p<=34) bu.classList.add('bl');
       bu.style.animation='none'; void bu.offsetWidth; bu.style.animation='';
