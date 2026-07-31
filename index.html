@@ -104,26 +104,29 @@
   .pat p{font-size:.88rem;color:var(--ink-2);margin-top:4px;} .pat p b{color:var(--ink);}
 
   /* ── JORNADA ANIMADA ── */
-  .journey{background:var(--paper-2);border:1px solid var(--line-2);border-radius:20px;padding:28px 24px 22px;margin-bottom:30px;}
-  .jtemp{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;}
-  .jscroll{overflow-x:auto;overflow-y:hidden;}
-  .jtrack{position:relative;min-width:720px;height:172px;--jc:#3b82f6;}
-  .road{position:absolute;left:10px;right:10px;top:120px;height:6px;background:var(--paper-3);border-radius:6px;overflow:hidden;}
-  .road-fill{height:100%;width:3%;background:linear-gradient(90deg,#3b82f6,var(--jc));border-radius:6px;transition:width 1.1s cubic-bezier(.5,0,.3,1),background .8s;}
-  .stop{position:absolute;top:123px;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;background:var(--paper-2);border:2.5px solid var(--line-2);z-index:2;transition:.35s;}
-  .stop.done{border-color:var(--jc);background:var(--jc);box-shadow:0 0 0 4px color-mix(in srgb,var(--jc) 18%,transparent);}
-  .stop .slab{position:absolute;top:15px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.6rem;letter-spacing:.02em;color:var(--ink-soft);white-space:nowrap;}
-  .stop.done .slab{color:var(--ink-2);}
-  .persona{position:absolute;top:70px;left:4%;transform:translateX(-50%);transition:left 1.1s cubic-bezier(.5,0,.3,1);z-index:5;}
-  .persona .av{width:48px;height:48px;border-radius:50%;background:var(--jc);display:flex;align-items:center;justify-content:center;font-size:1.6rem;box-shadow:0 10px 22px -6px var(--jc);transition:background .8s;animation:bob .7s ease-in-out infinite;}
-  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-  .persona .bubble{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:10px;background:var(--ink);color:var(--paper);font-size:.8rem;font-weight:500;padding:7px 13px;border-radius:13px;white-space:nowrap;box-shadow:0 10px 24px -10px rgba(0,0,0,.5);animation:pop .35s ease;}
-  .persona .bubble::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--ink);border-bottom:0;}
-  @keyframes pop{0%{transform:translateX(-50%) scale(.85);opacity:.3}100%{transform:translateX(-50%) scale(1);opacity:1}}
-  .jctl{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap;}
-  .jbtn{font-family:var(--sans);font-size:.82rem;font-weight:600;padding:9px 16px;border-radius:22px;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);cursor:pointer;transition:.15s;}
+  .journey{background:var(--paper-2);border:1px solid var(--line-2);border-radius:24px;padding:38px 34px 28px;margin-bottom:38px;}
+  .jtemp{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px;}
+  .jtrack{position:relative;width:100%;height:250px;--jc:#3b82f6;}
+  .road{position:absolute;left:16px;right:16px;top:186px;height:9px;background:var(--paper-3);border-radius:9px;overflow:hidden;}
+  .road-fill{height:100%;width:3%;background:linear-gradient(90deg,#3b82f6,var(--jc));border-radius:9px;transition:width 1.1s cubic-bezier(.5,0,.3,1),background .8s;}
+  .stop{position:absolute;top:190px;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:var(--paper-2);border:3px solid var(--line-2);z-index:2;transition:.35s;}
+  .stop.done{border-color:var(--jc);background:var(--jc);box-shadow:0 0 0 6px color-mix(in srgb,var(--jc) 18%,transparent);}
+  .stop .slab{position:absolute;top:21px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.7rem;letter-spacing:.02em;color:var(--ink-soft);white-space:nowrap;}
+  .stop.done .slab{color:var(--ink-2);font-weight:500;}
+  .persona{position:absolute;top:112px;left:4%;transform:translateX(-50%);transition:left 1.1s cubic-bezier(.5,0,.3,1);z-index:5;}
+  .persona .av{width:70px;height:70px;border-radius:50%;background:var(--jc);display:flex;align-items:center;justify-content:center;font-size:2.4rem;box-shadow:0 16px 32px -8px var(--jc);transition:background .8s;animation:bob .7s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  .persona .bubble{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:14px;background:var(--ink);color:var(--paper);font-size:1rem;font-weight:500;padding:10px 17px;border-radius:15px;white-space:nowrap;box-shadow:0 14px 32px -10px rgba(0,0,0,.5);animation:pop .3s ease;}
+  .persona .bubble.bl{left:0;transform:none;} .persona .bubble.br{left:auto;right:0;transform:none;}
+  .persona .bubble::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:8px solid transparent;border-top-color:var(--ink);border-bottom:0;}
+  .persona .bubble.bl::after{left:35px;transform:none;} .persona .bubble.br::after{left:auto;right:35px;transform:none;}
+  @keyframes pop{0%{opacity:.2}100%{opacity:1}}
+  .jctl{display:flex;align-items:center;gap:12px;margin-top:20px;flex-wrap:wrap;}
+  .jbtn{font-family:var(--sans);font-size:.88rem;font-weight:600;padding:11px 20px;border-radius:24px;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);cursor:pointer;transition:.15s;}
   .jbtn:hover{border-color:var(--plum);color:var(--plum);}
-  .jhint{font-size:.8rem;color:var(--ink-soft);font-style:italic;}
+  .jbtn.pri{background:var(--ink);color:var(--paper);border-color:var(--ink);} .jbtn.pri:hover{background:var(--plum);border-color:var(--plum);color:#fff;}
+  .jhint{font-size:.84rem;color:var(--ink-soft);font-style:italic;}
+  @media(max-width:640px){.stop .slab{display:none;} .persona .av{width:60px;height:60px;font-size:2rem;} .persona .bubble{font-size:.9rem;}}
   @media(prefers-reduced-motion:reduce){.persona,.road-fill{transition:none;}.persona .av{animation:none;}.persona .bubble{animation:none;}}
 
   /* ── PASSO A PASSO (STEPPER) ── */
@@ -260,18 +263,22 @@
 
     <div class="journey reveal">
       <div class="jtemp"><span>❄ Frio · não conhece</span><span>🔥 Quente · compra</span></div>
-      <div class="jscroll"><div class="jtrack" id="jtrack">
+      <div class="jtrack" id="jtrack">
         <div class="road"><div class="road-fill" id="jfill"></div></div>
-        <span class="stop" data-p="15" style="left:15%"><span class="slab">01 · VideoView</span></span>
-        <span class="stop" data-p="29" style="left:29%"><span class="slab">02 · Remarketing</span></span>
-        <span class="stop" data-p="43" style="left:43%"><span class="slab">03 · Single 9,90</span></span>
-        <span class="stop" data-p="57" style="left:57%"><span class="slab">04 · Recuperação</span></span>
-        <span class="stop" data-p="71" style="left:71%"><span class="slab">05 · Adv+ / Quente</span></span>
-        <span class="stop" data-p="85" style="left:85%"><span class="slab">06 · Escassez</span></span>
-        <span class="stop" data-p="94" style="left:94%"><span class="slab">07 · Objeção</span></span>
+        <span class="stop" data-p="14" style="left:14%"><span class="slab">01 · VideoView</span></span>
+        <span class="stop" data-p="28" style="left:28%"><span class="slab">02 · Remarketing</span></span>
+        <span class="stop" data-p="42" style="left:42%"><span class="slab">03 · Single 9,90</span></span>
+        <span class="stop" data-p="55" style="left:55%"><span class="slab">04 · Recuperação</span></span>
+        <span class="stop" data-p="68" style="left:68%"><span class="slab">05 · Adv+ / Quente</span></span>
+        <span class="stop" data-p="81" style="left:81%"><span class="slab">06 · Escassez</span></span>
+        <span class="stop" data-p="90" style="left:90%"><span class="slab">07 · Objeção</span></span>
         <div class="persona" id="jpersona"><div class="bubble" id="jbubble">nunca ouvi falar disso...</div><div class="av" id="jav">😴</div></div>
-      </div></div>
-      <div class="jctl"><button class="jbtn" onclick="jplay()">▶ ver a jornada de novo</button><span class="jhint">um lead frio virando comprador pelas 7 campanhas</span></div>
+      </div>
+      <div class="jctl">
+        <button class="jbtn pri" id="jtoggle" onclick="jtoggle()">⏸ Pausar</button>
+        <button class="jbtn" onclick="jreplay()">↻ Recomeçar</button>
+        <span class="jhint">um lead frio virando comprador pelas 7 campanhas</span>
+      </div>
     </div>
 
     <div class="steps reveal">
@@ -433,38 +440,42 @@
   (function(){
     const jr=[
       {p:4, f:'😴', c:'#3b82f6', s:'nunca ouvi falar disso...'},
-      {p:15,f:'👀', c:'#3b82f6', s:'opa, que vídeo é esse?'},
-      {p:29,f:'🤨', c:'#6366f1', s:'de novo... esse assunto me pegou'},
-      {p:43,f:'😯', c:'#8b5cf6', s:'só R$ 9,90? deixa eu ver'},
-      {p:57,f:'🤔', c:'#a855d6', s:'quase comprei... metade do preço?!'},
-      {p:71,f:'😃', c:'#f97316', s:'acho que é pra mim'},
-      {p:85,f:'😰', c:'#ea580c', s:'vai virar o lote! tenho que decidir'},
-      {p:94,f:'🤩', c:'#f59e0b', s:'ok, me convenceram'},
-      {p:99,f:'🎉', c:'#1C8A54', s:'COMPREI! 🎫'},
+      {p:14,f:'👀', c:'#3b82f6', s:'opa, que vídeo é esse?'},
+      {p:28,f:'🤨', c:'#6366f1', s:'de novo... esse assunto me pegou'},
+      {p:42,f:'😯', c:'#8b5cf6', s:'só R$ 9,90? deixa eu ver'},
+      {p:55,f:'🤔', c:'#a855d6', s:'quase comprei... metade do preço?!'},
+      {p:68,f:'😃', c:'#f97316', s:'acho que é pra mim'},
+      {p:81,f:'😰', c:'#ea580c', s:'vai virar o lote! tenho que decidir'},
+      {p:90,f:'🤩', c:'#f59e0b', s:'ok, me convenceram'},
+      {p:96,f:'🎉', c:'#1C8A54', s:'COMPREI! 🎫'},
     ];
-    const tr=document.getElementById('jtrack');
-    if(!tr) return;
+    const tr=document.getElementById('jtrack'); if(!tr) return;
     const pe=document.getElementById('jpersona'), av=document.getElementById('jav'),
       bu=document.getElementById('jbubble'), fi=document.getElementById('jfill'),
-      sc=tr.parentElement, stops=tr.querySelectorAll('.stop');
+      btn=document.getElementById('jtoggle'), stops=tr.querySelectorAll('.stop');
     const reduced=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    let ti=null;
+    let ti=null, idx=0, playing=false;
     function set(i){
-      const s=jr[i];
+      const s=jr[i]; idx=i;
       pe.style.left=s.p+'%'; av.textContent=s.f; bu.textContent=s.s;
       tr.style.setProperty('--jc',s.c); fi.style.width=s.p+'%';
+      bu.classList.remove('bl','br'); if(s.p>=64) bu.classList.add('br'); else if(s.p<=34) bu.classList.add('bl');
       bu.style.animation='none'; void bu.offsetWidth; bu.style.animation='';
       stops.forEach(st=>st.classList.toggle('done', s.p>=+st.dataset.p));
-      const px=tr.offsetWidth*s.p/100; sc.scrollTo({left:px-sc.clientWidth/2, behavior:'smooth'});
     }
-    window.jplay=function(){
-      clearInterval(ti); set(0);
-      if(reduced){ set(jr.length-1); return; }
-      let i=0; ti=setInterval(()=>{ i++; if(i>=jr.length){clearInterval(ti);return;} set(i); }, 1500);
-    };
+    function upd(){ if(btn) btn.textContent = playing ? '⏸ Pausar' : (idx>=jr.length-1 ? '↻ Ver de novo' : '▶ Continuar'); }
+    function halt(){ playing=false; clearInterval(ti); ti=null; upd(); }
+    function play(){
+      if(playing) return;
+      if(idx>=jr.length-1){ idx=0; set(0); }
+      playing=true; upd();
+      ti=setInterval(()=>{ if(idx>=jr.length-1){ halt(); return; } set(idx+1); }, 1500);
+    }
+    window.jtoggle=function(){ if(reduced){ set(jr.length-1); return; } playing ? halt() : play(); };
+    window.jreplay=function(){ clearInterval(ti); playing=false; idx=0; set(0); play(); };
     set(0);
-    let played=false;
-    new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting&&!played){played=true;setTimeout(window.jplay,500);}}),{threshold:.35}).observe(tr);
+    let started=false;
+    new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting&&!started){ started=true; if(reduced) set(jr.length-1); else setTimeout(play,500); } }),{threshold:.35}).observe(tr);
   })();
   const $=id=>document.getElementById(id), N=n=>Math.round(n).toLocaleString('pt-BR'),
     R=n=>'R$ '+n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}), R0=n=>'R$ '+Math.round(n).toLocaleString('pt-BR');
