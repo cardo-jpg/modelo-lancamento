@@ -25,13 +25,11 @@
   body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:var(--mw);margin:0 auto;padding:0 26px;}
   .disp{font-family:var(--disp);font-weight:800;letter-spacing:-.02em;line-height:1.02;text-wrap:balance;}
-  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums;}
   .eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--plum);}
   a{color:inherit;}
   ::selection{background:var(--plum);color:#fff;}
   :focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:4px;}
 
-  /* HERO */
   .hero{position:relative;padding:88px 0 64px;border-bottom:1px solid var(--line);overflow:hidden;}
   .hero::before{content:"";position:absolute;top:-160px;right:-140px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(122,31,162,.10),transparent 68%);pointer-events:none;}
   .hero .eyebrow{margin-bottom:22px;display:inline-block;}
@@ -65,7 +63,6 @@
   .reveal.in{opacity:1;transform:none;}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
 
-  /* DIAGNÓSTICO */
   .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:var(--paper-2);}
   .stat{padding:22px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
   .stat .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
@@ -86,7 +83,6 @@
   .call.warn{border-color:rgba(192,138,30,.4);background:#F8F2E4;} .call.warn .tag{color:var(--gold);}
   .call p{margin-top:8px;font-size:.94rem;color:var(--ink-2);} .call p b{color:var(--ink);font-weight:600;}
 
-  /* CRIATIVOS */
   .board{border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:var(--paper-2);}
   .row{display:grid;grid-template-columns:52px 1fr 96px 88px auto;align-items:center;gap:16px;padding:15px 22px;border-bottom:1px solid var(--line);transition:.15s;}
   .row:last-child{border-bottom:none;} .row:hover{background:var(--plum-wash);}
@@ -107,40 +103,29 @@
   .pat .lead2{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pc);margin-bottom:8px;}
   .pat p{font-size:.88rem;color:var(--ink-2);margin-top:4px;} .pat p b{color:var(--ink);}
 
-  /* ── BLUEPRINT DO FUNIL ── */
-  .flowlead{display:flex;align-items:center;gap:12px;margin-bottom:22px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
-  .flowlead .dash{flex:1;height:1px;background:var(--line-2);}
-  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:start;}
-  @media(max-width:900px){.flow{grid-template-columns:1fr 1fr;}}
-  @media(max-width:560px){.flow{grid-template-columns:1fr;}}
-  .stage{display:flex;flex-direction:column;gap:12px;position:relative;}
-  .stage-hd{padding:14px 16px;border-radius:14px;background:var(--ink);color:var(--paper);position:relative;}
-  .stage-hd .sn{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;opacity:.65;}
-  .stage-hd h3{font-family:var(--disp);font-weight:800;font-size:1.12rem;margin-top:3px;}
-  .stage-hd p{font-size:.75rem;opacity:.78;margin-top:3px;line-height:1.35;}
-  .stage-hd::after{content:"→";position:absolute;right:-18px;top:26px;color:var(--line-2);font-size:1.4rem;font-weight:700;z-index:2;}
-  .stage:last-child .stage-hd::after{display:none;}
-  @media(max-width:900px){.stage-hd::after{display:none;}}
-  .fcard{background:var(--paper-2);border:1px solid var(--line-2);border-top:4px solid var(--c,var(--plum));border-radius:14px;padding:15px 16px;transition:transform .15s,box-shadow .15s;}
-  .fcard:hover{box-shadow:0 14px 34px -18px var(--c,var(--plum));transform:translateY(-3px);}
-  .fcard .ct{display:flex;align-items:center;gap:9px;}
-  .fcard .num{font-family:var(--disp);background:var(--c,var(--plum));color:#fff;width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;flex-shrink:0;}
-  .fcard .nm{font-family:var(--disp);font-weight:700;font-size:1.06rem;}
-  .fcard .obj{font-size:.85rem;color:var(--ink-2);margin-top:9px;line-height:1.42;}
-  .fcard .meta{margin-top:12px;display:flex;flex-direction:column;gap:6px;}
-  .fcard .mr{display:flex;gap:8px;font-size:.79rem;align-items:baseline;}
-  .fcard .mr .ml{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);width:48px;flex-shrink:0;padding-top:2px;}
-  .fcard .mr .mv{color:var(--ink-2);}
-  .fcard .code{margin-top:12px;font-family:var(--mono);font-size:.71rem;color:var(--c,var(--plum));background:var(--paper-3);border-radius:7px;padding:7px 9px;overflow-x:auto;white-space:nowrap;}
-  .fcard .flag{display:inline-block;margin-top:11px;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--c);padding:4px 9px;border-radius:6px;}
-  .fcard.hi{box-shadow:0 0 0 2px var(--c),0 14px 34px -18px var(--c);}
-  .engine{margin-top:16px;border:1.5px dashed var(--line-2);border-radius:18px;padding:18px;background:linear-gradient(180deg,var(--paper-3),transparent);}
-  .engine .eh{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-  .engine .eh::after{content:"roda o lançamento inteiro";font-family:var(--sans);text-transform:none;letter-spacing:0;font-style:italic;color:var(--ink-soft);opacity:.75;}
-  .engine .eg{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  @media(max-width:560px){.engine .eg{grid-template-columns:1fr;}}
+  /* ── PASSO A PASSO (STEPPER) ── */
+  .steps{position:relative;margin-top:4px;}
+  .steps::before{content:"";position:absolute;left:29px;top:20px;bottom:24px;width:2px;background:linear-gradient(180deg,var(--line-2),var(--line-2) 88%,transparent);}
+  .step{position:relative;padding-left:84px;padding-bottom:18px;}
+  .step:last-child{padding-bottom:0;}
+  .snum{position:absolute;left:0;top:0;width:60px;height:60px;border-radius:18px;background:var(--c,var(--plum));color:#fff;
+    font-family:var(--disp);font-weight:800;font-size:1.55rem;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 24px -10px var(--c,var(--plum));z-index:2;font-variant-numeric:tabular-nums;}
+  .scard{background:var(--paper-2);border:1px solid var(--line-2);border-left:4px solid var(--c,var(--plum));border-radius:16px;padding:20px 24px;transition:transform .15s,box-shadow .15s;}
+  .scard:hover{box-shadow:0 18px 44px -24px var(--c,var(--plum));transform:translateX(4px);}
+  .stitle{display:flex;align-items:center;gap:11px;flex-wrap:wrap;}
+  .stitle h3{font-family:var(--disp);font-weight:800;font-size:1.3rem;}
+  .stitle .tagc{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#fff;background:var(--c,var(--plum));padding:4px 10px;border-radius:20px;}
+  .what{font-size:.96rem;color:var(--ink-2);margin-top:10px;line-height:1.5;} .what b{color:var(--ink);font-weight:600;}
+  .det{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:11px 22px;margin-top:16px;}
+  .dr .dl{font-family:var(--mono);font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);display:block;margin-bottom:2px;}
+  .dr .dv{font-size:.85rem;color:var(--ink-2);} .dr .dv b{color:var(--ink);font-weight:600;}
+  .why{margin-top:15px;font-size:.85rem;color:var(--ink-2);border-left:2.5px solid var(--c,var(--plum));padding:2px 0 2px 13px;}
+  .why b{color:var(--ink);font-weight:600;}
+  .ccode{margin-top:15px;font-family:var(--mono);font-size:.73rem;color:var(--c,var(--plum));background:var(--paper-3);border-radius:9px;padding:9px 12px;overflow-x:auto;white-space:nowrap;}
+  .ccode .two{display:block;} .ccode .two + .two{margin-top:5px;}
+  @media(max-width:560px){.step{padding-left:70px;} .snum{width:50px;height:50px;font-size:1.3rem;border-radius:15px;} .steps::before{left:24px;}}
 
-  /* SIMULADOR */
   .sim{border:1px solid var(--line-2);border-radius:20px;background:var(--paper-2);overflow:hidden;}
   .sim-hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:18px 24px;border-bottom:1px solid var(--line);background:var(--paper-3);}
   .sim-hd .l{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-right:6px;}
@@ -183,14 +168,14 @@
   <span class="brand">Cardô<span style="color:var(--plum)">.</span></span>
   <a href="#diagnostico">Diagnóstico</a>
   <a href="#criativos">Criativos</a>
-  <a href="#estrutura">Estrutura</a>
+  <a href="#passos">Campanhas</a>
   <a href="#simulador">Simulador</a>
 </div></nav>
 
 <header class="hero"><div class="wrap">
   <span class="eyebrow">Cardô Marketing · Playbook de Tráfego</span>
   <h1 class="disp">Modelo de<span class="l2">Lançamento</span></h1>
-  <p class="thesis">A leitura completa do WICI3 — <b>o que já funcionou</b>, a estrutura de campanhas que roda o lançamento, e um simulador pra achar exatamente onde está o dinheiro na mesa. Feito pra decidir o próximo, não pra encher relatório.</p>
+  <p class="thesis">A leitura do WICI3 — <b>o que já funcionou</b> — e o <b>passo a passo de campanhas</b> que a gente monta no próximo. Feito pra decidir e executar, não pra encher relatório.</p>
   <div class="glance">
     <div class="g"><div class="k">Vendas</div><div class="n">466<small> /1800</small></div><div class="d">26% da meta</div></div>
     <div class="g"><div class="k">CPA ontem</div><div class="n up">R$ 73</div><div class="d">↓ quase na meta</div></div>
@@ -220,7 +205,7 @@
     </div>
     <div class="callouts reveal">
       <div class="call good"><span class="tag">Virou a chave</span><p>O CPA de ontem caiu pra <b>R$ 73</b>, puxado pela campanha de <b>checkout R$ 19,90</b>. Sinal verde pra escalar o que já converte.</p></div>
-      <div class="call warn"><span class="tag">O gargalo</span><p>Sobram <b>R$ 60,9k</b> parados com o lançamento em 26%. No ritmo de gasto atual, esse dinheiro <b>não vira venda</b> — escalar é a prioridade nº 1.</p></div>
+      <div class="call warn"><span class="tag">O gargalo</span><p>Sobram <b>R$ 60,9k</b> parados com o lançamento em 26%. No ritmo atual, esse dinheiro <b>não vira venda</b> — escalar é a prioridade nº 1.</p></div>
     </div>
   </section>
 
@@ -245,76 +230,112 @@
     </div>
   </section>
 
-  <!-- ESTRUTURA (BLUEPRINT) -->
-  <section id="estrutura">
-    <div class="shead reveal"><div class="rn">III · O motor</div><h2 class="disp">A estrutura pra copiar</h2>
-      <p>As campanhas mapeadas pela <b>jornada do cliente</b> — da primeira vez que ele vê o anúncio até fechar. É esse desenho que replicamos no próximo lançamento.</p></div>
+  <!-- PASSO A PASSO -->
+  <section id="passos">
+    <div class="shead reveal"><div class="rn">III · O passo a passo</div><h2 class="disp">As campanhas que não podem faltar</h2>
+      <p>A sequência que a gente monta no próximo lançamento — do <b>aquecimento do pixel</b> até a <b>escassez</b>. Cada passo com a função, o público e o nome-padrão.</p></div>
 
-    <div class="reveal">
-      <div class="flowlead"><span>❄ Frio · não conhece</span><span class="dash"></span><span>🔥 Quente · decide</span></div>
-      <div class="flow">
+    <div class="steps reveal">
 
-        <div class="stage">
-          <div class="stage-hd"><div class="sn">Etapa 1</div><h3>Topo</h3><p>Atrair gente nova e captar leads</p></div>
-          <div class="fcard" style="--c:var(--c-atr)"><div class="ct"><span class="num">3</span><span class="nm">Atração</span></div>
-            <div class="obj">Atrair público <b>frio novo</b> com conteúdo de valor — sem venda direta.</div>
-            <div class="meta"><div class="mr"><span class="ml">público</span><span class="mv">Frio (aberto)</span></div><div class="mr"><span class="ml">criativo</span><span class="mv">Conteúdo / valor</span></div></div>
-            <div class="code">[MALU]-[ATRACAO]-[CBO]-[FRIO]-[V]</div></div>
-          <div class="fcard" style="--c:var(--c-qual)"><div class="ct"><span class="num">6</span><span class="nm">Qualificação</span></div>
-            <div class="obj">Captar e <b>qualificar leads</b> (inscritos/grupo) que alimentam as bases quentes.</div>
-            <div class="meta"><div class="mr"><span class="ml">público</span><span class="mv">Frio</span></div><div class="mr"><span class="ml">criativo</span><span class="mv">Isca / lead</span></div></div>
-            <div class="code">[MALU]-[QUALIF]-[CBO]-[FRIO]-[I]</div></div>
-        </div>
-
-        <div class="stage">
-          <div class="stage-hd"><div class="sn">Etapa 2</div><h3>Aquisição</h3><p>A máquina de vender do dia a dia</p></div>
-          <div class="fcard" style="--c:var(--c-vendas)"><div class="ct"><span class="num">1</span><span class="nm">Vendas</span></div>
-            <div class="obj">Vender ingressos com o <b>menor CAC</b> — a campanha contínua que roda o lançamento todo.</div>
-            <div class="meta"><div class="mr"><span class="ml">público</span><span class="mv">Quente · Frio · Adv+</span></div><div class="mr"><span class="ml">criativo</span><span class="mv">Estático · Reels · YT</span></div><div class="mr"><span class="ml">rotina</span><span class="mv">2x/dia · ajustar/pausar</span></div></div>
-            <span class="flag">contínua · sem preço/lote/data</span>
-            <div class="code">MALU_MMF_FB06_Vendas_F_B</div></div>
-        </div>
-
-        <div class="stage">
-          <div class="stage-hd"><div class="sn">Etapa 3</div><h3>Conversão</h3><p>Empurrar quem já conhece pra comprar</p></div>
-          <div class="fcard" style="--c:var(--c-rmkt)"><div class="ct"><span class="num">2</span><span class="nm">Remarketing</span></div>
-            <div class="obj">Converter <b>quem pisou</b> na página e não comprou.</div>
-            <div class="meta"><div class="mr"><span class="ml">público</span><span class="mv">Pisou · outra edição · alunos</span></div><div class="mr"><span class="ml">ângulo</span><span class="mv">Objeção · garantia · prova</span></div></div>
-            <div class="code">[MALU]-[RMKT]-[CBO]-[PISOU]-[V]</div></div>
-          <div class="fcard hi" style="--c:var(--c-esc)"><div class="ct"><span class="num">5</span><span class="nm">Escassez</span></div>
-            <div class="obj">Converter com <b>escassez de lote</b> — a virada do lançamento.</div>
-            <div class="meta"><div class="mr"><span class="ml">público</span><span class="mv">Quente / engajado</span></div><div class="mr"><span class="ml">criativo</span><span class="mv">Contagem · virou o lote · preço</span></div><div class="mr"><span class="ml">rotina</span><span class="mv">Liga no gatilho · separada</span></div></div>
-            <span class="flag">foco pro próximo</span>
-            <div class="code">[MALU]-[ESCASSEZ]-[CBO]-[QUENTE]-[V]</div></div>
-        </div>
-
-        <div class="stage">
-          <div class="stage-hd"><div class="sn">Etapa 4</div><h3>Recuperar</h3><p>Fechar quem quase comprou</p></div>
-          <div class="fcard" style="--c:var(--c-ing)"><div class="ct"><span class="num">7</span><span class="nm">Rmkt Ingressos</span></div>
-            <div class="obj">Fechar <b>quem chegou nos ingressos</b> / iniciou o checkout.</div>
-            <div class="meta"><div class="mr"><span class="ml">público</span><span class="mv">Viu ingressos · checkout</span></div><div class="mr"><span class="ml">ângulo</span><span class="mv">Última milha</span></div></div>
-            <div class="code">[MALU]-[RMKT-ING]-[CBO]-[CHECKOUT]-[V]</div></div>
-          <div class="fcard" style="--c:var(--c-car)"><div class="ct"><span class="num">8</span><span class="nm">Carrinho</span></div>
-            <div class="obj">Recuperar <b>checkout abandonado</b>.</div>
-            <div class="meta"><div class="mr"><span class="ml">público</span><span class="mv">Abandonou o checkout</span></div><div class="mr"><span class="ml">ângulo</span><span class="mv">Urgência + última objeção</span></div></div>
-            <div class="code">[MALU]-[CARRINHO]-[CBO]-[ABANDONO]-[V]</div></div>
-        </div>
-
-      </div>
-
-      <div class="engine">
-        <div class="eh">O motor transversal ·&nbsp;</div>
-        <div class="eg">
-          <div class="fcard" style="--c:var(--c-teste)"><div class="ct"><span class="num">4</span><span class="nm">Teste</span></div>
-            <div class="obj">Laboratório — achar o <b>criativo vencedor</b> e promover pra escala.</div>
-            <div class="meta"><div class="mr"><span class="ml">como</span><span class="mv">Mesmo ad em frio/quente/pisou/adv+</span></div><div class="mr"><span class="ml">verba</span><span class="mv">Até 3x o CAC ideal</span></div></div>
-            <span class="flag">regra: nunca pausar campanha boa</span></div>
-          <div class="fcard hi" style="--c:var(--c-escala)"><div class="ct"><span class="num">↑</span><span class="nm">Escala</span></div>
-            <div class="obj">Crescer o investimento <b>sem quebrar o CAC</b>.</div>
-            <div class="meta"><div class="mr"><span class="ml">motor</span><span class="mv">Advantage+ (60% na referência)</span></div><div class="mr"><span class="ml">ritmo</span><span class="mv">Degraus +20% a cada 2 dias</span></div><div class="mr"><span class="ml">insumo</span><span class="mv">Pipeline de criativos novos</span></div></div>
-            <span class="flag">foco pro próximo</span></div>
+      <div class="step" style="--c:var(--c-atr)">
+        <div class="snum">01</div>
+        <div class="scard">
+          <div class="stitle"><h3>VideoView</h3><span class="tagc">aquece o pixel</span></div>
+          <p class="what">Roda vídeo pra público <b>frio</b>, otimizando por visualização. Barata, <b>movimenta o pixel</b> e leva gente pro site — a fundação de tudo.</p>
+          <div class="det">
+            <div class="dr"><span class="dl">público</span><span class="dv">Frio (aberto)</span></div>
+            <div class="dr"><span class="dl">otimização</span><span class="dv">ThruPlay / VideoView</span></div>
+            <div class="dr"><span class="dl">criativo</span><span class="dv">Vídeo de conteúdo/dor</span></div>
+          </div>
+          <div class="why"><b>Por que primeiro:</b> cria a base de retargeting (quem viu o vídeo) e ensina o pixel a reconhecer o público.</div>
+          <div class="ccode">[MALU]-[VIDEOVIEW]-[CBO]-[FRIO]-[V]</div>
         </div>
       </div>
+
+      <div class="step" style="--c:var(--c-rmkt)">
+        <div class="snum">02</div>
+        <div class="scard">
+          <div class="stitle"><h3>Remarketing agressivo</h3><span class="tagc">o "fudido"</span></div>
+          <p class="what">Retargeting <b>pesado</b> em quem viu o vídeo do passo 1 e em quem pisou no site. Alta frequência, vários ângulos — não deixa esfriar.</p>
+          <div class="det">
+            <div class="dr"><span class="dl">público</span><span class="dv">Viu 25%+ do vídeo · pisou no site</span></div>
+            <div class="dr"><span class="dl">ângulos</span><span class="dv">Dor · prova · oferta · objeção</span></div>
+          </div>
+          <div class="why"><b>Segredo:</b> é o público mais barato de converter — já conhece. Aqui a frequência pode ser alta.</div>
+          <div class="ccode">[MALU]-[RMKT-VV]-[CBO]-[VIEWERS]-[V]</div>
+        </div>
+      </div>
+
+      <div class="step" style="--c:var(--c-qual)">
+        <div class="snum">03</div>
+        <div class="scard">
+          <div class="stitle"><h3>Single Shot · R$ 9,90</h3><span class="tagc">LP alternativa</span></div>
+          <p class="what">Oferta de entrada de <b>R$ 9,90</b> num single shot, numa <b>LP diferente da original</b>. Ticket baixo = CPA baixíssimo.</p>
+          <div class="det">
+            <div class="dr"><span class="dl">público</span><span class="dv">Frio + quente</span></div>
+            <div class="dr"><span class="dl">lp</span><span class="dv">Alternativa (9,90)</span></div>
+            <div class="dr"><span class="dl">criativo</span><span class="dv">Oferta · preço</span></div>
+          </div>
+          <div class="why"><b>Validado no WICI3:</b> as ofertas de R$9–19 deram os menores CPAs do lançamento (R$14–20).</div>
+          <div class="ccode">[MALU]-[SINGLE-9,90]-[CBO]-[FRIO]-[V]</div>
+        </div>
+      </div>
+
+      <div class="step" style="--c:var(--c-ing)">
+        <div class="snum">04</div>
+        <div class="scard">
+          <div class="stitle"><h3>Recuperação · metade do preço</h3><span class="tagc">salva o checkout</span></div>
+          <p class="what">LP com oferta pela <b>metade do preço</b>, só pra quem <b>chegou no checkout e não comprou</b>. Última cartada pra fechar.</p>
+          <div class="det">
+            <div class="dr"><span class="dl">público</span><span class="dv">Iniciou checkout · não comprou</span></div>
+            <div class="dr"><span class="dl">lp</span><span class="dv">Oferta 50% off</span></div>
+            <div class="dr"><span class="dl">criativo</span><span class="dv">Urgência + preço</span></div>
+          </div>
+          <div class="ccode">[MALU]-[RECUP-50]-[CBO]-[CHECKOUT]-[V]</div>
+        </div>
+      </div>
+
+      <div class="step" style="--c:var(--c-vendas)">
+        <div class="snum">05</div>
+        <div class="scard">
+          <div class="stitle"><h3>Adv+ e Quente</h3><span class="tagc">campanhas SEPARADAS</span></div>
+          <p class="what">Duas campanhas <b>separadas</b>: uma de <b>Advantage+</b> e outra de <b>público quente</b>. Nunca no mesmo lugar — não competem entre si nem sujam o aprendizado.</p>
+          <div class="det">
+            <div class="dr"><span class="dl">adv+</span><span class="dv">Lookalike de alunos/ingressos/leads</span></div>
+            <div class="dr"><span class="dl">quente</span><span class="dv">e4 · e2/e3 · envolv. 30d · alunos</span></div>
+          </div>
+          <div class="why"><b>Regra:</b> Advantage+ foi o <b>motor da escala</b> na referência (60% das vendas). Isolar o quente evita canibalizar.</div>
+          <div class="ccode"><span class="two">[MALU]-[VENDAS]-[CBO]-[ADV+]-[V]</span><span class="two">[MALU]-[VENDAS]-[ABO]-[QUENTE]-[V]</span></div>
+        </div>
+      </div>
+
+      <div class="step" style="--c:var(--c-esc)">
+        <div class="snum">06</div>
+        <div class="scard">
+          <div class="stitle"><h3>Escassez</h3><span class="tagc">a virada do lote</span></div>
+          <p class="what">Liga no <b>gatilho de virada de lote</b>. Criativos de <b>preço</b> e de <b>lote</b> — contagem regressiva, "virou o lote", último preço. Campanha separada, liga/desliga no gatilho.</p>
+          <div class="det">
+            <div class="dr"><span class="dl">público</span><span class="dv">Quente / engajado</span></div>
+            <div class="dr"><span class="dl">criativos</span><span class="dv">Preço · lote · contagem</span></div>
+            <div class="dr"><span class="dl">rotina</span><span class="dv">Liga no gatilho · separada</span></div>
+          </div>
+          <div class="ccode">[MALU]-[ESCASSEZ]-[CBO]-[QUENTE]-[V]</div>
+        </div>
+      </div>
+
+      <div class="step" style="--c:var(--c-teste)">
+        <div class="snum">07</div>
+        <div class="scard">
+          <div class="stitle"><h3>Quebra de objeção</h3><span class="tagc">derruba o "mas..."</span></div>
+          <p class="what">Campanha dedicada a <b>derrubar as objeções</b> — preço, tempo, "será que funciona pra mim". Garantia, depoimento, prova, "como funciona".</p>
+          <div class="det">
+            <div class="dr"><span class="dl">público</span><span class="dv">Pisou/engajou · não comprou</span></div>
+            <div class="dr"><span class="dl">ângulos</span><span class="dv">Garantia · prova · como funciona</span></div>
+          </div>
+          <div class="ccode">[MALU]-[OBJECAO]-[CBO]-[PISOU]-[V]</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -366,7 +387,7 @@
 </div>
 
 <script>
-  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   const $=id=>document.getElementById(id), N=n=>Math.round(n).toLocaleString('pt-BR'),
     R=n=>'R$ '+n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}), R0=n=>'R$ '+Math.round(n).toLocaleString('pt-BR');
