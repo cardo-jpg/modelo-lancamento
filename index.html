@@ -105,7 +105,14 @@
 
   /* ── JORNADA ANIMADA ── */
   .journey{background:var(--paper-2);border:1px solid var(--line-2);border-radius:24px;padding:38px 34px 28px;margin-bottom:38px;}
-  .jtemp{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px;}
+  .jtemp{display:flex;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap;}
+  .jend{display:inline-flex;flex-direction:column;gap:3px;padding:10px 16px;border-radius:14px;}
+  .jend .t{font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;}
+  .jend .s{font-size:.74rem;}
+  .jend.cold{background:linear-gradient(135deg,#EAF3FF,#D9E8FC);border:1px solid #BCD5F6;box-shadow:0 6px 18px -12px #3b82f6;}
+  .jend.cold .t{color:#1D4ED8;} .jend.cold .s{color:#3F6BB8;}
+  .jend.hot{background:linear-gradient(135deg,#FFEEE4,#FEE0D2);border:1px solid #F6C3A6;text-align:right;box-shadow:0 6px 18px -12px #ea580c;}
+  .jend.hot .t{color:#DC2626;} .jend.hot .s{color:#BF5E2C;}
   .jtrack{position:relative;width:100%;height:250px;--jc:#3b82f6;}
   .road{position:absolute;left:16px;right:16px;top:186px;height:9px;background:var(--paper-3);border-radius:9px;overflow:hidden;}
   .road-fill{height:100%;width:3%;background:linear-gradient(90deg,#3b82f6,var(--jc));border-radius:9px;transition:width 1.1s cubic-bezier(.5,0,.3,1),background .8s;}
@@ -262,7 +269,10 @@
       <p>A sequência que a gente monta no próximo lançamento — do <b>aquecimento do pixel</b> até a <b>escassez</b>. Cada passo com a função, o público e o nome-padrão.</p></div>
 
     <div class="journey reveal">
-      <div class="jtemp"><span>❄ Frio · não conhece</span><span>🔥 Quente · compra</span></div>
+      <div class="jtemp">
+        <div class="jend cold"><span class="t">❄ Frio · não conhece</span><span class="s">a gente atrai — VideoView + Atração</span></div>
+        <div class="jend hot"><span class="t">🔥 Quente · já conhece</span><span class="s">a gente fecha — Remarketing + Preço</span></div>
+      </div>
       <div class="jtrack" id="jtrack">
         <div class="road"><div class="road-fill" id="jfill"></div></div>
         <span class="stop" data-p="14" style="left:14%"><span class="slab">01 · VideoView</span></span>
