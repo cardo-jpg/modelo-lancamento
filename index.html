@@ -4,350 +4,397 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Modelo de Lançamento · Cardô</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#171223;--surface:#221a35;--card:#2c2344;--card2:#362b52;--border:#41365f;
-    --text:#f7f2fd;--muted:#b6a9cf;--dim:#8b7da8;--line:#50446b;
-    --purple:#a855d6;--purple-light:#d29cf0;
-    --blue:#7cb0ff;--pink:#f98fc8;--red:#ff8f8f;--amber:#ffcf5a;--green:#6ee7a0;--cyan:#79d8ec;--lime:#c3f264;--orange:#ffb066;
+    color-scheme:light;
+    --paper:#F4F1EA; --paper-2:#FBFAF6; --paper-3:#EFEBE2;
+    --ink:#1B1620; --ink-2:#3B3340; --ink-soft:#6A6072; --line:#E3DCD0; --line-2:#D5CCBD;
+    --plum:#7A1FA2; --plum-deep:#5A1478; --plum-wash:#F1E7F5;
+    --coral:#FF4D6D; --gold:#C08A1E;
+    --good:#1C8A54; --bad:#C7371F;
+    --c-vendas:#2563EB; --c-rmkt:#7A1FA2; --c-atr:#DB2777; --c-teste:#DC2626;
+    --c-esc:#D97706; --c-qual:#059669; --c-ing:#0891B2; --c-car:#4D7C0F; --c-escala:#EA580C;
+    --sans:'Inter',system-ui,sans-serif; --disp:'Bricolage Grotesque',sans-serif; --mono:'JetBrains Mono',monospace;
+    --mw:1160px;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{background:radial-gradient(1100px 520px at 15% -12%,rgba(168,85,214,.28),transparent 60%),
-    radial-gradient(700px 400px at 100% 0%,rgba(121,216,236,.10),transparent 55%),var(--bg);
-    color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.55;min-height:100vh;padding:26px 16px 60px;}
-  .wrap{max-width:1240px;margin:0 auto;}
-  .eyebrow{display:inline-block;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--purple-light);font-weight:800;
-    background:rgba(210,156,240,.14);border:1px solid rgba(210,156,240,.3);padding:5px 12px;border-radius:20px;margin-bottom:14px;}
-  h1{font-size:2.15rem;font-weight:900;letter-spacing:-.02em;}
-  h1 span{background:linear-gradient(100deg,var(--purple-light),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-  .lead{color:var(--muted);font-size:.95rem;margin-top:8px;max-width:700px;}
-  .nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px;}
-  .nav a{font-size:.82rem;font-weight:700;color:var(--text);text-decoration:none;background:var(--card);border:1px solid var(--border);padding:8px 14px;border-radius:20px;transition:.15s;}
-  .nav a:hover{border-color:var(--purple-light);color:var(--purple-light);}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv05";}
+  .wrap{max-width:var(--mw);margin:0 auto;padding:0 26px;}
+  .disp{font-family:var(--disp);font-weight:800;letter-spacing:-.02em;line-height:1.02;text-wrap:balance;}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums;}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--plum);}
+  a{color:inherit;}
+  ::selection{background:var(--plum);color:#fff;}
+  :focus-visible{outline:2px solid var(--plum);outline-offset:3px;border-radius:4px;}
 
-  section{margin-top:44px;}
-  .kick{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--purple-light);font-weight:800;}
-  h2{font-size:1.65rem;font-weight:900;letter-spacing:-.02em;margin-top:4px;}
-  .sub{color:var(--muted);font-size:.92rem;margin-top:8px;max-width:740px;}
+  /* ── HERO ── */
+  .hero{position:relative;padding:88px 0 64px;border-bottom:1px solid var(--line);overflow:hidden;}
+  .hero::before{content:"";position:absolute;top:-160px;right:-140px;width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle,rgba(122,31,162,.10),transparent 68%);pointer-events:none;}
+  .hero .eyebrow{margin-bottom:22px;display:inline-block;}
+  .hero h1{font-size:clamp(3.1rem,9vw,6.4rem);}
+  .hero h1 .l2{display:block;color:var(--plum);position:relative;}
+  .hero h1 .l2::after{content:"";position:absolute;left:2px;bottom:.08em;width:.42em;height:.11em;background:var(--coral);border-radius:2px;}
+  .hero .thesis{max-width:56ch;margin-top:26px;font-size:1.12rem;color:var(--ink-2);}
+  .hero .thesis b{color:var(--ink);font-weight:600;}
+  .glance{display:flex;flex-wrap:wrap;gap:0;margin-top:44px;border:1px solid var(--line-2);border-radius:16px;overflow:hidden;background:var(--paper-2);}
+  .glance .g{flex:1 1 150px;padding:18px 22px;border-right:1px solid var(--line);}
+  .glance .g:last-child{border-right:none;}
+  .glance .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+  .glance .n{font-family:var(--disp);font-weight:800;font-size:2rem;margin-top:5px;font-variant-numeric:tabular-nums;}
+  .glance .d{font-size:.78rem;color:var(--ink-soft);margin-top:1px;}
+  .glance .n.up{color:var(--good);} .glance .n.pl{color:var(--plum);} .glance .n.warn{color:var(--gold);}
 
-  /* ─── ANÁLISE / KPIs ─── */
-  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-top:18px;}
-  .kpi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:15px 17px;}
-  .kpi .l{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;}
-  .kpi .v{font-size:1.7rem;font-weight:900;margin-top:3px;}
-  .kpi .d{font-size:.74rem;color:var(--dim);margin-top:2px;}
-  .up{color:var(--green);} .down{color:var(--red);} .amb{color:var(--amber);} .pur{color:var(--purple-light);} .gre{color:var(--green);}
-  .bars{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-top:12px;}
-  .bar-row{margin-bottom:12px;} .bar-row:last-child{margin-bottom:0;}
-  .bar-row .t{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:5px;}
-  .bar-row .t b{font-weight:800;}
-  .track{height:16px;background:#1c1530;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
-  .fill{height:100%;border-radius:8px;}
-  .note{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--purple-light);border-radius:12px;padding:14px 16px;margin-top:14px;font-size:.92rem;}
-  .note b{color:#fff;} .note.win{border-left-color:var(--green);} .note.warn{border-left-color:var(--amber);}
+  .nav{position:sticky;top:0;z-index:20;background:rgba(244,241,234,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav .inner{max-width:var(--mw);margin:0 auto;padding:11px 26px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .nav .brand{font-family:var(--disp);font-weight:800;font-size:.95rem;margin-right:auto;letter-spacing:-.01em;}
+  .nav a{font-size:.82rem;font-weight:500;text-decoration:none;color:var(--ink-2);padding:6px 12px;border-radius:20px;transition:.15s;}
+  .nav a:hover{background:var(--plum-wash);color:var(--plum);}
 
-  /* ─── CRIATIVOS ─── */
-  .cregrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:13px;margin-top:18px;}
-  .cre{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--border);border-radius:14px;padding:16px;position:relative;overflow:hidden;}
-  .cre .badge{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:20px;display:inline-block;margin-bottom:9px;}
-  .cre .nm{font-family:'Consolas',monospace;font-size:.82rem;color:var(--text);font-weight:700;word-break:break-word;}
-  .cre .mets{display:flex;gap:14px;margin-top:11px;}
-  .cre .met .n{font-size:1.35rem;font-weight:900;line-height:1;} .cre .met .k{font-size:.68rem;color:var(--muted);text-transform:uppercase;}
-  .b-champ{background:rgba(255,207,90,.18);color:var(--amber);} .b-cpa{background:rgba(110,231,160,.18);color:var(--green);}
-  .b-meme{background:rgba(249,143,200,.18);color:var(--pink);} .b-vid{background:rgba(124,176,255,.18);color:var(--blue);}
+  section{padding:76px 0;border-bottom:1px solid var(--line);}
+  .shead{max-width:640px;margin-bottom:40px;}
+  .shead .rn{font-family:var(--mono);font-size:.78rem;color:var(--plum);letter-spacing:.1em;}
+  .shead h2{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,4.6vw,3.1rem);margin-top:10px;}
+  .shead p{margin-top:14px;font-size:1.04rem;color:var(--ink-2);}
+  .shead p b{color:var(--ink);font-weight:600;}
 
-  .twrap{overflow-x:auto;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:6px 14px 12px;margin-top:14px;}
-  table{width:100%;border-collapse:collapse;font-size:.85rem;}
-  th,td{padding:9px 8px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;}
-  th:first-child,td:first-child{text-align:left;}
-  thead th{font-size:.67rem;text-transform:uppercase;color:var(--muted);}
-  tbody tr:hover{background:rgba(168,85,214,.08);}
-  td .cn{font-family:'Consolas',monospace;font-size:.8rem;}
-  .st-on{color:var(--green);font-weight:700;} .st-off{color:var(--dim);}
-  .padroes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px;}
-  .pad{background:var(--card);border:1px solid var(--border);border-top:3px solid var(--pc,var(--purple));border-radius:12px;padding:14px 16px;}
-  .pad h4{font-size:.95rem;font-weight:800;color:var(--pc,var(--purple-light));margin-bottom:5px;}
-  .pad p{font-size:.85rem;color:var(--muted);}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1);}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
 
-  /* ─── MAPA MENTAL ─── */
-  .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:18px 0 12px;}
-  .tb{padding:8px 15px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--text);font-weight:700;font-size:.82rem;cursor:pointer;transition:.15s;}
-  .tb:hover{border-color:var(--purple-light);color:var(--purple-light);}
-  .tb.primary{background:linear-gradient(135deg,var(--purple),var(--purple-light));border-color:transparent;color:#1a1023;}
-  .hint{font-size:.78rem;color:var(--dim);margin-left:auto;}
-  .mapwrap{overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px 18px;
-    background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.04) 1px,transparent 0);background-size:22px 22px;}
+  /* ── DIAGNÓSTICO ── */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0;border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:var(--paper-2);}
+  .stat{padding:22px 24px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .stat .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);}
+  .stat .n{font-family:var(--disp);font-weight:800;font-size:2.5rem;margin-top:8px;font-variant-numeric:tabular-nums;line-height:1;}
+  .stat .n small{font-family:var(--sans);font-size:.9rem;font-weight:500;color:var(--ink-soft);}
+  .stat .d{font-size:.8rem;color:var(--ink-soft);margin-top:7px;}
+  .stat .n.up{color:var(--good);} .stat .n.pl{color:var(--plum);} .stat .n.gd{color:var(--good);} .stat .n.wn{color:var(--gold);}
+  .progress{margin-top:26px;display:grid;gap:16px;}
+  .pr .t{display:flex;justify-content:space-between;align-items:baseline;font-size:.9rem;margin-bottom:7px;}
+  .pr .t .lab{font-weight:500;} .pr .t .val{font-family:var(--mono);font-weight:500;font-size:.86rem;color:var(--ink-2);}
+  .pr .track{height:10px;background:var(--paper-3);border-radius:6px;overflow:hidden;}
+  .pr .fill{height:100%;border-radius:6px;}
+  .callouts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:26px;}
+  @media(max-width:680px){.callouts{grid-template-columns:1fr;}}
+  .call{padding:20px 22px;border-radius:16px;border:1px solid var(--line-2);background:var(--paper-2);}
+  .call .tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;}
+  .call.good{border-color:rgba(28,138,84,.35);background:#F0F6F1;} .call.good .tag{color:var(--good);}
+  .call.warn{border-color:rgba(192,138,30,.4);background:#F8F2E4;} .call.warn .tag{color:var(--gold);}
+  .call p{margin-top:8px;font-size:.94rem;color:var(--ink-2);} .call p b{color:var(--ink);font-weight:600;}
+
+  /* ── CRIATIVOS ── */
+  .board{border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:var(--paper-2);}
+  .row{display:grid;grid-template-columns:52px 1fr 96px 88px auto;align-items:center;gap:16px;padding:15px 22px;border-bottom:1px solid var(--line);transition:.15s;}
+  .row:last-child{border-bottom:none;} .row:hover{background:var(--plum-wash);}
+  .row .rk{font-family:var(--disp);font-weight:800;font-size:1.6rem;color:var(--line-2);font-variant-numeric:tabular-nums;text-align:center;}
+  .row.top .rk{color:var(--plum);}
+  .row .nm{font-family:var(--mono);font-size:.86rem;font-weight:500;overflow:hidden;text-overflow:ellipsis;}
+  .row .nm .tp{display:block;font-family:var(--sans);font-size:.72rem;color:var(--ink-soft);margin-top:2px;letter-spacing:.02em;}
+  .row .m{text-align:right;}
+  .row .m .mn{font-family:var(--disp);font-weight:700;font-size:1.15rem;font-variant-numeric:tabular-nums;}
+  .row .m .mk{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
+  .row .m.cheap .mn{color:var(--good);}
+  .st{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:20px;white-space:nowrap;}
+  .st.on{background:#E6F4EC;color:var(--good);} .st.off{background:var(--paper-3);color:var(--ink-soft);}
+  @media(max-width:720px){.row{grid-template-columns:38px 1fr auto;} .row .m.inv,.row .st{display:none;}}
+  .patterns{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:22px;}
+  .pat{padding:20px;border-radius:16px;background:var(--paper-2);border:1px solid var(--line-2);border-top:3px solid var(--pc);}
+  .pat h4{font-family:var(--disp);font-weight:700;font-size:1.05rem;color:var(--ink);}
+  .pat .lead2{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pc);margin-bottom:8px;}
+  .pat p{font-size:.88rem;color:var(--ink-2);margin-top:4px;} .pat p b{color:var(--ink);}
+
+  /* ── MAPA ── */
+  .maptools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+  .btn{font-family:var(--sans);font-size:.82rem;font-weight:600;padding:9px 16px;border-radius:22px;border:1px solid var(--line-2);background:var(--paper-2);color:var(--ink);cursor:pointer;transition:.15s;}
+  .btn:hover{border-color:var(--plum);color:var(--plum);}
+  .btn.pri{background:var(--ink);color:var(--paper);border-color:var(--ink);} .btn.pri:hover{background:var(--plum);border-color:var(--plum);color:#fff;}
+  .maptools .hint{margin-left:auto;font-size:.76rem;color:var(--ink-soft);font-style:italic;}
+  .mapwrap{overflow:auto;background:var(--paper-2);border:1px solid var(--line-2);border-radius:18px;padding:30px 22px;cursor:grab;}
   .tree{display:inline-block;min-width:100%;}
-  .tree ul{list-style:none;margin:0;padding-left:40px;position:relative;}
+  .tree ul{list-style:none;margin:0;padding-left:38px;position:relative;}
   .tree ul.root{padding-left:0;}
-  .tree ul:not(.root)::before{content:'';position:absolute;left:16px;top:-2px;bottom:26px;width:2px;background:var(--c,var(--line));opacity:.6;border-radius:2px;}
-  .tree li{position:relative;padding:6px 0;}
-  .tree ul:not(.root)>li::before{content:'';position:absolute;left:-24px;top:20px;width:24px;height:2px;background:var(--c,var(--line));opacity:.6;border-radius:2px;}
-  .node{display:inline-flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--c,var(--purple));
-    border-radius:11px;padding:8px 14px;font-weight:600;font-size:.88rem;max-width:360px;transition:.14s;}
-  .node .dot{width:9px;height:9px;border-radius:50%;background:var(--c,var(--purple));box-shadow:0 0 10px var(--c,var(--purple));flex-shrink:0;}
-  .node.leaf{font-weight:500;color:#e9dff6;background:var(--surface);}
-  .node.leaf .dot{width:6px;height:6px;box-shadow:none;opacity:.75;}
-  .node.branch{cursor:pointer;font-weight:800;}
-  .node.branch:hover{border-color:var(--c,var(--purple));background:var(--card2);}
-  .node .cap{margin-left:auto;padding-left:8px;font-size:.7rem;color:var(--c,var(--purple-light));opacity:.85;white-space:nowrap;}
-  .node.root{font-size:1.05rem;font-weight:900;border-left:3px solid var(--purple-light);
-    background:linear-gradient(135deg,var(--card2),var(--card));box-shadow:0 8px 30px -12px var(--purple);padding:12px 18px;}
-  .node.root .dot{width:11px;height:11px;background:var(--purple-light);box-shadow:0 0 14px var(--purple-light);}
-  .node .num{background:var(--c,var(--purple));color:#1a1023;width:20px;height:20px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0;}
+  .tree ul:not(.root)::before{content:"";position:absolute;left:15px;top:-4px;bottom:28px;width:1.5px;background:var(--line-2);}
+  .tree li{position:relative;padding:5px 0;}
+  .tree ul:not(.root)>li::before{content:"";position:absolute;left:-23px;top:21px;width:23px;height:1.5px;background:var(--line-2);}
+  .node{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line-2);border-left:3px solid var(--c,var(--plum));
+    border-radius:11px;padding:8px 14px;font-size:.9rem;font-weight:500;max-width:400px;transition:.14s;}
+  .node .dot{width:8px;height:8px;border-radius:50%;background:var(--c,var(--plum));flex-shrink:0;}
+  .node .num{font-family:var(--disp);background:var(--c,var(--plum));color:#fff;width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:800;flex-shrink:0;}
+  .node.branch{cursor:pointer;font-weight:700;}
+  .node.branch:hover{border-color:var(--c,var(--plum));background:var(--paper-2);box-shadow:0 4px 16px -8px var(--c,var(--plum));}
+  .node.leaf{background:var(--paper-2);color:var(--ink-2);font-weight:400;}
+  .node.leaf .dot{width:5px;height:5px;opacity:.65;}
+  .node.root{font-family:var(--disp);font-size:1.08rem;font-weight:800;background:var(--ink);color:var(--paper);border-left-color:var(--coral);padding:12px 20px;}
+  .node.root .dot{background:var(--coral);width:10px;height:10px;}
+  .node .cap{margin-left:auto;padding-left:10px;font-family:var(--mono);font-size:.66rem;color:var(--c,var(--plum));opacity:.9;white-space:nowrap;}
   li.collapsed>ul{display:none;}
-  li.collapsed>.node .cap::after{content:'▸ abrir';}
-  li:not(.collapsed)>.node.branch .cap::after{content:'▾';}
-  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;font-size:.78rem;color:var(--muted);}
-  .legend span{display:inline-flex;align-items:center;gap:6px;} .legend i{width:10px;height:10px;border-radius:50%;}
+  li.collapsed>.node.branch .cap::after{content:"+ abrir";}
+  li:not(.collapsed)>.node.branch .cap::after{content:"–";}
+  .legend{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:18px;font-size:.78rem;color:var(--ink-2);}
+  .legend span{display:inline-flex;align-items:center;gap:7px;} .legend i{width:9px;height:9px;border-radius:2px;}
 
-  /* ─── SIMULADOR ─── */
-  .sim{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--border);border-radius:18px;padding:22px;margin-top:18px;}
-  .presets{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;align-items:center;}
-  .presets .l{font-size:.8rem;color:var(--muted);font-weight:700;}
-  .pbtn{padding:8px 15px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:700;font-size:.82rem;cursor:pointer;transition:.15s;}
-  .pbtn:hover{border-color:var(--purple-light);}
-  .sim-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:24px;} @media(max-width:820px){.sim-grid{grid-template-columns:1fr;}}
-  .ctrl{margin-bottom:15px;}
-  .ctrl-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;}
-  .ctrl-top .k{font-size:.82rem;font-weight:700;} .ctrl-top .k small{color:var(--dim);font-weight:600;}
-  .ctrl-top .v{font-size:.95rem;font-weight:800;color:var(--purple-light);}
-  input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:6px;background:#3a2f52;outline:none;}
-  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--purple-light);cursor:pointer;border:2px solid #241834;}
-  input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--purple-light);cursor:pointer;border:2px solid #241834;}
-  .funnel{display:flex;flex-direction:column;gap:7px;}
+  /* ── SIMULADOR ── */
+  .sim{border:1px solid var(--line-2);border-radius:20px;background:var(--paper-2);overflow:hidden;}
+  .sim-hd{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:18px 24px;border-bottom:1px solid var(--line);background:var(--paper-3);}
+  .sim-hd .l{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-right:6px;}
+  .chip{font-family:var(--sans);font-size:.82rem;font-weight:600;padding:8px 16px;border-radius:22px;border:1px solid var(--line-2);background:var(--paper);cursor:pointer;transition:.15s;}
+  .chip:hover{border-color:var(--plum);}
+  .chip.w{border-color:var(--plum);color:var(--plum);} .chip.r{border-color:var(--c-ing);color:var(--c-ing);}
+  .sim-body{display:grid;grid-template-columns:1fr 1.1fr;gap:30px;padding:26px 24px;}
+  @media(max-width:820px){.sim-body{grid-template-columns:1fr;}}
+  .ctrl{margin-bottom:17px;}
+  .ctrl .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;}
+  .ctrl .top .k{font-size:.86rem;font-weight:600;} .ctrl .top .k small{color:var(--ink-soft);font-weight:400;}
+  .ctrl .top .v{font-family:var(--mono);font-size:.92rem;font-weight:700;color:var(--plum);}
+  input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:5px;background:var(--line-2);outline:none;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:19px;height:19px;border-radius:50%;background:var(--plum);cursor:pointer;border:3px solid var(--paper-2);box-shadow:0 1px 5px rgba(122,31,162,.4);}
+  input[type=range]::-moz-range-thumb{width:19px;height:19px;border-radius:50%;background:var(--plum);cursor:pointer;border:3px solid var(--paper-2);}
+  .funnel{display:flex;flex-direction:column;gap:8px;}
   .fstep .lab{display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:4px;}
-  .fstep .lab .nm{color:var(--muted);} .fstep .lab .nm b{color:var(--text);} .fstep .lab .rt{font-size:.72rem;color:var(--dim);}
-  .ftrack{height:30px;background:#1c1530;border:1px solid var(--border);border-radius:8px;overflow:hidden;}
-  .fbar{height:100%;display:flex;align-items:center;padding-left:11px;font-weight:800;font-size:.85rem;border-radius:7px;min-width:40px;transition:width .3s;white-space:nowrap;color:#1a1023;}
-  .c-imp{background:linear-gradient(90deg,#7b4fb5,#a855d6);color:#fff;} .c-clk{background:linear-gradient(90deg,#9d5cd0,#d29cf0);color:#fff;}
-  .c-pv{background:linear-gradient(90deg,#4a86d6,#7cb0ff);} .c-chk{background:linear-gradient(90deg,#d9a63a,#ffcf5a);} .c-vd{background:linear-gradient(90deg,#3fb877,#6ee7a0);}
-  .skpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px;}
-  .skpi .b{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;}
-  .skpi .b .l{font-size:.68rem;text-transform:uppercase;color:var(--muted);font-weight:700;}
-  .skpi .b .n{font-size:1.55rem;font-weight:900;margin-top:2px;} .skpi .b.big .n{font-size:1.85rem;color:var(--green);}
-  .skpi .b .d{font-size:.72rem;color:var(--dim);}
-  .simnote{font-size:.8rem;color:var(--muted);margin-top:14px;border-top:1px solid var(--border);padding-top:12px;} .simnote b{color:var(--amber);}
+  .fstep .lab .nm{color:var(--ink-soft);} .fstep .lab .nm b{color:var(--ink);font-family:var(--mono);font-weight:700;}
+  .fstep .lab .rt{font-family:var(--mono);font-size:.7rem;color:var(--ink-soft);}
+  .ftrack{height:30px;background:var(--paper-3);border-radius:8px;overflow:hidden;}
+  .fbar{height:100%;display:flex;align-items:center;padding-left:12px;font-family:var(--mono);font-weight:700;font-size:.82rem;color:#fff;border-radius:8px;min-width:44px;transition:width .35s cubic-bezier(.2,.6,.2,1);white-space:nowrap;}
+  .fb1{background:var(--c-rmkt);} .fb2{background:#9b3fc4;} .fb3{background:var(--c-vendas);} .fb4{background:var(--c-esc);color:#231400;} .fb5{background:var(--good);}
+  .skpi{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .skpi .b{background:var(--paper);border:1px solid var(--line-2);border-radius:14px;padding:14px 16px;}
+  .skpi .b .l{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);}
+  .skpi .b .n{font-family:var(--disp);font-weight:800;font-size:1.9rem;margin-top:3px;font-variant-numeric:tabular-nums;} .skpi .b.big .n{color:var(--good);font-size:2.2rem;}
+  .skpi .b .d{font-size:.72rem;color:var(--ink-soft);}
+  .simnote{grid-column:1/-1;font-size:.84rem;color:var(--ink-2);margin-top:6px;padding-top:14px;border-top:1px solid var(--line);} .simnote b{color:var(--plum);}
 
-  .foot-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px;}
-  .foot-links a{font-size:.82rem;font-weight:700;text-decoration:none;color:var(--text);background:var(--card);border:1px solid var(--border);padding:9px 15px;border-radius:12px;}
-  .foot-links a:hover{border-color:var(--purple-light);color:var(--purple-light);}
-  footer{margin-top:30px;color:var(--dim);font-size:.76rem;text-align:center;} footer b{color:var(--purple-light);}
+  .foot{padding:56px 0 40px;border-bottom:none;}
+  .foot-links{display:flex;gap:12px;flex-wrap:wrap;}
+  .foot-links a{font-size:.86rem;font-weight:600;text-decoration:none;color:var(--ink);background:var(--paper-2);border:1px solid var(--line-2);padding:12px 18px;border-radius:14px;transition:.15s;display:inline-flex;gap:8px;align-items:center;}
+  .foot-links a:hover{border-color:var(--plum);color:var(--plum);}
+  .sig{margin-top:34px;font-family:var(--mono);font-size:.76rem;color:var(--ink-soft);letter-spacing:.04em;}
+  .sig b{color:var(--plum);}
+  .disclaim{font-size:.74rem;color:var(--ink-soft);margin-top:10px;max-width:60ch;}
 </style>
 </head>
 <body>
+
+<nav class="nav"><div class="inner">
+  <span class="brand">Cardô<span style="color:var(--plum)">.</span></span>
+  <a href="#diagnostico">Diagnóstico</a>
+  <a href="#criativos">Criativos</a>
+  <a href="#estrutura">Estrutura</a>
+  <a href="#simulador">Simulador</a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Cardô Marketing · Playbook de Tráfego</span>
+  <h1 class="disp">Modelo de<span class="l2">Lançamento</span></h1>
+  <p class="thesis">A leitura completa do WICI3 — <b>o que já funcionou</b>, a estrutura de campanhas que roda o lançamento, e um simulador pra achar exatamente onde está o dinheiro na mesa. Feito pra decidir o próximo, não pra encher relatório.</p>
+  <div class="glance">
+    <div class="g"><div class="k">Vendas</div><div class="n">466<small> /1800</small></div><div class="d">26% da meta</div></div>
+    <div class="g"><div class="k">CPA ontem</div><div class="n up">R$ 73</div><div class="d">↓ quase na meta</div></div>
+    <div class="g"><div class="k">Melhor criativo</div><div class="n pl">37</div><div class="d">vendas · 1 ad</div></div>
+    <div class="g"><div class="k">Verba parada</div><div class="n warn">R$ 60,9k</div><div class="d">pronta pra escalar</div></div>
+  </div>
+</div></header>
+
 <div class="wrap">
 
-  <span class="eyebrow">Cardô · Playbook de Tráfego</span>
-  <h1>Modelo de <span>Lançamento</span></h1>
-  <p class="lead">Análise do WICI3, os criativos que deram certo, o mapa da estrutura e o simulador de funil — tudo num lugar pra apresentar e planejar o próximo.</p>
-  <div class="nav">
-    <a href="#analise">📊 Análise atual</a>
-    <a href="#criativos">🏆 Criativos que deram certo</a>
-    <a href="#mapa">🗺 O mapa da estrutura</a>
-    <a href="#sim">🎛 Simulador de funil</a>
-  </div>
-
-  <!-- ANÁLISE -->
-  <section id="analise">
-    <div class="kick">Onde estamos</div>
-    <h2>📊 Análise do Lançamento Atual</h2>
-    <p class="sub">Fechamento 29/07 · faltam 15 dias pro evento (15/08). A eficiência começou a virar.</p>
-    <div class="kpis">
-      <div class="kpi"><div class="l">🎟 Vendas</div><div class="v">466 <span style="font-size:.9rem;color:var(--muted)">/1800</span></div><div class="d">25,9% da meta</div></div>
-      <div class="kpi"><div class="l">🟣 Tráfego</div><div class="v pur">228</div><div class="d">/1170 · 19%</div></div>
-      <div class="kpi"><div class="l">🟢 Orgânico</div><div class="v gre">238</div><div class="d">/630 · 38%</div></div>
-      <div class="kpi"><div class="l">💰 CPA médio</div><div class="v">R$ 118</div><div class="d">ads · acumulado</div></div>
-      <div class="kpi"><div class="l">📉 CPA ontem</div><div class="v up">R$ 73</div><div class="d">↓ quase na meta (R$71)</div></div>
-      <div class="kpi"><div class="l">🏦 Verba parada</div><div class="v amb">R$ 60,9k</div><div class="d">de R$ 87,75k</div></div>
+  <!-- DIAGNÓSTICO -->
+  <section id="diagnostico">
+    <div class="shead reveal">
+      <div class="rn">I · Diagnóstico</div>
+      <h2 class="disp">Onde o WICI3 está</h2>
+      <p>Fechamento de 29/07, a 15 dias do evento. A boa notícia: a <b>eficiência começou a virar</b>. A má: sobra verba na mesa.</p>
     </div>
-    <div class="bars">
-      <div class="bar-row"><div class="t"><span>🟣 Tráfego</span><b>228 / 1.170</b></div><div class="track"><div class="fill" style="width:19%;background:linear-gradient(90deg,#9d5cd0,#d29cf0)"></div></div></div>
-      <div class="bar-row"><div class="t"><span>🟢 Orgânico</span><b>238 / 630</b></div><div class="track"><div class="fill" style="width:38%;background:linear-gradient(90deg,#3fb877,#6ee7a0)"></div></div></div>
-      <div class="bar-row"><div class="t"><span>🎟 Total</span><b>466 / 1.800</b></div><div class="track"><div class="fill" style="width:26%;background:linear-gradient(90deg,#a855d6,#ffcf5a)"></div></div></div>
+    <div class="stats reveal">
+      <div class="stat"><div class="k">Total de vendas</div><div class="n">466<small> / 1.800</small></div><div class="d">25,9% da meta</div></div>
+      <div class="stat"><div class="k">Tráfego</div><div class="n pl">228</div><div class="d">de 1.170 · 19%</div></div>
+      <div class="stat"><div class="k">Orgânico</div><div class="n gd">238</div><div class="d">de 630 · 38%</div></div>
+      <div class="stat"><div class="k">CPA médio</div><div class="n">R$ 118</div><div class="d">ads · acumulado</div></div>
+      <div class="stat"><div class="k">CPA de ontem</div><div class="n up">R$ 73</div><div class="d">↓ era ~R$ 90–120</div></div>
+      <div class="stat"><div class="k">Verba disponível</div><div class="n wn">R$ 60,9k</div><div class="d">de R$ 87,75k</div></div>
     </div>
-    <div class="note win">✅ <b>A escala começou a pegar.</b> O CPA de ontem caiu pra <b>R$73</b> (era ~R$90–120), puxado pela campanha de <b>checkout R$19,90</b>. Sinal verde pra escalar.</div>
-    <div class="note warn">⚠️ <b>O gargalo é a verba parada.</b> Sobram <b>R$60,9k</b> e estamos a 26% da meta. No ritmo de gasto atual sobra dinheiro sem virar venda — a alavanca nº1 é <b>escalar o investimento</b> nos criativos que já funcionam.</div>
+    <div class="progress reveal">
+      <div class="pr"><div class="t"><span class="lab">Tráfego</span><span class="val">228 / 1.170</span></div><div class="track"><div class="fill" style="width:19%;background:var(--plum)"></div></div></div>
+      <div class="pr"><div class="t"><span class="lab">Orgânico</span><span class="val">238 / 630</span></div><div class="track"><div class="fill" style="width:38%;background:var(--good)"></div></div></div>
+      <div class="pr"><div class="t"><span class="lab">Total</span><span class="val">466 / 1.800</span></div><div class="track"><div class="fill" style="width:26%;background:linear-gradient(90deg,var(--plum),var(--coral))"></div></div></div>
+    </div>
+    <div class="callouts reveal">
+      <div class="call good"><span class="tag">Virou a chave</span><p>O CPA de ontem caiu pra <b>R$ 73</b>, puxado pela campanha de <b>checkout R$ 19,90</b>. Sinal verde pra escalar o que já converte.</p></div>
+      <div class="call warn"><span class="tag">O gargalo</span><p>Sobram <b>R$ 60,9k</b> parados com o lançamento em 26%. No ritmo de gasto atual, esse dinheiro <b>não vira venda</b> — escalar é a prioridade nº 1.</p></div>
+    </div>
   </section>
 
   <!-- CRIATIVOS -->
   <section id="criativos">
-    <div class="kick">O que funcionou</div>
-    <h2>🏆 Criativos que Deram Certo</h2>
-    <p class="sub">Os vencedores do WICI3 e os padrões que se repetem — a base do que vamos escalar no próximo.</p>
-    <div class="cregrid">
-      <div class="cre"><span class="badge b-champ">🏆 Campeão de volume</span><div class="nm">AD01_VID_Voce_Nao_Deveria</div>
-        <div class="mets"><div class="met"><div class="n amb">37</div><div class="k">vendas</div></div><div class="met"><div class="n">R$96</div><div class="k">CPA</div></div></div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:9px">Vídeo de conexão/dor. O cavalo de batalha — ainda ATIVO.</p></div>
-      <div class="cre"><span class="badge b-cpa">💎 Campeão de CPA</span><div class="nm">AD01_VID_Te_achei_19</div>
-        <div class="mets"><div class="met"><div class="n gre">R$14</div><div class="k">CPA</div></div><div class="met"><div class="n">7</div><div class="k">vendas</div></div></div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:9px">Oferta de <b>checkout R$19</b>. O motor de escala — CPA absurdo de baixo.</p></div>
-      <div class="cre"><span class="badge b-meme">😂 Surpresa</span><div class="nm">ADS_6_MEME (dia ruim)</div>
-        <div class="mets"><div class="met"><div class="n pink" style="color:var(--pink)">16</div><div class="k">vendas</div></div><div class="met"><div class="n">R$61</div><div class="k">CPA</div></div></div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:9px">Meme/humor. Volume barato — vale ter sempre um.</p></div>
-      <div class="cre"><span class="badge b-vid">💰 Ângulo "29,70"</span><div class="nm">AD19_VID · AD20_IMG · AD22...</div>
-        <div class="mets"><div class="met"><div class="n" style="color:var(--blue)">50+</div><div class="k">vendas somadas</div></div><div class="met"><div class="n">~R$85</div><div class="k">CPA médio</div></div></div>
-        <p style="font-size:.8rem;color:var(--muted);margin-top:9px">Criativos de <b>preço/oferta</b> dominam o top. Vídeo E imagem funcionam.</p></div>
+    <div class="shead reveal">
+      <div class="rn">II · O que funcionou</div>
+      <h2 class="disp">Os criativos que venderam</h2>
+      <p>Ranking real do lançamento. Não é achismo — é o que a planilha diz que <b>traz venda barata</b>. A base do que vamos escalar.</p>
+    </div>
+    <div class="board reveal">
+      <div class="row top"><div class="rk">1</div><div class="nm">AD01_VID_Voce_Nao_Deveria<span class="tp">Vídeo de conexão · o cavalo de batalha</span></div><div class="m"><div class="mn">37</div><div class="mk">vendas</div></div><div class="m"><div class="mn">R$96</div><div class="mk">CPA</div></div><span class="st on">ativo</span></div>
+      <div class="row top"><div class="rk">2</div><div class="nm">AD01_VID_Te_achei_19<span class="tp">Oferta checkout R$19 · o motor de escala</span></div><div class="m cheap"><div class="mn">7</div><div class="mk">vendas</div></div><div class="m cheap"><div class="mn">R$14</div><div class="mk">CPA</div></div><span class="st on">ativo</span></div>
+      <div class="row"><div class="rk">3</div><div class="nm">ADS_6_MEME<span class="tp">Meme "dia ruim" · volume barato</span></div><div class="m"><div class="mn">16</div><div class="mk">vendas</div></div><div class="m"><div class="mn">R$61</div><div class="mk">CPA</div></div><span class="st off">pausado</span></div>
+      <div class="row"><div class="rk">4</div><div class="nm">AD34_IMG_Bilhete_9_90<span class="tp">Oferta R$9,90 · CPA baixíssimo</span></div><div class="m cheap"><div class="mn">6</div><div class="mk">vendas</div></div><div class="m cheap"><div class="mn">R$20</div><div class="mk">CPA</div></div><span class="st on">ativo</span></div>
+      <div class="row"><div class="rk">5</div><div class="nm">AD19_VID_Ta_Certo_Isso_29_70<span class="tp">Ângulo preço "29,70"</span></div><div class="m"><div class="mn">16</div><div class="mk">vendas</div></div><div class="m"><div class="mn">R$96</div><div class="mk">CPA</div></div><span class="st off">pausado</span></div>
+      <div class="row"><div class="rk">6</div><div class="nm">AD20_IMG_Menos_29_70<span class="tp">Imagem de oferta</span></div><div class="m"><div class="mn">15</div><div class="mk">vendas</div></div><div class="m"><div class="mn">R$89</div><div class="mk">CPA</div></div><span class="st off">pausado</span></div>
+      <div class="row"><div class="rk">7</div><div class="nm">AD28_IMG_Trabalhar_Home_29_70<span class="tp">Imagem · dor + oferta</span></div><div class="m"><div class="mn">9</div><div class="mk">vendas</div></div><div class="m"><div class="mn">R$74</div><div class="mk">CPA</div></div><span class="st off">pausado</span></div>
     </div>
 
-    <div class="twrap">
-      <table>
-        <thead><tr><th>Criativo</th><th>Vendas</th><th>CPA</th><th>Investido</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td><span class="cn">AD01_VID_Voce_Nao_Deveria</span></td><td>37</td><td>R$ 96</td><td>R$ 3.551</td><td class="st-on">ativo</td></tr>
-          <tr><td><span class="cn">AD19_VID_Ta_Certo_Isso_29_70</span></td><td>16</td><td>R$ 96</td><td>R$ 1.532</td><td class="st-off">pausado</td></tr>
-          <tr><td><span class="cn">ADS_6_MEME</span></td><td>16</td><td>R$ 61</td><td>R$ 973</td><td class="st-off">pausado</td></tr>
-          <tr><td><span class="cn">AD20_IMG_Menos_29_70</span></td><td>15</td><td>R$ 89</td><td>R$ 1.332</td><td class="st-off">pausado</td></tr>
-          <tr><td><span class="cn">AD22_IMG_Ja_Preparei_29_70</span></td><td>10</td><td>R$ 94</td><td>R$ 935</td><td class="st-off">pausado</td></tr>
-          <tr><td><span class="cn">AD28_IMG_Trabalhar_Home_29_70</span></td><td>9</td><td>R$ 74</td><td>R$ 664</td><td class="st-off">pausado</td></tr>
-          <tr><td><span class="cn">AD41_VID_Torres</span></td><td>8</td><td>R$ 81</td><td>R$ 647</td><td class="st-on">ativo</td></tr>
-          <tr><td><span class="cn">AD01_VID_Te_achei_19</span></td><td>7</td><td>R$ 14</td><td>R$ 98</td><td class="st-on">ativo</td></tr>
-          <tr><td><span class="cn">AD34_IMG_Bilhete_9_90</span></td><td>6</td><td>R$ 20</td><td>R$ 120</td><td class="st-on">ativo</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="padroes">
-      <div class="pad" style="--pc:var(--green)"><h4>💎 Oferta baixa vence no CPA</h4><p>Os checkouts de <b>R$19 / R$9,90</b> deram CPA de R$14–20. É onde escalar pesado.</p></div>
-      <div class="pad" style="--pc:var(--blue)"><h4>💰 "29,70" gera volume</h4><p>Criativos de <b>preço/oferta</b> lotam o top de vendas — vídeo e imagem.</p></div>
-      <div class="pad" style="--pc:var(--pink)"><h4>😂 Meme funciona</h4><p>Humor/relato do "dia ruim" trouxe 16 vendas barato. Ter sempre 1 no ar.</p></div>
-      <div class="pad" style="--pc:var(--amber)"><h4>🎬 Vídeo de dor escala</h4><p>O campeão de volume é vídeo de conexão ("você não deveria"). Emoção + oferta.</p></div>
+    <div class="patterns reveal">
+      <div class="pat" style="--pc:var(--good)"><div class="lead2">Padrão nº1</div><h4>Oferta baixa ganha no CPA</h4><p>Checkouts de <b>R$19 / R$9,90</b> deram CPA de <b>R$14–20</b>. É onde escalar pesado.</p></div>
+      <div class="pat" style="--pc:var(--c-vendas)"><div class="lead2">Padrão nº2</div><h4>Preço "29,70" faz volume</h4><p>Criativos de <b>oferta/preço</b> lotam o topo — vídeo e imagem, os dois entregam.</p></div>
+      <div class="pat" style="--pc:var(--c-atr)"><div class="lead2">Padrão nº3</div><h4>Meme funciona</h4><p>Humor do "dia ruim" trouxe <b>16 vendas</b> barato. Ter sempre um no ar.</p></div>
+      <div class="pat" style="--pc:var(--c-esc)"><div class="lead2">Padrão nº4</div><h4>Vídeo de dor escala</h4><p>O campeão de volume é <b>vídeo de conexão</b>. Emoção primeiro, oferta em seguida.</p></div>
     </div>
   </section>
 
-  <!-- MAPA -->
-  <section id="mapa">
-    <div class="kick">O motor</div>
-    <h2>🗺 O Mapa da Estrutura</h2>
-    <p class="sub">A estrutura inteira num mapa. Clique nos ramos coloridos pra abrir/fechar. Foco em <b style="color:var(--amber)">Escassez</b> e <b style="color:var(--orange)">Escala</b>.</p>
-    <div class="toolbar">
-      <button class="tb primary" onclick="expandAll()">➕ Expandir tudo</button>
-      <button class="tb" onclick="collapseAll()">➖ Recolher tudo</button>
-      <span class="hint">💡 clique num ramo · arraste pra rolar</span>
+  <!-- ESTRUTURA -->
+  <section id="estrutura">
+    <div class="shead reveal">
+      <div class="rn">III · O motor</div>
+      <h2 class="disp">A estrutura de campanhas</h2>
+      <p>Oito frentes que rodam em paralelo o lançamento inteiro. Clique nos ramos pra abrir. Foco reforçado em <b style="color:var(--c-esc)">Escassez</b> e <b style="color:var(--c-escala)">Escala</b>.</p>
+    </div>
+    <div class="reveal">
+    <div class="maptools">
+      <button class="btn pri" onclick="expandAll()">Expandir tudo</button>
+      <button class="btn" onclick="collapseAll()">Recolher</button>
+      <span class="hint">clique num ramo · arraste pra rolar</span>
     </div>
     <div class="mapwrap" id="mapwrap">
       <div class="tree">
-        <ul class="root"><li style="--c:var(--purple-light)">
+        <ul class="root"><li>
           <div class="node root"><span class="dot"></span> Estrutura de Campanhas de Tráfego</div>
           <ul>
-            <li class="collapsed" style="--c:var(--blue)"><div class="node branch" onclick="tog(this)"><span class="num">1</span> Vendas <span class="cap"></span></div><ul>
-              <li><div class="node leaf"><span class="dot"></span> 🎯 Vender ingressos com o menor CAC</div></li>
+            <li class="collapsed" style="--c:var(--c-vendas)"><div class="node branch" onclick="tog(this)"><span class="num">1</span> Vendas <span class="cap"></span></div><ul>
+              <li><div class="node leaf"><span class="dot"></span> Objetivo: vender com o menor CAC possível</div></li>
               <li class="collapsed"><div class="node branch" onclick="tog(this)"><span class="dot"></span> Públicos <span class="cap"></span></div><ul>
-                <li class="collapsed"><div class="node branch" onclick="tog(this)"><span class="dot"></span> Quente <span class="cap"></span></div><ul>
-                  <li><div class="node leaf"><span class="dot"></span> e4 · e2/e3 · envolv. 30d</div></li>
-                  <li><div class="node leaf"><span class="dot"></span> Alunos · enviou direct</div></li></ul></li>
+                <li><div class="node leaf"><span class="dot"></span> Quente: e4 · e2/e3 · envolv. 30d · alunos · direct</div></li>
                 <li><div class="node leaf"><span class="dot"></span> Frio</div></li>
                 <li><div class="node leaf"><span class="dot"></span> Advantage+ (lookalike alunos/ingressos/leads)</div></li></ul></li>
-              <li><div class="node leaf"><span class="dot"></span> 📡 Canais: Meta · Google</div></li>
-              <li><div class="node leaf"><span class="dot"></span> 🎨 Estático · Carrossel · Reels · Wide YT</div></li>
-              <li><div class="node leaf"><span class="dot"></span> 🔁 Rotina: 2x/dia (ajustar, promover, pausar)</div></li>
-              <li><div class="node leaf"><span class="dot"></span> ⚠ Contínua · SEM preço/lote/data</div></li>
-              <li><div class="node leaf"><span class="dot"></span> 🏷 MALU_MMF_FB06_Vendas_F_B</div></li></ul></li>
+              <li><div class="node leaf"><span class="dot"></span> Canais: Meta · Google</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Formatos: estático · carrossel · Reels · Wide YT</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Rotina: 2x/dia — ajustar, promover, pausar</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Contínua · SEM preço/lote/data</div></li>
+              <li><div class="node leaf"><span class="dot" style="background:none"></span> <span class="mono" style="font-size:.8rem;color:var(--c-vendas)">MALU_MMF_FB06_Vendas_F_B</span></div></li></ul></li>
 
-            <li class="collapsed" style="--c:var(--purple-light)"><div class="node branch" onclick="tog(this)"><span class="num">2</span> Remarketing <span class="cap"></span></div><ul>
-              <li><div class="node leaf"><span class="dot"></span> 🎯 Converter quem pisou e não comprou</div></li>
-              <li class="collapsed"><div class="node branch" onclick="tog(this)"><span class="dot"></span> Público <span class="cap"></span></div><ul>
-                <li><div class="node leaf"><span class="dot"></span> Pisou na página/checkout</div></li>
-                <li><div class="node leaf"><span class="dot"></span> Outra edição · alunos e ex-alunos</div></li></ul></li>
+            <li class="collapsed" style="--c:var(--c-rmkt)"><div class="node branch" onclick="tog(this)"><span class="num">2</span> Remarketing <span class="cap"></span></div><ul>
+              <li><div class="node leaf"><span class="dot"></span> Objetivo: converter quem pisou e não comprou</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Público: pisou na página · outra edição · alunos</div></li>
               <li class="collapsed"><div class="node branch" onclick="tog(this)"><span class="dot"></span> Ângulos <span class="cap"></span></div><ul>
-                <li><div class="node leaf"><span class="dot"></span> Quebra de objeção · garantia</div></li>
-                <li><div class="node leaf"><span class="dot"></span> Depoimentos · edições passadas · gravações</div></li></ul></li>
-              <li><div class="node leaf"><span class="dot"></span> 📦 Vários ads (Meta entrega o que converte)</div></li></ul></li>
+                <li><div class="node leaf"><span class="dot"></span> Quebra de objeção · garantia · depoimentos</div></li>
+                <li><div class="node leaf"><span class="dot"></span> Como funciona · edições passadas · gravações</div></li></ul></li>
+              <li><div class="node leaf"><span class="dot"></span> Vários ads — o Meta entrega o que converte</div></li></ul></li>
 
-            <li class="collapsed" style="--c:var(--pink)"><div class="node branch" onclick="tog(this)"><span class="num">3</span> Atração <span class="cap"></span></div><ul>
-              <li><div class="node leaf"><span class="dot"></span> 🎯 Encher o topo com frio novo</div></li>
-              <li><div class="node leaf"><span class="dot"></span> Conteúdo de valor, sem venda direta</div></li></ul></li>
+            <li class="collapsed" style="--c:var(--c-atr)"><div class="node branch" onclick="tog(this)"><span class="num">3</span> Atração <span class="cap"></span></div><ul>
+              <li><div class="node leaf"><span class="dot"></span> Topo: atrair frio novo com conteúdo</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Valor sem venda direta — alimenta o resto</div></li></ul></li>
 
-            <li class="collapsed" style="--c:var(--red)"><div class="node branch" onclick="tog(this)"><span class="num">4</span> Teste <span class="cap"></span></div><ul>
-              <li><div class="node leaf"><span class="dot"></span> 🎯 Achar o ad de maior potencial isolado</div></li>
-              <li><div class="node leaf"><span class="dot"></span> Frio vs quente (mesmo criativo em todos)</div></li>
+            <li class="collapsed" style="--c:var(--c-teste)"><div class="node branch" onclick="tog(this)"><span class="num">4</span> Teste <span class="cap"></span></div><ul>
+              <li><div class="node leaf"><span class="dot"></span> Achar o ad de maior potencial isolado</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Frio vs quente — mesmo criativo em todos</div></li>
               <li><div class="node leaf"><span class="dot"></span> Promover o vencedor pra escala</div></li>
-              <li><div class="node leaf"><span class="dot"></span> 💰 Até 3x o CAC ideal</div></li>
-              <li><div class="node leaf" style="border-left-color:var(--amber);color:var(--amber)"><span class="dot" style="background:var(--amber);box-shadow:0 0 10px var(--amber)"></span> 🔒 NUNCA pausar campanha boa</div></li></ul></li>
+              <li><div class="node leaf"><span class="dot"></span> Orçamento: até 3x o CAC ideal</div></li>
+              <li><div class="node leaf" style="border-left-color:var(--c-teste);font-weight:600;color:var(--c-teste)"><span class="dot"></span> Regra: NUNCA pausar campanha boa</div></li></ul></li>
 
-            <li class="collapsed" style="--c:var(--amber)"><div class="node branch" onclick="tog(this)"><span class="num">5</span> Escassez 🔥 <span class="cap"></span></div><ul>
-              <li><div class="node leaf"><span class="dot"></span> 🎯 Converter com escassez de lote</div></li>
-              <li><div class="node leaf"><span class="dot"></span> 👥 Público: mesmo do remarketing</div></li>
+            <li class="collapsed" style="--c:var(--c-esc)"><div class="node branch" onclick="tog(this)"><span class="num">5</span> Escassez <span class="cap"></span></div><ul>
+              <li><div class="node leaf"><span class="dot"></span> Objetivo: converter com escassez de lote</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Público: mesmo do remarketing (engajado)</div></li>
               <li class="collapsed"><div class="node branch" onclick="tog(this)"><span class="dot"></span> Criativos <span class="cap"></span></div><ul>
                 <li><div class="node leaf"><span class="dot"></span> Contagem regressiva · virou o lote</div></li>
                 <li><div class="node leaf"><span class="dot"></span> Preço · checklist · lembrete diário</div></li></ul></li>
-              <li><div class="node leaf"><span class="dot"></span> 🔁 Liga no gatilho, desliga no fim · SEPARADA</div></li>
-              <li><div class="node leaf" style="border-left-color:var(--amber);color:var(--amber)"><span class="dot" style="background:var(--amber);box-shadow:0 0 10px var(--amber)"></span> 💡 Arsenal pronto ANTES de virar o lote</div></li></ul></li>
+              <li><div class="node leaf"><span class="dot"></span> Liga no gatilho, desliga no fim · SEPARADA</div></li>
+              <li><div class="node leaf" style="border-left-color:var(--c-esc);font-weight:600;color:var(--c-esc)"><span class="dot"></span> Pro próximo: arsenal pronto ANTES do lote</div></li></ul></li>
 
-            <li class="collapsed" style="--c:var(--green)"><div class="node branch" onclick="tog(this)"><span class="num">6</span> Qualificação <span class="cap"></span></div><ul>
-              <li><div class="node leaf"><span class="dot"></span> 🎯 Captar e qualificar leads</div></li>
-              <li><div class="node leaf"><span class="dot"></span> Alimenta as bases quentes</div></li></ul></li>
+            <li class="collapsed" style="--c:var(--c-qual)"><div class="node branch" onclick="tog(this)"><span class="num">6</span> Qualificação <span class="cap"></span></div><ul>
+              <li><div class="node leaf"><span class="dot"></span> Captar e qualificar leads</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Alimenta as bases quentes das outras frentes</div></li></ul></li>
 
-            <li class="collapsed" style="--c:var(--cyan)"><div class="node branch" onclick="tog(this)"><span class="num">7</span> Rmkt Ingressos <span class="cap"></span></div><ul>
-              <li><div class="node leaf"><span class="dot"></span> 🎯 Fechar quem chegou nos ingressos</div></li>
-              <li><div class="node leaf"><span class="dot"></span> Ângulo bottom — última milha</div></li></ul></li>
+            <li class="collapsed" style="--c:var(--c-ing)"><div class="node branch" onclick="tog(this)"><span class="num">7</span> Rmkt Ingressos <span class="cap"></span></div><ul>
+              <li><div class="node leaf"><span class="dot"></span> Fechar quem chegou nos ingressos</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Ângulo bottom — a última milha</div></li></ul></li>
 
-            <li class="collapsed" style="--c:var(--lime)"><div class="node branch" onclick="tog(this)"><span class="num">8</span> Carrinho <span class="cap"></span></div><ul>
-              <li><div class="node leaf"><span class="dot"></span> 🎯 Recuperar checkout abandonado</div></li>
-              <li><div class="node leaf"><span class="dot"></span> Urgência + última objeção</div></li></ul></li>
+            <li class="collapsed" style="--c:var(--c-car)"><div class="node branch" onclick="tog(this)"><span class="num">8</span> Carrinho <span class="cap"></span></div><ul>
+              <li><div class="node leaf"><span class="dot"></span> Recuperar checkout abandonado</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Urgência + a última objeção</div></li></ul></li>
 
-            <li class="collapsed" style="--c:var(--orange)"><div class="node branch" onclick="tog(this)">🚀 Escala <span class="cap"></span></div><ul>
+            <li class="collapsed" style="--c:var(--c-escala)"><div class="node branch" onclick="tog(this)">Escala <span class="cap"></span></div><ul>
               <li><div class="node leaf"><span class="dot"></span> Nunca pausar campanha boa</div></li>
               <li><div class="node leaf"><span class="dot"></span> Promover vencedores do Teste</div></li>
-              <li><div class="node leaf"><span class="dot"></span> ⭐ Advantage+ = motor (60% na referência)</div></li>
-              <li><div class="node leaf"><span class="dot"></span> Subir em degraus (+20% / 2 dias)</div></li></ul></li>
+              <li><div class="node leaf"><span class="dot"></span> Advantage+ = motor (60% na referência)</div></li>
+              <li><div class="node leaf"><span class="dot"></span> Subir em degraus: +20% a cada 2 dias</div></li></ul></li>
           </ul>
         </li></ul>
       </div>
     </div>
     <div class="legend">
-      <span><i style="background:var(--blue)"></i>Vendas</span><span><i style="background:var(--purple-light)"></i>Remarketing</span>
-      <span><i style="background:var(--pink)"></i>Atração</span><span><i style="background:var(--red)"></i>Teste</span>
-      <span><i style="background:var(--amber)"></i>Escassez</span><span><i style="background:var(--green)"></i>Qualificação</span>
-      <span><i style="background:var(--cyan)"></i>Rmkt Ingr.</span><span><i style="background:var(--lime)"></i>Carrinho</span><span><i style="background:var(--orange)"></i>Escala</span>
+      <span><i style="background:var(--c-vendas)"></i>Vendas</span><span><i style="background:var(--c-rmkt)"></i>Remarketing</span>
+      <span><i style="background:var(--c-atr)"></i>Atração</span><span><i style="background:var(--c-teste)"></i>Teste</span>
+      <span><i style="background:var(--c-esc)"></i>Escassez</span><span><i style="background:var(--c-qual)"></i>Qualificação</span>
+      <span><i style="background:var(--c-ing)"></i>Rmkt Ingr.</span><span><i style="background:var(--c-car)"></i>Carrinho</span><span><i style="background:var(--c-escala)"></i>Escala</span>
+    </div>
     </div>
   </section>
 
   <!-- SIMULADOR -->
-  <section id="sim">
-    <div class="kick">Diagnóstico interativo</div>
-    <h2>🎛 Simulador de Funil</h2>
-    <p class="sub">Arraste as taxas e veja as vendas. Compare <b style="color:var(--purple-light)">nosso funil</b> com a <b style="color:var(--cyan)">referência</b> — e descubra qual gargalo, se corrigido, mais aumenta as vendas.</p>
-    <div class="sim">
-      <div class="presets"><span class="l">Carregar:</span>
-        <button class="pbtn" onclick="preset('wici')">🟣 WICI3 (atual)</button>
-        <button class="pbtn" onclick="preset('ref')">🔵 Referência</button></div>
-      <div class="sim-grid">
+  <section id="simulador">
+    <div class="shead reveal">
+      <div class="rn">IV · A oportunidade</div>
+      <h2 class="disp">Simulador de funil</h2>
+      <p>Arraste as taxas e veja as vendas. Compare <b style="color:var(--plum)">nosso funil</b> com a <b style="color:var(--c-ing)">referência</b> — e descubra qual gargalo, corrigido, mais aumenta a venda.</p>
+    </div>
+    <div class="sim reveal">
+      <div class="sim-hd"><span class="l">Carregar cenário</span>
+        <button class="chip w" onclick="preset('wici')">Nosso (WICI3)</button>
+        <button class="chip r" onclick="preset('ref')">Referência</button></div>
+      <div class="sim-body">
         <div>
-          <div class="ctrl"><div class="ctrl-top"><span class="k">Verba total</span><span class="v" id="v-vb">R$ 60.000</span></div><input type="range" id="vb" min="10000" max="160000" step="1000" value="60000" oninput="calc()"></div>
-          <div class="ctrl"><div class="ctrl-top"><span class="k">CPM <small>custo/mil impr.</small></span><span class="v" id="v-cpm">R$ 40,61</span></div><input type="range" id="cpm" min="15" max="60" step="0.5" value="40.61" oninput="calc()"></div>
-          <div class="ctrl"><div class="ctrl-top"><span class="k">CTR <small>clique</small></span><span class="v" id="v-ctr">1,28%</span></div><input type="range" id="ctr" min="0.4" max="2.5" step="0.01" value="1.28" oninput="calc()"></div>
-          <div class="ctrl"><div class="ctrl-top"><span class="k">Tx Carregamento <small>clique→PV</small></span><span class="v" id="v-carr">63%</span></div><input type="range" id="carr" min="40" max="90" step="1" value="63" oninput="calc()"></div>
-          <div class="ctrl"><div class="ctrl-top"><span class="k">Tx Checkout <small>PV→checkout</small></span><span class="v" id="v-chk">6,8%</span></div><input type="range" id="chk" min="3" max="20" step="0.1" value="6.8" oninput="calc()"></div>
-          <div class="ctrl"><div class="ctrl-top"><span class="k">Tx Conv. Checkout <small>checkout→venda</small></span><span class="v" id="v-cv">71%</span></div><input type="range" id="cv" min="15" max="80" step="1" value="71" oninput="calc()"></div>
+          <div class="ctrl"><div class="top"><span class="k">Verba total</span><span class="v" id="v-vb">R$ 60.000</span></div><input type="range" id="vb" min="10000" max="160000" step="1000" value="60000" oninput="calc()"></div>
+          <div class="ctrl"><div class="top"><span class="k">CPM <small>custo/mil impr.</small></span><span class="v" id="v-cpm">R$ 40,61</span></div><input type="range" id="cpm" min="15" max="60" step="0.5" value="40.61" oninput="calc()"></div>
+          <div class="ctrl"><div class="top"><span class="k">CTR <small>clique</small></span><span class="v" id="v-ctr">1,28%</span></div><input type="range" id="ctr" min="0.4" max="2.5" step="0.01" value="1.28" oninput="calc()"></div>
+          <div class="ctrl"><div class="top"><span class="k">Tx Carregamento <small>clique→PV</small></span><span class="v" id="v-carr">63%</span></div><input type="range" id="carr" min="40" max="90" step="1" value="63" oninput="calc()"></div>
+          <div class="ctrl"><div class="top"><span class="k">Tx Checkout <small>PV→checkout</small></span><span class="v" id="v-chk">6,8%</span></div><input type="range" id="chk" min="3" max="20" step="0.1" value="6.8" oninput="calc()"></div>
+          <div class="ctrl"><div class="top"><span class="k">Conv. Checkout <small>checkout→venda</small></span><span class="v" id="v-cv">71%</span></div><input type="range" id="cv" min="15" max="80" step="1" value="71" oninput="calc()"></div>
         </div>
         <div>
           <div class="funnel">
-            <div class="fstep"><div class="lab"><span class="nm">Impressões <b id="o-imp">—</b></span></div><div class="ftrack"><div class="fbar c-imp" id="b-imp" style="width:100%">—</div></div></div>
-            <div class="fstep"><div class="lab"><span class="nm">Cliques <b id="o-clk">—</b></span><span class="rt" id="r-ctr"></span></div><div class="ftrack"><div class="fbar c-clk" id="b-clk"></div></div></div>
-            <div class="fstep"><div class="lab"><span class="nm">Page Views <b id="o-pv">—</b></span><span class="rt" id="r-carr"></span></div><div class="ftrack"><div class="fbar c-pv" id="b-pv"></div></div></div>
-            <div class="fstep"><div class="lab"><span class="nm">Checkouts <b id="o-ck">—</b></span><span class="rt" id="r-chk"></span></div><div class="ftrack"><div class="fbar c-chk" id="b-ck"></div></div></div>
-            <div class="fstep"><div class="lab"><span class="nm">Vendas <b id="o-vd">—</b></span><span class="rt" id="r-cv"></span></div><div class="ftrack"><div class="fbar c-vd" id="b-vd"></div></div></div>
+            <div class="fstep"><div class="lab"><span class="nm">Impressões <b id="o-imp">—</b></span></div><div class="ftrack"><div class="fbar fb1" id="b-imp" style="width:100%">—</div></div></div>
+            <div class="fstep"><div class="lab"><span class="nm">Cliques <b id="o-clk">—</b></span><span class="rt" id="r-ctr"></span></div><div class="ftrack"><div class="fbar fb2" id="b-clk"></div></div></div>
+            <div class="fstep"><div class="lab"><span class="nm">Page Views <b id="o-pv">—</b></span><span class="rt" id="r-carr"></span></div><div class="ftrack"><div class="fbar fb3" id="b-pv"></div></div></div>
+            <div class="fstep"><div class="lab"><span class="nm">Checkouts <b id="o-ck">—</b></span><span class="rt" id="r-chk"></span></div><div class="ftrack"><div class="fbar fb4" id="b-ck"></div></div></div>
+            <div class="fstep"><div class="lab"><span class="nm">Vendas <b id="o-vd">—</b></span><span class="rt" id="r-cv"></span></div><div class="ftrack"><div class="fbar fb5" id="b-vd"></div></div></div>
           </div>
           <div class="skpi">
-            <div class="b big"><div class="l">🎟 Vendas</div><div class="n" id="k-vd">—</div><div class="d">com essa verba e funil</div></div>
-            <div class="b"><div class="l">💰 CPA</div><div class="n" id="k-cpa">—</div><div class="d" id="k-cpa-d">custo por venda</div></div>
+            <div class="b big"><div class="l">Vendas projetadas</div><div class="n" id="k-vd">—</div><div class="d">com essa verba e funil</div></div>
+            <div class="b"><div class="l">CPA</div><div class="n" id="k-cpa">—</div><div class="d" id="k-cpa-d">custo por venda</div></div>
+            <div class="simnote">Teste: carregue <b>Nosso</b> e arraste só a <b>Tx Checkout</b> de 6,8% → 12,6% (nível da referência). As vendas saltam — é o nosso maior gargalo.</div>
           </div>
-          <div class="simnote">💡 Carregue "WICI3" e arraste só a <b>Tx Checkout</b> de 6,8% → 12,6% (nível da referência): veja as vendas saltarem. É o nosso maior gargalo.</div>
         </div>
       </div>
     </div>
+    <p class="disclaim">Números do WICI3 afetados pelo pixel furado em 25–26/07 (PageView e Checkout subcontados) → a Tx Carregamento real é maior e a Conv. Checkout de 71% está um pouco inflada.</p>
   </section>
 
-  <div class="foot-links">
-    <a href="https://cardo-jpg.github.io/wici3-projecao/" target="_blank">📈 Simulador: dá pra bater a meta?</a>
-    <a href="https://cardo-jpg.github.io/wici3-dash/" target="_blank">📊 Dashboard do lançamento</a>
-  </div>
-  <footer>Playbook interno · <b>Cardô Marketing</b> · dados vivos do WICI3</footer>
+  <section class="foot">
+    <div class="foot-links">
+      <a href="https://cardo-jpg.github.io/wici3-projecao/" target="_blank">Simulador de meta →</a>
+      <a href="https://cardo-jpg.github.io/wici3-dash/" target="_blank">Dashboard ao vivo →</a>
+    </div>
+    <div class="sig">Playbook interno · <b>Cardô Marketing</b> · dados vivos do WICI3</div>
+    <p class="disclaim">Estrutura baseada em modelo de mercado, reorganizada e validada com os números reais do lançamento.</p>
+  </section>
+
 </div>
 
 <script>
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   // mapa
   function tog(n){const li=n.closest('li');if(li&&li.querySelector(':scope > ul'))li.classList.toggle('collapsed');}
   function expandAll(){document.querySelectorAll('.tree li').forEach(li=>li.classList.remove('collapsed'));}
@@ -367,15 +414,15 @@
     $('v-carr').textContent=carr+'%';$('v-chk').textContent=chk.toFixed(1).replace('.',',')+'%';$('v-cv').textContent=cv+'%';
     const imp=vb/cpm*1000,clk=imp*ctr/100,pv=clk*carr/100,ck=pv*chk/100,vd=ck*cv/100,cpa=vd>0?vb/vd:0,base=clk||1;
     $('o-imp').textContent=N(imp);$('o-clk').textContent=N(clk);$('o-pv').textContent=N(pv);$('o-ck').textContent=N(ck);$('o-vd').textContent=N(vd);
-    $('r-ctr').textContent=ctr.toFixed(2).replace('.',',')+'% dos impr.';$('r-carr').textContent=carr+'% dos cliques';
-    $('r-chk').textContent=chk.toFixed(1).replace('.',',')+'% dos PV';$('r-cv').textContent=cv+'% dos checkouts';
+    $('r-ctr').textContent=ctr.toFixed(2).replace('.',',')+'% impr.';$('r-carr').textContent=carr+'% cliques';
+    $('r-chk').textContent=chk.toFixed(1).replace('.',',')+'% PV';$('r-cv').textContent=cv+'% checkouts';
     $('b-imp').textContent=N(imp);$('b-clk').style.width='100%';$('b-clk').textContent=N(clk);
-    $('b-pv').style.width=Math.max(5,pv/base*100)+'%';$('b-pv').textContent=N(pv);
-    $('b-ck').style.width=Math.max(5,ck/base*100)+'%';$('b-ck').textContent=N(ck);
-    $('b-vd').style.width=Math.max(5,vd/base*100)+'%';$('b-vd').textContent=N(vd);
+    $('b-pv').style.width=Math.max(6,pv/base*100)+'%';$('b-pv').textContent=N(pv);
+    $('b-ck').style.width=Math.max(6,ck/base*100)+'%';$('b-ck').textContent=N(ck);
+    $('b-vd').style.width=Math.max(6,vd/base*100)+'%';$('b-vd').textContent=N(vd);
     $('k-vd').textContent=N(vd);$('k-cpa').textContent=R0(cpa);
-    $('k-cpa-d').textContent=cpa<=96?'✓ melhor que a referência (R$96)':'referência: R$96';
-    $('k-cpa').style.color=cpa<=96?'var(--green)':(cpa<=130?'var(--amber)':'var(--red)');
+    $('k-cpa-d').textContent=cpa<=96?'melhor que a referência (R$96)':'referência: R$96';
+    $('k-cpa').style.color=cpa<=96?'var(--good)':(cpa<=130?'var(--gold)':'var(--bad)');
   }
   preset('wici');
 </script>
